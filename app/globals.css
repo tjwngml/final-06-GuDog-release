@@ -1,1 +1,77 @@
 @import "tailwindcss";
+@import "pretendard/dist/web/static/pretendard.css";
+
+@theme {
+  /* Colors - Background */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9f9fb;
+  --color-bg-tertiary: #f0f0f3;
+  --color-bg-warm: #fff9f2;
+  --color-bg-elevated: #ffffff;
+
+  /* Colors - Border */
+  --color-border-primary: rgba(0, 0, 0, 0.06);
+  --color-border-secondary: rgba(0, 0, 0, 0.1);
+  --color-border-hover: rgba(251, 166, 19, 0.3);
+
+  /* Colors - Text */
+  --color-text-primary: #1a1a1c;
+  --color-text-secondary: #646468;
+  --color-text-tertiary: #909094;
+  --color-text-disabled: #c0c0c4;
+
+  /* Colors - Accent */
+  --color-accent-primary: #fba613;
+  --color-accent-primaryLight: #ffbd4d;
+  --color-accent-primaryDark: #e59200;
+  --color-accent-soft: #fff5e6;
+
+  /* Font Family */
+  --font-sans: "Pretendard", "Inter", sans-serif;
+
+  /* Box Shadow */
+  --shadow-card:
+    0 4px 24px -4px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-glow: 0 8px 32px rgba(251, 166, 19, 0.2);
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --animate-shimmer: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Custom utility for hero gradient */
+@layer utilities {
+  .bg-hero-gradient {
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      #fff9f2 0%,
+      #ffffff 100%
+    );
+  }
+
+  body {
+    font-family:
+      "Pretendard",
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      sans-serif;
+  }
+
+  .container-custom {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
