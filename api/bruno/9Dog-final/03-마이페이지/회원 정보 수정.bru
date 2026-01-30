@@ -1,0 +1,27 @@
+meta {
+  name: 회원 정보 수정
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{url}}/users/7
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwiaWF0IjoxNzY5NTYwMjk2LCJleHAiOjE3Njk2NDY2OTYsImlzcyI6IkZFQkMifQ.zPJYdoHSXnR4AS53DnJK7DvcHv6nC5lvtqkXBvaIwSo
+}
+
+body:json {
+  {
+    "phone": "01099998888",
+    "name": "은별님2"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

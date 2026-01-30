@@ -1,0 +1,31 @@
+meta {
+  name: 로그인
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/users/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "tjwngml@naver.com",
+    "password": "123123"
+  }
+}
+
+script:post-response {
+  // 로그인 성공 후
+  if(res.status === 200){
+    bru.setEnvVar('accessToken', res.body.item.token.accessToken);
+    bru.setEnvVar('refreshToken', res.body.item.token.refreshToken);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

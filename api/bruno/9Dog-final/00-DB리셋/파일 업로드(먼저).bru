@@ -1,0 +1,24 @@
+meta {
+  name: 파일 업로드(먼저)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/db/init
+  body: multipartForm
+  auth: inherit
+}
+
+params:query {
+  : 
+}
+
+body:multipart-form {
+  attach: @file(/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/angrymoomin.jpg|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/brighteyesbillain.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/digestive_duck_oat.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/jointcare_chicken_brownrice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/jointcare_salmon_potato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/large_adult_chicken_brownrice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/large_adult_salmon_potato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/large_puppy_chicken_brownrice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/largesenior-chickenbrownrice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/largesenior-salmonpotato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/medium_adult_chicken_barley.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/medium_puppy_chicken_oatmeal.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/mediumsenior-slamonbrownrice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/moomin.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/PUP-L-01라지퍼피 치킨앤브라운라이스 2.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/puppy_gf_salmon_sweetpotato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/singleprotin-duckpotato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/singleprotin-lambsweetpotato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/singleprotin-slamontaiioca.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/skincare_salmon_sweetpotato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/small_adult_chicken_rice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/small_adult_duck_oat.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/small_puppy_chicken_rice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/smallsenior-chickenbrownrice.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/smallsenior-duckoat.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/weightcare_chicken_barley.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/weightcare_turkey_sweetpotato.png|/Users/yoonsora/bootcamp/febc15/project-final/final-06-GuDog/public/images/wmremove-transformed 3.png)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

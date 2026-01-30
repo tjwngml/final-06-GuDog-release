@@ -1,0 +1,27 @@
+meta {
+  name: 구매 내역 수정
+  type: http
+  seq: 10
+}
+
+patch {
+  url: {{url}}/orders/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "products": [
+      {
+        "_id": 3,
+        "size": "S"
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,28 @@
+meta {
+  name: 구매 후기 등록
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/replies/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "order_id": 1,
+    "product_id": 3,
+    "rating": 5,
+    "content": "너무 배고파요.",
+    "extra": {
+      "title": "배송 불만"
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

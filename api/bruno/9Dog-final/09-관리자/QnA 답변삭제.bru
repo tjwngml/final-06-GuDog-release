@@ -1,0 +1,16 @@
+meta {
+  name: QnA 답변삭제
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{url}}/posts/1/replies/2
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

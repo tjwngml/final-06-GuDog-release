@@ -1,81 +1,155 @@
-import React from "react";
+import { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
 import Link from "next/link";
 
-interface ButtonBaseProps {
-  variant?: "primary" | "secondary" | "ghost" | "outline" | "icon";
-  size?: "sm" | "md" | "lg";
+type ButtonSize = "xs" | "sm" | "md" | "lg";
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
+
+// 기본 아이콘
+const ArrowRightIcon = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M5.25 2.91797L9.33333 7.0013L5.25 11.0846"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const ArrowLeftIcon = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.75 11.0846L4.66667 7.0013L8.75 2.91797"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// 공통 props
+interface CommonProps {
+  size?: ButtonSize;
+  variant?: ButtonVariant;
+  leftIcon?: ReactNode | boolean;
+  rightIcon?: ReactNode | boolean;
+  children: ReactNode;
   className?: string;
-  children?: React.ReactNode;
+  disabled?: boolean;
 }
 
-interface ButtonAsButton
-  extends ButtonBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
-  href?: never;
-}
+// 버튼 타입 (href 없음)
+type ButtonAsButton = CommonProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> & {
+    href?: never;
+  };
 
-interface ButtonAsLink
-  extends
-    ButtonBaseProps,
-    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
-  href: string;
-}
+// 링크 타입 (href 있음)
+type ButtonAsLink = CommonProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "href"> & {
+    href: string;
+  };
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  variant = "primary",
-  size = "md",
-  className = "",
-  href,
-  ...props
-}) => {
-  const baseStyles =
-    "inline-flex items-center justify-center font-bold transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:pointer-events-none rounded-2xl";
+const sizeStyles: Record<ButtonSize, string> = {
+  xs: "px-4 py-1 text-[0.625rem] gap-1",
+  sm: "px-5 py-3 text-xs gap-1.5",
+  md: "px-6 py-4 text-xs gap-2",
+  lg: "px-7 py-5 text-base gap-2.5",
+};
 
-  const variants = {
-    primary:
-      "bg-accent-primary text-white hover:bg-accent-primaryLight shadow-glow active:bg-accent-primaryDark",
-    secondary:
-      "bg-accent-soft text-accent-primary hover:bg-orange-100 active:bg-accent-soft",
-    ghost:
-      "bg-transparent text-text-secondary hover:bg-bg-secondary hover:text-text-primary",
-    outline:
-      "bg-white text-text-primary border-2 border-border-secondary hover:border-accent-primary/30 active:bg-bg-secondary",
-    icon: "p-2.5 text-text-secondary hover:text-accent-primary hover:bg-accent-soft border border-border-primary rounded-xl",
+const variantStyles: Record<ButtonVariant, string> = {
+  primary: "bg-[#FBA613] text-white hover:bg-[#E59200] active:bg-[#D08500]",
+  secondary:
+    "bg-[#FFF5E6] text-[#FBA613] hover:bg-[#FFEDD5] active:bg-[#FFE4C4]",
+  outline:
+    "bg-white text-[#1A1A1C] border-2 border-black/10 hover:bg-gray-50 active:bg-gray-100",
+  ghost: "bg-transparent text-[#646468] hover:bg-black/5 active:bg-black/10",
+};
+
+const baseStyles = `
+  inline-flex items-center justify-center
+  font-medium rounded-xl
+  transition-colors duration-200
+  focus:outline-none focus:ring-2 focus:ring-[#FBA613] focus:ring-offset-2
+`;
+
+export default function Button(props: ButtonProps) {
+  const {
+    size = "md",
+    variant = "primary",
+    leftIcon,
+    rightIcon,
+    children,
+    className = "",
+    disabled,
+  } = props;
+
+  const combinedClassName = `
+    ${baseStyles}
+    ${sizeStyles[size]}
+    ${variantStyles[variant]}
+    ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}
+    ${className}
+  `.trim();
+
+  const renderLeftIcon = () => {
+    if (leftIcon === true) return <ArrowLeftIcon />;
+    if (leftIcon) return leftIcon;
+    return null;
   };
 
-  const sizes = {
-    sm: "px-4 py-2 text-xs",
-    md: "px-6 py-3 text-sm",
-    lg: "px-10 py-4.5 text-base",
+  const renderRightIcon = () => {
+    if (rightIcon === true) return <ArrowRightIcon />;
+    if (rightIcon) return rightIcon;
+    return null;
   };
 
-  const finalClassName = `${baseStyles} ${variants[variant]} ${variant === "icon" ? "" : sizes[size]} ${className}`;
+  const content = (
+    <>
+      {renderLeftIcon() && <span className="shrink-0">{renderLeftIcon()}</span>}
+      {children}
+      {renderRightIcon() && (
+        <span className="shrink-0">{renderRightIcon()}</span>
+      )}
+    </>
+  );
 
-  if (href) {
+  // href가 있으면 Link
+  if ("href" in props && props.href) {
+    const { href, ...restProps } = props as ButtonAsLink;
+
     return (
-      <Link
-        href={href}
-        className={finalClassName}
-        {...(props as Omit<
-          React.AnchorHTMLAttributes<HTMLAnchorElement>,
-          "href"
-        >)}
-      >
-        {children}
+      <Link href={href} className={combinedClassName}>
+        {content}
       </Link>
     );
   }
 
+  // href가 없으면 Button
   return (
     <button
-      className={finalClassName}
-      {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      className={combinedClassName}
+      disabled={disabled}
+      type={(props as ButtonAsButton).type ?? "button"}
+      onClick={(props as ButtonAsButton).onClick}
     >
-      {children}
+      {content}
     </button>
   );
-};
-
-export default Button;
+}

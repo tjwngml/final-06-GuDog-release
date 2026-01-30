@@ -1,0 +1,28 @@
+meta {
+  name: 상품 수정
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{url}}/seller/products/25
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+        "price": 60000,
+        "name": "스몰퍼피 치킨앤라이스15",
+        "mainImages": [
+          { "path": "/images/small_puppy_chicken_rice3.png", "name": "small_puppy_chicken_rice3.jpg" }
+        ],
+        "extra.period": "3주 배송",
+        "extra.kcalPer100g": 440
+      }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

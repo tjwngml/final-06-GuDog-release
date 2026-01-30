@@ -1,0 +1,20 @@
+meta {
+  name: 파일 업로드
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{url}}/files/
+  body: file
+  auth: inherit
+}
+
+body:file {
+  file: @file()
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -52,13 +52,13 @@ const SitemapPage: React.FC = () => {
     {
       section: "마이페이지",
       items: [
-        { title: "마이페이지 메인", href: "/mypage", depth: 1 },
+        // { title: "마이페이지 메인", href: "/mypage", depth: 1 },
         { title: "회원정보 수정", href: "/mypage/profile", depth: 2 },
-        { title: "구독 관리", href: "/mypage/subscriptions", depth: 2 },
-        { title: "주문 내역", href: "/mypage/orders", depth: 2 },
+        { title: "구독 관리", href: "/mypage/subscription", depth: 2 },
+        { title: "주문 내역", href: "/mypage/order", depth: 2 },
         {
           title: "후기 등록",
-          href: "/mypage/orders/{orderId}/review",
+          href: "/mypage/order/1/review",
           depth: 3,
         },
         { title: "관심 상품", href: "/mypage/wishlist", depth: 2 },
@@ -86,12 +86,7 @@ const SitemapPage: React.FC = () => {
   // 섹션별 아이콘 매핑
   const sectionIcons: Record<string, React.ReactNode> = {
     메인: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -101,12 +96,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     인증: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -116,12 +106,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     "설문 · 추천": (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -131,12 +116,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     상품: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -146,12 +126,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     구매: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -161,12 +136,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     마이페이지: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -176,12 +146,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     고객센터: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -191,12 +156,7 @@ const SitemapPage: React.FC = () => {
       </svg>
     ),
     관리자: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -219,13 +179,11 @@ const SitemapPage: React.FC = () => {
         {/* 헤더 */}
         <div className="text-center mb-16">
           <h2 className="text-5xl font-black mb-4">사이트맵</h2>
-          <p className="text-text-secondary">
-            작업자 확인용 임시페이지 입니다.
-          </p>
+          <p className="text-text-secondary">작업자 확인용 임시페이지 입니다.</p>
         </div>
 
         {/* 사이트맵 그리드 */}
-        <div className="max-w-[1200px] mx-auto px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-300 mx-auto px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sitemapData.map((sectionData, idx) => (
             <div
               key={idx}
@@ -244,9 +202,7 @@ const SitemapPage: React.FC = () => {
                     <Link
                       href={item.href.includes("{") ? "#" : item.href}
                       className={`block w-full px-4 py-3 rounded-xl bg-bg-secondary hover:bg-accent-soft transition-colors ${
-                        item.href.includes("{")
-                          ? "cursor-not-allowed opacity-60"
-                          : ""
+                        item.href.includes("{") ? "cursor-not-allowed opacity-60" : ""
                       }`}
                       onClick={(e) => {
                         if (item.href.includes("{")) e.preventDefault();
@@ -254,9 +210,7 @@ const SitemapPage: React.FC = () => {
                     >
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-sm">
-                            {item.title}
-                          </span>
+                          <span className="font-medium text-sm">{item.title}</span>
                         </div>
                         <span
                           className={`text-xs font-medium px-2 py-0.5 rounded ${
@@ -272,9 +226,7 @@ const SitemapPage: React.FC = () => {
                           D{item.depth}
                         </span>
                       </div>
-                      <p className="text-xs text-text-tertiary mt-1 truncate">
-                        {item.href}
-                      </p>
+                      <p className="text-xs text-text-tertiary mt-1 truncate">{item.href}</p>
                     </Link>
                   </li>
                 ))}

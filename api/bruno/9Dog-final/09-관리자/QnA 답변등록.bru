@@ -1,0 +1,22 @@
+meta {
+  name: QnA 답변등록
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/posts/2/replies
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "content": "답글 내용입나다.ㄹㄹㄹㄹㄹㄹㄹㄹ"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

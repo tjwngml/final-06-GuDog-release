@@ -1,0 +1,22 @@
+meta {
+  name: QnA 답변수정
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{url}}/posts/1/replies/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "content": "답글 내용입나다22222."
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

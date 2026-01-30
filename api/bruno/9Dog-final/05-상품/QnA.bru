@@ -1,0 +1,15 @@
+meta {
+  name: QnA
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url}}/posts/{_id}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

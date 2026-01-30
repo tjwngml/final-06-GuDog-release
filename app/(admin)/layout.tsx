@@ -1,6 +1,7 @@
 import "../globals.css";
 import { AdminLayoutClient } from "@/components/layouts/AdminLayoutClient";
 import { ReactNode } from "react";
+import "pretendard/dist/web/variable/pretendardvariable.css";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
 

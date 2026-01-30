@@ -1,0 +1,62 @@
+meta {
+  name: 상품 등록
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/seller/products/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+        "price": 55000,
+        "quantity": 127,
+        "buyQuantity": 12,
+        "shippingFees": 3000,
+        "show": true,
+        "active": true,
+        "name": "스몰퍼피 치킨앤라이스5",
+        "content": "DHA와 EPA가 풍부하게 함유되어 성장기 강아지의 두뇌 발달과 시력 형성을 촉진하며, 학습 능력 향상에도 도움을 줍니다. 칼슘과 인이 1.2:1의 최적 비율로 설계되어 소형견 특유의 빠른 골격 성장을 안정적으로 지원합니다.",
+        "mainImages": [
+          { "path": "/images/small_puppy_chicken_rice.png", "name": "small_puppy_chicken_rice.jpg" }
+        ],
+        "extra": {
+          "state": ["1회구매", "구독중"],
+          "orderdate": "2026-01-27",
+          "period": "2주 배송",
+          "code": "PUP-S-01",
+          "discount": "4500",
+          "weight": 600,
+          "size": ["소형견"],
+          "lifeStage": ["퍼피"],
+          "bodyType": ["마름", "적정"],
+          "activityLevel": ["보통", "많음"],
+          "neutered": "both",
+          "mainProtein": ["닭고기"],
+          "grainFree": false,
+          "category": ["퍼피", "주니어", "시니어"],
+          "feedstuff": true,
+          "foodType": "건식",
+          "healthBenefits": [],
+          "kcalPer100g": 400,
+          "ingredients": {
+            "contains": ["닭고기", "쌀"],
+            "avoid": []
+          },
+          "avoidIf": {
+            "allergies": ["닭고기", "밀/곡물"],
+            "diseases": []
+          },
+          "specialFeatures": ["퍼피 전용", "소형견 키블", "DHA 함유"],
+          "nutrition": { "protein": 32, "fat": 18, "moisture": 10 }
+        }
+      }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

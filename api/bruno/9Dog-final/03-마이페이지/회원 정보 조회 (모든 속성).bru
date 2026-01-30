@@ -1,0 +1,16 @@
+meta {
+  name: 회원 정보 조회 (모든 속성)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/users/7
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,16 @@
+meta {
+  name: 상품 좋아요 삭제
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{url}}/bookmarks/6
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,16 @@
+meta {
+  name: 장바구니 상품 한건 삭제
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{url}}/carts/8
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

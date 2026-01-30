@@ -1,0 +1,23 @@
+meta {
+  name: 구매 상태 수정
+  type: http
+  seq: 9
+}
+
+patch {
+  url: {{url}}/orders/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "state": "OS110",
+    "memo": "2개 상품 모두 동작하지 않습니다. 반품 요청합니다."
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

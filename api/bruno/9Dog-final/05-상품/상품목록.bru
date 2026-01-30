@@ -1,0 +1,21 @@
+meta {
+  name: 상품목록
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/products/
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~showSoldOut: true
+  ~seller_id: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
