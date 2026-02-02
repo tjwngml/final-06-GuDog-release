@@ -12,6 +12,8 @@ import {
   House,
 } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
+import Profile from "@/app/(admin)/admin/_components/Profile";
+import useUserStore from "@/app/(main)/(auth)/login/zustand/useStore";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -48,6 +50,9 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  const userName = useUserStore((state) => state.user?.name);
+  const userEmail = useUserStore((state) => state.user?.email);
 
   // 현재 경로가 메뉴 항목과 일치하는지 확인
   const isActive = (path: string, exact: boolean = false) => {
@@ -227,12 +232,10 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
           {/* User Profile */}
           <div className="p-4 border-t border-gray-200">
             <div className="flex items-center">
-              <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                <span className="text-gray-600 font-medium">JD</span>
-              </div>
+              <Profile />
               <div className="ml-3 flex-1">
-                <p className="text-sm font-medium text-gray-900">John Doe</p>
-                <p className="text-xs text-gray-500">john@example.com</p>
+                <p className="text-sm font-medium text-gray-900">{userName}</p>
+                <p className="text-xs text-gray-500">{userEmail}</p>
               </div>
             </div>
           </div>

@@ -99,6 +99,7 @@ export async function getProductsByCodes(codes: string[]) {
   try {
     const customQuery = JSON.stringify({
       "extra.code": { $in: codes },
+      "extra.type": "사료",
     });
 
     const params = new URLSearchParams();

@@ -1,0 +1,20 @@
+meta {
+  name: 파일등록
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{url}}//files/
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  attach: @file(C:\Users\mhj\Downloads\ex-9dog.png)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

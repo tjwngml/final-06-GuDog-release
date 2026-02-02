@@ -101,7 +101,7 @@ function SurveyResultContent() {
     <div className="bg-bg-secondary min-h-screen pb-40 pt-16">
       <div className="container-custom max-w-[1100px]">
         {/* 상단 요약 */}
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-top-4 duration-700">
+        <div className="text-center mb-16">
           <Badge variant="accent" className="mb-4">
             ANALYSIS COMPLETE
           </Badge>

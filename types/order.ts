@@ -1,3 +1,5 @@
+import { User } from "@/types/user";
+
 // 주문 내 개별 상품 정보
 export interface OrderProduct {
   _id: number;
@@ -52,4 +54,12 @@ export interface Order {
   memo?: string;
   createdAt: string;
   updatedAt: string;
+  user: User;
+}
+
+export interface OrderStatistics {
+  totalQuantity: number;
+  totalSales: number;
+  _id?: string | number;
+  name?: string;
 }

@@ -287,7 +287,7 @@ export default function SurveyPage() {
                   ))}
                 </div>
                 <p className="mt-4 text-sm text-text-tertiary">
-                  🔸 "기타 알러지 있음"을 선택하면 저자극성 사료를 우선 추천해드려요.
+                  🔸 &quot;기타 알러지 있음&quot;을 선택하면 저자극성 사료를 우선 추천해드려요.
                 </p>
               </SurveySection>
 

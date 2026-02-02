@@ -2,7 +2,7 @@ import type { User } from "@/types/user";
 import type { Review } from "@/types/review";
 import type { Product } from "@/types/product";
 import type { Post } from "@/types/post";
-import type { Order } from "@/types/order";
+import type { Order, OrderStatistics } from "@/types/order";
 import type { Bookmark } from "@/types/bookmark";
 import type { Cart } from "@/types/cart";
 import type { FileInfo } from "@/types/file";
@@ -202,3 +202,16 @@ export type ResDate<
     | ConfigListRes
     | ConfigInfoRes,
 > = T | ErrorRes;
+
+// 주문량 조회 결과
+export interface OrderStatisticsRes {
+  ok: 1;
+  item: OrderStatistics[];
+}
+
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}

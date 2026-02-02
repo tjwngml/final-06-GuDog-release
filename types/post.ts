@@ -44,4 +44,5 @@ export interface Post {
   replies?: Reply[];
   createdAt: string;
   updatedAt: string;
+  repliesCount?: number;
 }

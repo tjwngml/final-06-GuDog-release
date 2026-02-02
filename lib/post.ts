@@ -9,6 +9,7 @@ interface GetPostsOptions {
   sort?: Record<string, 1 | -1>;
   page?: number;
   keyword?: string;
+  custom?: Record<string, unknown>;
 }
 
 /**
@@ -18,6 +19,7 @@ interface GetPostsOptions {
  * @param {number} [options.limit] - 한 페이지당 항목 수
  * @param {number} [options.page] - 페이지 번호
  * @param {string} [options.keyword] - 검색어 (제목, 내용, 태그 검색)
+ * @param {Record<string, unknown>} [options.custom] - custom 검색 조건 (MongoDB 쿼리)
  * @param {Record<string, 1 | -1>} [options.sort] - 정렬 조건 (예: { views: -1 }, { createdAt: 1 })
  * @returns {Promise<PostListRes | ErrorRes>} - 게시글 목록 응답 객체
  * @example
@@ -29,7 +31,7 @@ interface GetPostsOptions {
  */
 export async function getPosts(options: GetPostsOptions): Promise<PostListRes | ErrorRes> {
   try {
-    const { boardType, limit, sort, page, keyword } = options;
+    const { boardType, limit, sort, page, keyword, custom } = options;
 
     const params = new URLSearchParams();
     params.append("type", boardType);
@@ -38,12 +40,14 @@ export async function getPosts(options: GetPostsOptions): Promise<PostListRes | 
     if (page) params.append("page", String(page));
     if (keyword) params.append("keyword", keyword);
     if (sort) params.append("sort", JSON.stringify(sort));
+    if (custom) params.append("custom", JSON.stringify(custom));
+
+    console.log(params.toString());
 
     const res = await fetch(`${API_URL}/posts?${params.toString()}`, {
       headers: {
         "Client-Id": CLIENT_ID,
       },
-      cache: "force-cache",
       next: {
         tags: [`posts?type=${boardType}`],
       },

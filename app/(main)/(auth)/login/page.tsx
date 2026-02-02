@@ -23,22 +23,22 @@ export default function Login() {
     console.log(checkedState);
   }, [checkedState]);
 
-  useEffect(() => {
-    if (userState?.ok === 1) {
-      if (checkedState) {
-        localStorage.setItem("sessionStorage", userState.item.token.accessToken);
-      }
-      if (!checkedState) {
-        sessionStorage.setItem("sessionStorage", userState.item.token.accessToken);
-      }
-    }
-  }, [userState, checkedState]);
+  // useEffect(() => {
+  //   if (userState?.ok === 1) {
+  //     if (checkedState) {
+  //       localStorage.setItem("sessionStorage", userState.item.token.accessToken);
+  //     }
+  //     if (!checkedState) {
+  //       sessionStorage.setItem("sessionStorage", userState.item.token.accessToken);
+  //     }
+  //   }
+  // }, [userState, checkedState]);
   const router = useRouter();
   const setUser = useUserStore((state) => state.setUser);
 
   useEffect(() => {
     if (userState?.ok === 1) {
-      const storageType = checkedState ? localStorage : sessionStorage;
+      const storageType = !checkedState ? localStorage : sessionStorage;
 
       // zustand persist 설정의 스토리지를 강제 변경
       useUserStore.persist.setOptions({
@@ -56,10 +56,11 @@ export default function Login() {
         },
       });
       console.log(userState.item._id);
+      console.log("setUser 후:", useUserStore.getState());
       alert(`${userState.item.name}님 로그인이 완료되었습니다.`);
       redirect("/");
     }
-  }, [userState, router, redirect, setUser]);
+  }, [userState, router, redirect, setUser, checkedState]);
 
   return (
     <>

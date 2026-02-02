@@ -1,0 +1,15 @@
+meta {
+  name: 통계 주문량 조회
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{url}}/admin/statistics/orders
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
