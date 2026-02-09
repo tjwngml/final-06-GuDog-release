@@ -20,7 +20,8 @@ import { Post } from "@/types/post";
 import { getOrders } from "@/lib/order";
 import { getUsers } from "@/lib/user";
 import { getOrderStatistics } from "@/lib/statistics";
-import useUserStore from "@/app/(main)/(auth)/login/zustand/useStore";
+import useUserStore from "@/zustand/useStore";
+import Link from "next/link";
 
 // 가격 포맷
 const formatPrice = (price: number) => {
@@ -100,9 +101,7 @@ export default function AdminDashboardPage() {
   const [lowStockProducts, setLowStockProducts] = useState<Product[]>([]);
   const [recentOrders, setRecentOrders] = useState<Order[]>([]);
 
-  // console.log(useUserStore.getState());
   const token = useUserStore.getState().user?.token?.accessToken;
-  // console.log(token);
 
   useEffect(() => {
     fetchDashboardData();
@@ -269,10 +268,13 @@ export default function AdminDashboardPage() {
                 {stats.pendingQna}건
               </span>
             </div>
-            <button className="text-sm text-blue-600 hover:text-blue-800 inline-flex items-center">
+            <Link
+              href="/admin/qna"
+              className="text-sm text-blue-600 hover:text-blue-800 inline-flex items-center"
+            >
               전체보기
               <ArrowRight className="w-4 h-4 ml-1" />
-            </button>
+            </Link>
           </div>
           <div className="divide-y divide-gray-200">
             {pendingQnAs.length === 0 ? (
@@ -297,9 +299,12 @@ export default function AdminDashboardPage() {
                           작성자: {qna.user?.name || "익명"}
                         </p>
                       </div>
-                      <button className="ml-4 px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
+                      <Link
+                        href={`/admin/qna/${qna._id}/answer`}
+                        className="ml-4 px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                      >
                         답변하기
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 );
@@ -317,10 +322,13 @@ export default function AdminDashboardPage() {
                 {stats.lowStockCount}건
               </span>
             </div>
-            <button className="text-sm text-blue-600 hover:text-blue-800 inline-flex items-center">
+            <Link
+              href="/admin/products"
+              className="text-sm text-blue-600 hover:text-blue-800 inline-flex items-center"
+            >
               전체보기
               <ArrowRight className="w-4 h-4 ml-1" />
-            </button>
+            </Link>
           </div>
           <div className="divide-y divide-gray-200">
             {lowStockProducts.length === 0 ? (

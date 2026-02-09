@@ -1,4 +1,4 @@
-import useUserStore from "@/app/(main)/(auth)/login/zustand/useStore";
+import useUserStore from "@/zustand/useStore";
 import Image from "next/image";
 
 export default function Profile() {

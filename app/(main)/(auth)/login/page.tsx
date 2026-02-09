@@ -1,7 +1,7 @@
 "use client";
 
-import { login } from "@/app/(main)/(auth)/login/actions/user";
-import useUserStore from "@/app/(main)/(auth)/login/zustand/useStore";
+import { login } from "@/actions/user";
+import useUserStore from "@/zustand/useStore";
 import Button from "@/components/common/Button";
 import Checkbox from "@/components/common/Checkbox";
 import Input from "@/components/common/Input";
@@ -14,6 +14,8 @@ import { createJSONStorage } from "zustand/middleware";
 export default function Login() {
   const [userState, formAction, isPending] = useActionState(login, null);
   const [checkedState, setcheckedState] = useState(false);
+  const router = useRouter();
+  const setUser = useUserStore((state) => state.setUser);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setcheckedState(e.target.checked);
@@ -23,33 +25,21 @@ export default function Login() {
     console.log(checkedState);
   }, [checkedState]);
 
-  // useEffect(() => {
-  //   if (userState?.ok === 1) {
-  //     if (checkedState) {
-  //       localStorage.setItem("sessionStorage", userState.item.token.accessToken);
-  //     }
-  //     if (!checkedState) {
-  //       sessionStorage.setItem("sessionStorage", userState.item.token.accessToken);
-  //     }
-  //   }
-  // }, [userState, checkedState]);
-  const router = useRouter();
-  const setUser = useUserStore((state) => state.setUser);
-
   useEffect(() => {
     if (userState?.ok === 1) {
       const storageType = !checkedState ? localStorage : sessionStorage;
+      const token = userState.item.token?.accessToken;
+      const LONG_LIVED = 60 * 60 * 24 * 365 * 10;
+      const cookieExpires = checkedState ? `max-age=${LONG_LIVED}` : "";
+      // const cookieExpires = checkedState ? `max-age=${60 * 60 * 24 * 7}` : "";
+      document.cookie = `accessToken=${token}; path=/; ${cookieExpires}; SameSite=Lax;`;
 
-      // zustand persist 설정의 스토리지를 강제 변경
       useUserStore.persist.setOptions({
         storage: createJSONStorage(() => storageType),
       });
 
       setUser({
-        _id: userState.item._id,
-        email: userState.item.email,
-        name: userState.item.name,
-        image: userState.item.image,
+        ...userState.item,
         token: {
           accessToken: userState.item.token?.accessToken || "",
           refreshToken: userState.item.token?.refreshToken || "",
@@ -58,7 +48,7 @@ export default function Login() {
       console.log(userState.item._id);
       console.log("setUser 후:", useUserStore.getState());
       alert(`${userState.item.name}님 로그인이 완료되었습니다.`);
-      redirect("/");
+      router.push("/");
     }
   }, [userState, router, redirect, setUser, checkedState]);
 

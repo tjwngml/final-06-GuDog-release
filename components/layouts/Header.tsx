@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import useUserStore from "@/app/(main)/(auth)/login/zustand/useStore";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
+import useUserStore from "@/zustand/useStore";
 import { usePathname, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const Header: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -12,17 +13,35 @@ const Header: React.FC = () => {
 
   const pathname = usePathname();
   const router = useRouter();
-  const { user, resetUser } = useUserStore(); // login zustand 스토어에서 가져옴
+  const { user, resetUser, cartCount, fetchCartCount, resetCart } = useUserStore();
 
+  // useSyncExternalStore 훅 사용
+  // 토큰 값 가져오기
+  // const accessToken = useSyncExternalStore(
+  //   () => () => {},
+  //   () => Cookies.get("accessToken") ?? null,
+  //   () => null,
+  // );
+
+  // zustand 에서 토큰 끌어오기 - hydration 에러 수정
   const isLoggedIn = !!user?.token?.accessToken;
+  // // 로그인 여부는 토큰에서 파생
+  // const isLoggedIn = !!accessToken;
+
+  // 로그인 상태일 때 장바구니 수량 조회
+  useEffect(() => {
+    if (user?.token?.accessToken) {
+      fetchCartCount(user.token.accessToken);
+    } else {
+      resetCart();
+    }
+  }, [user?.token?.accessToken, fetchCartCount, resetCart]);
   const handleLogout = (e: React.MouseEvent) => {
     // 세션 스토리지를 비우고 상태를 null로 초기화
     e.preventDefault();
     resetUser();
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("sessionStorage");
-    localStorage.removeItem("user");
-    localStorage.removeItem("sessionStorage");
+
+    Cookies.remove("accessToken");
 
     alert("로그아웃 되었습니다.");
     router.push("/");
@@ -44,10 +63,10 @@ const Header: React.FC = () => {
     { name: "정기구독", href: "/survey" },
     {
       name: "상품보기",
-      href: "/products",
+      href: "/products?type=사료",
       subMenu: [
-        { name: "사료", href: "/products?category=food" },
-        { name: "간식", href: "/products?category=snack" },
+        { name: "사료", href: "/products?type=사료" },
+        { name: "간식", href: "/products?type=간식" },
       ],
     },
     { name: "구매후기", href: "/reviews" },
@@ -84,30 +103,30 @@ const Header: React.FC = () => {
             >
               My Account
             </Link>
-            <nav>
-              {isLoggedIn ? (
-                /* 토큰이 있을 때 Logout 표시, 클릭 시 상태 리셋 후 메인 이동 */
-                <Link
-                  href="/"
-                  onClick={handleLogout}
-                  className="text-[10px] font-black uppercase tracking-widest transition-colors text-text-tertiary hover:text-text-primary"
-                >
-                  Logout
-                </Link>
-              ) : (
-                /* 토큰이 없을 때 Login 표시 */
-                <Link
-                  href="/login"
-                  className={`text-[10px] font-black uppercase tracking-widest transition-colors ${
-                    pathname === "/login"
-                      ? "text-accent-primary"
-                      : "text-text-tertiary hover:text-text-primary"
-                  }`}
-                >
-                  Login
-                </Link>
-              )}
-            </nav>
+
+            {isLoggedIn ? (
+              /* 토큰이 있을 때 Logout 표시, 클릭 시 상태 리셋 후 메인 이동 */
+              <Link
+                href="/"
+                onClick={handleLogout}
+                className="text-[10px] font-black uppercase tracking-widest transition-colors text-text-tertiary hover:text-text-primary"
+              >
+                Logout
+              </Link>
+            ) : (
+              /* 토큰이 없을 때 Login 표시 */
+              <Link
+                href="/login"
+                className={`text-[10px] font-black uppercase tracking-widest transition-colors ${
+                  pathname === "/login"
+                    ? "text-accent-primary"
+                    : "text-text-tertiary hover:text-text-primary"
+                }`}
+              >
+                Login
+              </Link>
+            )}
+
             <Link
               href="/signup"
               className={`text-[10px] font-black uppercase tracking-widest transition-colors ${
@@ -126,7 +145,8 @@ const Header: React.FC = () => {
                   : "text-text-tertiary hover:text-text-primary"
               }`}
             >
-              Cart <span className="ml-1 text-accent-primary">(2)</span>
+              Cart{" "}
+              {cartCount > 0 && <span className="ml-1 text-accent-primary">({cartCount})</span>}
             </Link>
           </div>
         </div>
@@ -202,9 +222,11 @@ const Header: React.FC = () => {
                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                 />
               </svg>
-              <span className="absolute top-1 right-1 w-4 h-4 bg-accent-primary text-white text-[9px] font-black rounded-full flex items-center justify-center">
-                2
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute top-1 right-1 w-4 h-4 bg-accent-primary text-white text-[9px] font-black rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             {/* 햄버거 메뉴 (모바일) */}
@@ -264,13 +286,26 @@ const Header: React.FC = () => {
         <div className="flex flex-col grow p-8 space-y-10 overflow-y-auto">
           {/* 모바일 계정 퀵 링크 */}
           <div className="flex gap-4">
-            <Link
-              href="/login"
-              onClick={closeMobileMenu}
-              className="flex-1 py-4 bg-bg-secondary rounded-2xl text-sm font-black text-text-primary border border-border-primary active:scale-95 transition-all text-center"
-            >
-              로그인
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                href="/"
+                onClick={(e) => {
+                  handleLogout(e);
+                  closeMobileMenu();
+                }}
+                className="flex-1 py-4 bg-bg-secondary rounded-2xl text-sm font-black text-text-primary border border-border-primary active:scale-95 transition-all text-center"
+              >
+                로그아웃
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                onClick={closeMobileMenu}
+                className="flex-1 py-4 bg-bg-secondary rounded-2xl text-sm font-black text-text-primary border border-border-primary active:scale-95 transition-all text-center"
+              >
+                로그인
+              </Link>
+            )}
             <Link
               href="/signup"
               onClick={closeMobileMenu}
@@ -357,9 +392,11 @@ const Header: React.FC = () => {
                   <span className="group-hover:text-accent-primary transition-colors">
                     장바구니
                   </span>
-                  <span className="ml-2 px-2 py-0.5 bg-accent-primary text-white text-[10px] rounded-full">
-                    2
-                  </span>
+                  {cartCount > 0 && (
+                    <span className="ml-2 px-2 py-0.5 bg-accent-primary text-white text-[10px] rounded-full">
+                      {cartCount}
+                    </span>
+                  )}
                 </div>
                 <svg
                   className="w-4 h-4 text-accent-primary"

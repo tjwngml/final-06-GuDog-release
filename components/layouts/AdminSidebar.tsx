@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import Profile from "@/app/(admin)/admin/_components/Profile";
-import useUserStore from "@/app/(main)/(auth)/login/zustand/useStore";
+import useUserStore from "@/zustand/useStore";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -179,7 +179,7 @@ export function AdminSidebar({ isOpen, onClose }: SidebarProps) {
                         {expandedItems.includes(item.label) && (
                           <div className="mt-1 ml-4 space-y-1">
                             {item.subItems!.map((subItem, subIndex) => {
-                              const isSubItemActive = isActive(subItem.path);
+                              const isSubItemActive = isActive(subItem.path, true);
 
                               return (
                                 <button

@@ -1,10 +1,10 @@
 import type { User } from "@/types/user";
 import type { Review } from "@/types/review";
 import type { Product } from "@/types/product";
-import type { Post } from "@/types/post";
+import type { Post, Reply } from "@/types/post";
 import type { Order, OrderStatistics } from "@/types/order";
 import type { Bookmark } from "@/types/bookmark";
-import type { Cart } from "@/types/cart";
+import type { Cart, CartCost } from "@/types/cart";
 import type { FileInfo } from "@/types/file";
 import type { CodeGroup } from "@/types/codes";
 import type { SystemConfig } from "@/types/config";
@@ -72,6 +72,14 @@ export interface ReviewInfoRes {
   pagination: Pagination;
 }
 
+// 페이지네이션 정보
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
 // 상품 목록 조회 결과
 export interface ProductListRes {
   ok: 1;
@@ -97,6 +105,13 @@ export interface PostListRes {
 export interface PostInfoRes {
   ok: 1;
   item: Post;
+  pagination: Pagination;
+}
+
+// 댓글 목록 조회 결과
+export interface ReplyListRes {
+  ok: 1;
+  item: Reply[];
   pagination: Pagination;
 }
 
@@ -177,9 +192,16 @@ export interface ConfigInfoRes {
   pagination: Pagination;
 }
 
+// 데이터 없이 성공 응답만 오는 경우 (예: 삭제 성공)
+export interface EmptyRes {
+  ok: 1;
+  item: null;
+  pagination: Pagination;
+}
+
 // 서버의 응답
 
-export type ResDate<
+export type ResData<
   T extends
     | UserInfoRes
     | UserListRes
@@ -189,6 +211,7 @@ export type ResDate<
     | ProductListRes
     | ProductInfoRes
     | PostListRes
+    | ReplyListRes
     | PostInfoRes
     | OrderListRes
     | OrderInfoRes
@@ -200,6 +223,7 @@ export type ResDate<
     | CodeListRes
     | CodeInfoRes
     | ConfigListRes
+    | EmptyRes
     | ConfigInfoRes,
 > = T | ErrorRes;
 

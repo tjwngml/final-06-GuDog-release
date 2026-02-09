@@ -14,7 +14,7 @@ interface Section {
   items: SitemapItem[];
 }
 
-const SitemapPage: React.FC = () => {
+const SitemapPage = () => {
   const sitemapData: Section[] = [
     {
       section: "메인",

@@ -9,6 +9,7 @@ import Pagination from "@/app/(admin)/admin/_components/Pagination";
 import { getPosts } from "@/lib/post";
 import { useQuery } from "@tanstack/react-query";
 import { useUrlParams } from "@/hooks/useUrlParams";
+import Link from "next/link";
 
 // 상태 뱃지 컴포넌트
 interface StatusBadgeProps {
@@ -251,10 +252,13 @@ export default function QnAListPage() {
                       {formatDate(item.createdAt)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm">
-                      <button className="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                      <Link
+                        href={`/admin/qna/${item._id}/answer`}
+                        className="text-blue-600 hover:text-blue-800 inline-flex items-center"
+                      >
                         <span>{(item.repliesCount ?? 0) > 0 ? "답변수정하기" : "답변하기"}</span>
                         <ChevronRight className="w-4 h-4 ml-1" />
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))

@@ -3,14 +3,53 @@
 import Badge from "@/components/common/Badge";
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
+import { signup } from "@/lib/user";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function Singup() {
+export default function SignupForm() {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    type: "user" as "user" | "seller",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    name: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.passwordConfirm) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    const { passwordConfirm, ...signupData } = formData;
+
+    const result = await signup(signupData);
+
+    if (result.ok === 1) {
+      alert(`${result.item.name}님, 가입을 환영합니다!`);
+      router.push("/login");
+    } else {
+      alert(result.message || "회원가입에 실패했습니다.");
+    }
+  };
+
   return (
     <>
       <div className="bg-bg-secondary min-h-screen py-20 px-4">
         <div className="max-w-125 mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
-          {/* 상단 섹션 */}
           <div className="text-center mb-12">
             <Badge variant="accent" className="mb-4">
               JOIN US
@@ -23,23 +62,50 @@ export default function Singup() {
             </p>
           </div>
 
-          {/* 회원가입 폼 */}
           <div className="bg-white rounded-[3.5rem] p-10 md:p-14 shadow-card border border-border-primary">
-            <form className="space-y-8">
-              {/* 이메일 */}
-              <Input label="이메일 계정" placeholder="example@9dog.co.kr" />
-
-              {/* 비밀번호 */}
+            <form onSubmit={handleSignup} className="space-y-8">
               <Input
-                isError
-                label="비밀번호"
-                type="password"
-                placeholder="영문, 숫자 조합 8자 이상"
-                errorMessage="비밀번호를 입력해주세요."
+                label="이름"
+                name="name"
+                placeholder="실명을 입력해주세요"
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
 
-              {/* 비밀번호 확인 */}
-              <Input label="비밀번호 확인" type="password" placeholder="한 번 더 입력해주세요" />
+              <Input
+                type="email"
+                label="이메일 계정"
+                name="email"
+                placeholder="example@9dog.co.kr"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+
+              <Input
+                label="비밀번호"
+                type="password"
+                name="password"
+                placeholder="영문, 숫자 조합 8자 이상"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+
+              <Input
+                label="비밀번호 확인"
+                type="password"
+                name="passwordConfirm"
+                placeholder="한 번 더 입력해주세요"
+                value={formData.passwordConfirm}
+                onChange={handleChange}
+                isError={
+                  formData.passwordConfirm !== "" && formData.password !== formData.passwordConfirm
+                }
+                errorMessage="비밀번호가 일치하지 않습니다."
+                required
+              />
 
               <Button
                 variant="primary"
@@ -51,7 +117,6 @@ export default function Singup() {
             </form>
           </div>
 
-          {/* 푸터 보조 액션 */}
           <div className="text-center mt-12">
             <p className="text-sm font-bold text-text-secondary">
               이미 계정이 있으신가요?

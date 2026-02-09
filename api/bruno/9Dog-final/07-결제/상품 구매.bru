@@ -6,10 +6,23 @@ meta {
 
 post {
   url: {{url}}/orders/
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "products": [
+      {
+        "_id": 3,
+        "quantity": 3
+      }
+    ],
+   "period":"2주 주기 배송"
+  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

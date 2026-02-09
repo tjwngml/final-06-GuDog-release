@@ -7,6 +7,7 @@ interface QuantityControlProps {
   maxCount?: number;
   onChange?: (newCount: number) => void; // 개수 변경시 부모에게 전달
   className?: string;
+  disabled?: boolean;
 }
 
 export default function QuantityControl({
@@ -15,6 +16,7 @@ export default function QuantityControl({
   maxCount = 100,
   onChange,
   className = "",
+  disabled = false,
 }: QuantityControlProps) {
   const [count, setCount] = useState(initialCount);
 
@@ -47,7 +49,7 @@ export default function QuantityControl({
       {/* 감소 버튼 */}
       <button
         onClick={handleCountDown}
-        disabled={count <= minCount}
+        disabled={disabled || count <= minCount}
         className="flex px-0.5 sm:px-1 sm:py-1 justify-center items-center hover:bg-gray-200 transition-colors rounded-l-[0.875rem] disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Image src="/images/cart/-.svg" alt="감소" width={28} height={28} />
@@ -59,7 +61,7 @@ export default function QuantityControl({
       {/* 증가 버튼 */}
       <button
         onClick={handleCountUp}
-        disabled={count >= maxCount}
+        disabled={disabled || count >= maxCount}
         className="flex justify-center items-center px-0.5 sm:px-1 sm:py-1 hover:bg-gray-200 transition-colors rounded-r-[0.875rem] disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Image src="/images/cart/+.svg" alt="증가" width={28} height={28} />

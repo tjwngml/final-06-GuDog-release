@@ -1,3 +1,5 @@
+import type { Review } from "./review";
+
 // ============================================================
 // OPTIONS (단일 소스 - UI 렌더링 + 타입 파생)
 // ============================================================
@@ -124,33 +126,46 @@ export interface ProductNutrition {
   moisture: number;
 }
 
-export interface ProductExtra {
-  type?: "사료" | "간식";
+interface ProductExtraBase {
   state?: string[];
-  orderdate?: string;
   period?: string;
-  code?: string;
-  discount?: string | number;
-  weight?: number;
-  size?: Size[];
-  lifeStage?: LifeStage[];
-  bodyType?: BodyType[];
-  activityLevel?: ActivityLevel[];
-  neutered?: Neutered;
-  mainProtein?: MainProtein[];
-  grainFree?: boolean;
+  code: string;
+  weight: number;
+  bodyType: BodyType[];
+  activityLevel: ActivityLevel[];
+  neutered: Neutered;
+  grainFree: boolean;
   category?: string[];
   feedstuff?: boolean;
-  foodType?: string;
-  healthBenefits?: HealthBenefit[];
-  kcalPer100g?: number;
-  ingredients?: ProductIngredients;
-  avoidIf?: ProductAvoidIf;
-  specialFeatures?: SpecialFeature[];
-  nutrition?: ProductNutrition;
-  detailImages?: ProductImage[];
-  lineTag?: LineTag;
+  foodType: "건식" | "습식";
+  healthBenefits: HealthBenefit[];
+  ingredients: ProductIngredients;
+  avoidIf: ProductAvoidIf;
+  specialFeatures: SpecialFeature[];
+  detailImages: ProductImage[];
+  lineTag: LineTag;
+  content: string;
 }
+
+interface FoodExtra extends ProductExtraBase {
+  type: "사료";
+  lifeStage: LifeStage[];
+  size: Size[];
+  mainProtein: MainProtein[];
+  kcalPer100g: number;
+  nutrition: ProductNutrition;
+}
+
+interface SnackExtra extends ProductExtraBase {
+  type: "간식";
+  lifeStage?: LifeStage[];
+  size?: Size[];
+  mainProtein?: MainProtein[];
+  kcalPer100g?: number;
+  nutrition?: ProductNutrition;
+}
+
+export type ProductExtra = FoodExtra | SnackExtra;
 
 export interface Product {
   _id: number;
@@ -162,100 +177,10 @@ export interface Product {
   show: boolean;
   active: boolean;
   name: string;
-  content: string;
   mainImages: ProductImage[];
-  extra?: ProductExtra;
+  content: string;
+  extra: ProductExtra;
   createdAt: string;
   updatedAt: string;
+  replies?: Review[];
 }
-
-// ============================================================
-// 폼 상태 (등록/수정 공용)
-// ============================================================
-export interface ProductFormExtra {
-  content: string;
-
-  type: "사료" | "간식";
-  weight: number | "";
-  lineTag: LineTag;
-  detailImages: ProductImage[];
-
-  // 대상
-  lifeStage: LifeStage[];
-  size: Size[];
-  neutered: Neutered;
-  bodyType: BodyType[];
-  activityLevel: ActivityLevel[];
-
-  // 원료/타입
-  mainProtein: MainProtein[];
-  grainFree: boolean;
-  foodType: "건식" | "습식";
-
-  // 건강/기능
-  healthBenefits: HealthBenefit[];
-  kcalPer100g: number | "";
-
-  // 상세 원료
-  ingredientsContains: IngredientContains[];
-  ingredientsAvoid: IngredientAvoid[];
-
-  // 제외 조건
-  avoidAllergies: AvoidAllergy[];
-  avoidDiseases: AvoidDisease[];
-
-  // 태그
-  specialFeatures: SpecialFeature[];
-
-  // 영양 (선택)
-  nutriProtein: number | "";
-  nutriFat: number | "";
-  nutriMoisture: number | "";
-}
-
-export interface ProductFormState {
-  name: string;
-  price: number | "";
-  quantity: number | "";
-  mainImages: ProductImage[];
-  extra: ProductFormExtra;
-}
-
-export const INITIAL_PRODUCT_FORM: ProductFormState = {
-  name: "",
-  price: "",
-  quantity: "",
-  mainImages: [],
-  extra: {
-    content: "",
-
-    type: "사료",
-    weight: "",
-    lineTag: "",
-    detailImages: [],
-
-    lifeStage: [],
-    size: [],
-    neutered: "both",
-    bodyType: [],
-    activityLevel: [],
-
-    mainProtein: [],
-    grainFree: false,
-    foodType: "건식",
-
-    healthBenefits: [],
-    kcalPer100g: "",
-
-    ingredientsContains: [],
-    ingredientsAvoid: [],
-
-    avoidAllergies: [],
-    avoidDiseases: [],
-    specialFeatures: [],
-
-    nutriProtein: "",
-    nutriFat: "",
-    nutriMoisture: "",
-  },
-};

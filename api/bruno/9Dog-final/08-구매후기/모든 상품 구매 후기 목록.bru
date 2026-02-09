@@ -1,0 +1,21 @@
+meta {
+  name: 모든 상품 구매 후기 목록
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/replies/all?sort={ "extra.likeCount": -1 }&rating=3
+  body: none
+  auth: inherit
+}
+
+params:query {
+  sort: { "extra.likeCount": -1 }
+  rating: 3
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

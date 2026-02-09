@@ -1,11 +1,11 @@
 meta {
-  name: 장바구니 목록 조회(비로그인)
+  name: 장바구니 비우기
   type: http
-  seq: 2
+  seq: 6
 }
 
-post {
-  url: {{url}}/carts/local
+delete {
+  url: {{url}}/carts/cleanup
   body: none
   auth: inherit
 }

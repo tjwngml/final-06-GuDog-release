@@ -15,7 +15,7 @@ export default async function Home() {
 
   console.log("Home");
   const bestProducts = bestProductsRes.item;
-  console.log(bestProducts);
+  // console.log(bestProducts);
 
   return (
     <>
@@ -109,7 +109,7 @@ export default async function Home() {
                   image={`${product.mainImages[0]?.path}`}
                   title={product.name}
                   kcal={totalKcal ? `${totalKcal.toLocaleString()} kcal` : ""}
-                  description={product.content}
+                  description={product.content ? product.content : ""}
                   tag={product.extra?.category?.[0] ?? ""}
                   href={`/products/${product._id}`}
                 />

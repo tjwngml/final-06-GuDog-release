@@ -6,6 +6,7 @@ import Footer from "@/components/layouts/Footer";
 import "pretendard/dist/web/variable/pretendardvariable.css";
 import { useState } from "react";
 import "pretendard/dist/web/static/pretendard.css";
+import Providers from "@/app/provider";
 
 // export const metadata = {
 //   title: "9Dog | 맞춤 애견 정기구독",
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <Header />
-        {children}
+        <Providers>{children}</Providers>
         <Footer />
       </body>
     </html>

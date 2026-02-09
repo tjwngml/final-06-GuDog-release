@@ -6,10 +6,23 @@ meta {
 
 post {
   url: {{url}}/replies/
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "order_id": 1,
+    "product_id": 3,
+    "rating": 5,
+    "content": "제엡알제엡알에에에에엥ㅂ알제엡알",
+    "extra": {
+      "title": "리뷰 목록목록목록목록목ㄹ고목록목록"
+    }
+  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

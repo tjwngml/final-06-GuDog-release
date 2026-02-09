@@ -17,7 +17,7 @@ interface GetOrderStatisticsOptions {
  * @param {string} [options.start] - 조회 시작일 (생략시 1주일 전) 예: "2025.01.02"
  * @param {string} [options.finish] - 조회 종료일 (생략시 오늘) 예: "2025.01.11"
  * @param {Record<string, unknown>} [options.custom] - custom 검색 조건 (MongoDB 쿼리)
- * @returns {Promise<OrderStatisticsRes | ErrorRes>} - 주문량 통계 응답 객체
+ * @returns {Promise<ResData<OrderStatisticsRes>>} - 주문량 통계 응답 객체
  * @example
  * // 전체 주문량 조회
  * getOrderStatistics();

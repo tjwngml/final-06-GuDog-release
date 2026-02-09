@@ -1,0 +1,15 @@
+meta {
+  name: 리뷰 삭제
+  type: http
+  seq: 12
+}
+
+delete {
+  url: {{url}}/replies/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

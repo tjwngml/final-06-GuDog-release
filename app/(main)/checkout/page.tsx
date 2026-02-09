@@ -1,3 +1,7 @@
+"use client";
+
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Badge from "@/components/common/Badge";
 import Button from "@/components/common/Button";
 import Checkbox from "@/components/common/Checkbox";
@@ -5,7 +9,25 @@ import Input from "@/components/common/Input";
 import ProductImage from "@/components/common/ProductImage";
 import Image from "next/image";
 
-export default function Checkout() {
+function CheckoutContent() {
+  const searchParams = useSearchParams();
+
+  const productName = searchParams.get("name") || "";
+  const productImage = searchParams.get("image") || "";
+  const price = Number(searchParams.get("price")) || 0;
+  const quantity = Number(searchParams.get("quantity")) || 1;
+  const purchaseType = searchParams.get("type") || "oneTime";
+  const deliveryCycle = searchParams.get("cycle") || "";
+
+  const isSubscribe = purchaseType === "subscribe";
+  const discountRate = isSubscribe ? 0.1 : 0;
+  const totalProductPrice = price * quantity;
+  const discountAmount = Math.floor(totalProductPrice * discountRate);
+  const finalPrice = totalProductPrice - discountAmount;
+
+  const cycleLabel =
+    deliveryCycle === "2w" ? "2주 주기" : deliveryCycle === "4w" ? "4주 주기" : "";
+
   return (
     <div className="bg-(--color-bg-secondary)">
       <div className="xl:max-w-300 min-w-90 mx-auto px-4 pt-8 pb-[8.75em]">
@@ -27,17 +49,19 @@ export default function Checkout() {
                 <div className="flex gap-2 sm:gap-5">
                   <div className="w-20 h-20 sm:w-17 shrink-0">
                     <ProductImage
-                      src=""
-                      alt=""
+                      src={productImage}
+                      alt={productName}
                       className="w-full h-full rounded-[0.875rem] object-cover"
                     />
                   </div>
                   <div className="flex flex-col gap-0.5 sm:gap-1 mt-2.5">
                     <p className="text-[1rem] text-(--color-text-primary) font-black">
-                      9DOG 정밀 사료 A 외 2건
+                      {productName}
                     </p>
                     <p className="text-xs text-(--color-text-tertiary) font-bold">
-                      정기배송 (4주 주기) | 수량 1개
+                      {isSubscribe
+                        ? `정기배송 (${cycleLabel}) | 수량 ${quantity}개`
+                        : `수량 ${quantity}개`}
                     </p>
                   </div>
                 </div>
@@ -99,14 +123,20 @@ export default function Checkout() {
                       <p className="text-xs text-(--color-text-secondary) font-bold">
                         총 상품 금액
                       </p>
-                      <p className="text-xs text-(--color-text-primary) font-bold">45,800원</p>
-                    </div>
-                    <div className="flex justify-between">
-                      <p className="text-xs text-(--color-text-secondary) font-bold">
-                        정기 구독 할인
+                      <p className="text-xs text-(--color-text-primary) font-bold">
+                        {totalProductPrice.toLocaleString()}원
                       </p>
-                      <p className="text-xs text-(--color-accent-primary) font-bold">-4,580원</p>
                     </div>
+                    {isSubscribe && (
+                      <div className="flex justify-between">
+                        <p className="text-xs text-(--color-text-secondary) font-bold">
+                          정기 구독 할인
+                        </p>
+                        <p className="text-xs text-(--color-accent-primary) font-bold">
+                          -{discountAmount.toLocaleString()}원
+                        </p>
+                      </div>
+                    )}
                     <div className="flex justify-between">
                       <p className="text-xs text-(--color-text-secondary) font-bold">배송비</p>
                       <p className="text-xs text-(--color-text-primary) font-bold">0원</p>
@@ -117,21 +147,23 @@ export default function Checkout() {
                       최종 결제액
                     </p>
                     <p className="text-[1.625rem] text-(--color-accent-primary) font-black">
-                      41,220원
+                      {finalPrice.toLocaleString()}원
                     </p>
                   </div>
                   <ul className="flex flex-col gap-1.5 py-1.5">
                     <li>
                       <Checkbox label="주문 정보를 확인하였으며 결제에 동의합니다." size="sm" />
                     </li>
-                    <li>
-                      <Checkbox label="매월 자동 정기 결제에 동의합니다." size="sm" />
-                    </li>
+                    {isSubscribe && (
+                      <li>
+                        <Checkbox label="매월 자동 정기 결제에 동의합니다." size="sm" />
+                      </li>
+                    )}
                     <li>
                       <Checkbox label="개인정보 제 3자 제공에 동의합니다." size="sm" />
                     </li>
                   </ul>
-                  <Button>41,220원 결제하기</Button>
+                  <Button>{finalPrice.toLocaleString()}원 결제하기</Button>
                   <p className="text-xs text-(--color-text-secondary) font-black text-center">
                     장바구니로 돌아가기
                   </p>
@@ -146,5 +178,13 @@ export default function Checkout() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Checkout() {
+  return (
+    <Suspense>
+      <CheckoutContent />
+    </Suspense>
   );
 }

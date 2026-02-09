@@ -10,6 +10,7 @@ import SearchFilter from "@/app/(admin)/admin/_components/SearchFilter";
 import Pagination from "@/app/(admin)/admin/_components/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import { useUrlParams } from "@/hooks/useUrlParams";
+import Link from "next/link";
 
 export default function ProductListContent() {
   const searchParams = useSearchParams();
@@ -258,10 +259,13 @@ export default function ProductListContent() {
                         {formatDate(item.createdAt)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-center text-sm">
-                        <button className="text-blue-600 hover:text-blue-800 inline-flex items-center px-3 py-1.5 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+                        <Link
+                          href={`/admin/products/${item._id}/modify`}
+                          className="text-blue-600 hover:text-blue-800 inline-flex items-center px-3 py-1.5 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+                        >
                           <Pencil className="w-4 h-4 mr-1" />
                           <span>수정</span>
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   );

@@ -5,26 +5,36 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Button from "@/components/common/Button";
 import Tab from "@/components/common/Tab";
+import QuantityControl from "@/components/common/Quantitycontrol";
+import { Product } from "@/types/product";
+import { addToCart } from "@/lib/cart";
+import useUserStore from "@/zustand/useStore";
 
-type PurchaseType = "oneTime" | "subscribe";
+type PurchaseType = "oneTime" | "subscription";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  product: Product;
 }
 
-export default function PurchaseModal({ isOpen, onClose }: Props) {
+export default function PurchaseModal({ isOpen, onClose, product }: Props) {
   const router = useRouter();
   const [purchaseType, setPurchaseType] = useState<PurchaseType>("oneTime");
   const [deliveryCycle, setDeliveryCycle] = useState<"2w" | "4w">("2w");
+  const [quantity, setQuantity] = useState(1);
 
-  const basePrice = 32000;
+  const user = useUserStore((state) => state.user);
+  const incrementCart = useUserStore((state) => state.incrementCart);
+
+  const basePrice = product.price;
   const discountRate = 0.1;
-  const finalPrice = purchaseType === "subscribe" ? basePrice * (1 - discountRate) : basePrice;
+  const unitPrice = purchaseType === "subscription" ? basePrice * (1 - discountRate) : basePrice;
+  const totalPrice = unitPrice * quantity;
 
   const purchaseTabs: { key: PurchaseType; label: string }[] = [
-    { key: "oneTime", label: "1회 구매" },
-    { key: "subscribe", label: "정기구독" },
+    { key: "oneTime", label: "1회구매" },
+    { key: "subscription", label: "정기구독" },
   ];
 
   // 스크롤 방지
@@ -39,6 +49,33 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  const handleAddToCart = async () => {
+    if (!user?.token?.accessToken) {
+      alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+      router.push("/login");
+      return;
+    }
+
+    const res = await addToCart(
+      user.token.accessToken,
+      product._id,
+      quantity,
+      purchaseType,
+      purchaseType === "subscription" ? deliveryCycle : undefined,
+    );
+
+    if (res.ok === 1) {
+      incrementCart(1);
+      const goToCart = confirm("장바구니에 담았습니다.\n장바구니로 이동하시겠습니까?");
+      if (goToCart) {
+        onClose();
+        router.push(purchaseType === "subscription" ? "/cart?tab=subscription" : "/cart");
+      }
+    } else {
+      alert("장바구니 담기에 실패했습니다.");
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -69,27 +106,20 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
         {/* 상품 정보 */}
         <div className="flex items-stretch gap-6 mt-10">
           <Image
-            src="/images/product-404.jpg"
-            alt="상품 이미지"
+            src={product.mainImages[0]?.path || "/images/product-404.jpg"}
+            alt={product.name}
             width={130}
             height={130}
             className="rounded-3xl"
           />
           <div className="flex flex-col h-full justify-center items-start gap-2">
-            {purchaseType !== "subscribe" && (
+            {purchaseType !== "subscription" && (
               <span className="inline-block rounded-lg bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-600">
                 일회성구매
               </span>
             )}
-            <p className="text-center font-bold text-2xl">어덜트 밸런스 치킨</p>
-            <div className="flex items-center gap-2">
-              {purchaseType === "subscribe" && (
-                <span className="text-sm text-gray-400 line-through">
-                  {basePrice.toLocaleString()}원
-                </span>
-              )}
-              <p className="font-bold text-xl text-[#fba613]">{finalPrice.toLocaleString()}원</p>
-            </div>
+            <p className="text-center font-bold text-2xl">{product.name}</p>
+            <p className="font-bold text-xl text-[#fba613]">{basePrice.toLocaleString()}원</p>
           </div>
 
           <button
@@ -102,7 +132,7 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
         </div>
 
         {/* 1회 구매 */}
-        {purchaseType !== "subscribe" && (
+        {purchaseType !== "subscription" && (
           <div className="flex flex-col gap-15 mt-10">
             <div className="rounded-full border border-black/10 bg-gray-50 px-6 py-5.5 text-center">
               <span className="flex justify-center text-l font-semibold text-[#646468]">
@@ -115,7 +145,7 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
         )}
 
         {/* 정기구독 */}
-        {purchaseType === "subscribe" && (
+        {purchaseType === "subscription" && (
           <div className="flex flex-col gap-6 mt-10">
             <span className="font-semibold text-m">배송주기 선택</span>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -144,7 +174,7 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
         {/* 수량 */}
         <div className="flex justify-between mt-10">
           <p className="font-semibold text-m">수량</p>
-          <button type="button">- 1 +</button>
+          <QuantityControl onChange={setQuantity} />
         </div>
 
         <div className="h-px bg-gray-200 mt-10" />
@@ -153,24 +183,24 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
         <div className="flex justify-between mt-10">
           <div className="flex justify-center items-center gap-3">
             <p className="font-semibold text-xl">총 결제금액</p>
-            {purchaseType === "subscribe" && (
+            {purchaseType === "subscription" && (
               <span className="rounded-lg bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-600">
                 10% 할인
               </span>
             )}
-            {purchaseType !== "subscribe" && (
+            {purchaseType !== "subscription" && (
               <span className="rounded-lg bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-600">
                 무료배송
               </span>
             )}
           </div>
           <div className="flex items-center gap-3">
-            {purchaseType === "subscribe" && (
+            {purchaseType === "subscription" && (
               <span className="text-2xl text-gray-400 line-through">
-                {basePrice.toLocaleString()}원
+                {(basePrice * quantity).toLocaleString()}원
               </span>
             )}
-            <p className="font-bold text-2xl text-[#fba613]">{finalPrice.toLocaleString()}원</p>
+            <p className="font-bold text-2xl text-[#fba613]">{totalPrice.toLocaleString()}원</p>
           </div>
         </div>
 
@@ -180,7 +210,7 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
             type="button"
             size="lg"
             variant="outline"
-            onClick={() => router.push("/cart")}
+            onClick={handleAddToCart}
             className="flex-1 w-[35rem] border border-black rounded bg-white py-2"
           >
             장바구니 담기
@@ -189,7 +219,25 @@ export default function PurchaseModal({ isOpen, onClose }: Props) {
             type="button"
             size="lg"
             variant="primary"
-            onClick={() => router.push("/checkout")}
+            onClick={() => {
+              if (!user?.token?.accessToken) {
+                alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+                router.push("/login");
+                return;
+              }
+              const params = new URLSearchParams({
+                product_id: String(product._id),
+                name: product.name,
+                image: product.mainImages[0]?.path || "",
+                price: String(basePrice),
+                quantity: String(quantity),
+                type: purchaseType,
+              });
+              if (purchaseType === "subscription") {
+                params.set("cycle", deliveryCycle);
+              }
+              router.push(`/checkout?${params.toString()}`);
+            }}
             className="flex-1 w-[35rem] rounded py-2"
           >
             바로 구매하기

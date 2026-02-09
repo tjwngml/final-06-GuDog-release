@@ -1,4 +1,4 @@
-import { ErrorRes, OrderListRes } from "@/types/response";
+import { OrderListRes, ResData } from "@/types/response";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || "";
@@ -10,6 +10,10 @@ interface GetOrdersOptions {
   page?: number;
   limit?: number;
   sort?: Record<string, 1 | -1>;
+  type?: string;
+  path?: string;
+  color?: string;
+  size?: string;
 }
 
 /**
@@ -21,7 +25,7 @@ interface GetOrdersOptions {
  * @param {number} [options.page] - 페이지 번호
  * @param {number} [options.limit] - 한 페이지당 항목 수
  * @param {Record<string, 1 | -1>} [options.sort] - 정렬 조건 (기본값: { createdAt: -1 })
- * @returns {Promise<OrderListRes | ErrorRes>} - 주문 목록 응답 객체
+ * @returns {Promise<ResData<OrderListRes>>} - 주문 목록 응답 객체
  * @example
  * // 전체 조회
  * getOrders();
@@ -35,25 +39,32 @@ interface GetOrdersOptions {
 export async function getOrders(
   token: string, // 토큰값 필수
   options?: GetOrdersOptions,
-): Promise<OrderListRes | ErrorRes> {
+): Promise<ResData<OrderListRes>> {
   try {
     const params = new URLSearchParams();
-
+    const mypagesubscription = options?.path === "/mypage/subscription";
     if (options) {
       const { user_id, state, custom, page, limit, sort } = options;
 
       if (user_id) params.append("user_id", String(user_id));
       if (state) params.append("state", state);
-      if (custom) params.append("custom", JSON.stringify(custom));
+      // if (custom) params.append("custom", JSON.stringify(custom));
       if (page) params.append("page", String(page));
       if (limit) params.append("limit", String(limit));
       if (sort) params.append("sort", JSON.stringify(sort));
+      if (mypagesubscription) {
+        const customQuery = { "products.color": "subscription" };
+        params.append("custom", JSON.stringify(customQuery));
+      }
     }
 
     const queryString = params.toString();
+
+    const typepath = options?.type === "user" ? "" : "seller/";
+    console.log(typepath, "타입패스");
     const url = queryString
-      ? `${API_URL}/seller/orders?${queryString}`
-      : `${API_URL}/seller/orders`;
+      ? `${API_URL}/${typepath}orders?${queryString}`
+      : `${API_URL}/${typepath}orders`;
 
     const headers: HeadersInit = {
       "Client-Id": CLIENT_ID,

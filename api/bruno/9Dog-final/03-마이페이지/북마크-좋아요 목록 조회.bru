@@ -1,17 +1,13 @@
 meta {
-  name: 주문 목록 조회
+  name: 북마크/좋아요 목록 조회
   type: http
-  seq: 8
+  seq: 11
 }
 
 get {
-  url: {{url}}/seller/orders/?limit=5
+  url: {{url}}/bookmarks/product
   body: none
   auth: inherit
-}
-
-params:query {
-  limit: 5
 }
 
 settings {

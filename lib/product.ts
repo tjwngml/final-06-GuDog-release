@@ -1,4 +1,12 @@
-import { ErrorRes, ProductListRes } from "@/types/response";
+import {
+  ErrorRes,
+  ProductListRes,
+  ProductInfoRes,
+  ReviewListRes,
+  BookmarkListRes,
+  ResData,
+  BookmarkInfoRes,
+} from "@/types/response";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || "";
@@ -31,7 +39,7 @@ interface GetProductsOptions {
  * @param {number} [options.limit] - 한 페이지당 항목 수 (미지정시 최대 100개)
  * @param {Record<string, 1 | -1>} [options.sort] - 정렬 조건 (예: { price: -1 })
  * @param {boolean} [options.showSoldOut] - 매진 상품 포함 여부
- * @returns {Promise<ProductListRes | ErrorRes>} - 상품 목록 응답 객체
+ * @returns {Promise<ResData<ProductListRes>>} - 상품 목록 응답 객체
  * @example
  * // 전체 조회
  * getProducts();
@@ -42,9 +50,7 @@ interface GetProductsOptions {
  * // 신상품만 조회
  * getProducts({ custom: { 'extra.isNew': true }, limit: 10 });
  */
-export async function getProducts(
-  options?: GetProductsOptions,
-): Promise<ProductListRes | ErrorRes> {
+export async function getProducts(options?: GetProductsOptions): Promise<ResData<ProductListRes>> {
   try {
     const params = new URLSearchParams();
 
@@ -92,6 +98,28 @@ export async function getProducts(
 }
 
 /**
+ * 상품 상세 조회
+ * @param {number} _id - 상품 id
+ * @returns {Promise<ResData<ProductInfoRes>>} - 상품 상세 응답 객체
+ * @example
+ * // 상품 상세 조회
+ * getProduct(4);
+ */
+export async function getProduct(_id: number): Promise<ResData<ProductInfoRes>> {
+  try {
+    const res = await fetch(`${API_URL}/products/${_id}`, {
+      headers: {
+        "Client-Id": CLIENT_ID,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: "일시적인 네트워크 문제로 상품 상세 조회에 실패했습니다." };
+  }
+}
+
+/**
  * 특정 code 배열로 해당 상품들만 조회
  * @param codes - 조회할 상품 code 배열
  */
@@ -105,18 +133,13 @@ export async function getProductsByCodes(codes: string[]) {
     const params = new URLSearchParams();
     params.set("custom", customQuery);
 
-    console.log("요청 URL:", `${API_URL}/products?${params.toString()}`);
-
     const response = await fetch(`${API_URL}/products?${params.toString()}`, {
       headers: {
         "Client-Id": CLIENT_ID,
       },
     });
 
-    console.log("응답 상태:", response.status);
-
     const data = await response.json();
-    console.log("응답 데이터:", data);
 
     if (!response.ok) {
       console.error("API 에러:", data);
@@ -127,5 +150,25 @@ export async function getProductsByCodes(codes: string[]) {
   } catch (error) {
     console.error("getProductsByCodes 에러:", error);
     return { ok: false, item: null };
+  }
+}
+
+/**
+ * 상세 리뷰 목록 조회
+ * @param {string} productId - 상품 id
+ * @returns {Promise<ResData<ReviewListRes>>} - 리뷰 목록 응답 객체
+ */
+export async function getReviews(productId: string): Promise<ResData<ReviewListRes>> {
+  try {
+    const res = await fetch(`${API_URL}/replies/products/${productId}`, {
+      headers: {
+        "Client-Id": CLIENT_ID,
+      },
+      cache: "no-store",
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return { ok: 0, message: "리뷰를 불러오는데 실패했습니다." };
   }
 }

@@ -6,13 +6,7 @@ type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 
 // 기본 아이콘
 const ArrowRightIcon = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M5.25 2.91797L9.33333 7.0013L5.25 11.0846"
       stroke="currentColor"
@@ -24,13 +18,7 @@ const ArrowRightIcon = () => (
 );
 
 const ArrowLeftIcon = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M8.75 11.0846L4.66667 7.0013L8.75 2.91797"
       stroke="currentColor"
@@ -75,10 +63,8 @@ const sizeStyles: Record<ButtonSize, string> = {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: "bg-[#FBA613] text-white hover:bg-[#E59200] active:bg-[#D08500]",
-  secondary:
-    "bg-[#FFF5E6] text-[#FBA613] hover:bg-[#FFEDD5] active:bg-[#FFE4C4]",
-  outline:
-    "bg-white text-[#1A1A1C] border-2 border-black/10 hover:bg-gray-50 active:bg-gray-100",
+  secondary: "bg-[#FFF5E6] text-[#FBA613] hover:bg-[#FFEDD5] active:bg-[#FFE4C4]",
+  outline: "bg-white text-[#1A1A1C] border-2 border-black/10 hover:bg-gray-50 active:bg-gray-100",
   ghost: "bg-transparent text-[#646468] hover:bg-black/5 active:bg-black/10",
 };
 
@@ -124,9 +110,7 @@ export default function Button(props: ButtonProps) {
     <>
       {renderLeftIcon() && <span className="shrink-0">{renderLeftIcon()}</span>}
       {children}
-      {renderRightIcon() && (
-        <span className="shrink-0">{renderRightIcon()}</span>
-      )}
+      {renderRightIcon() && <span className="shrink-0">{renderRightIcon()}</span>}
     </>
   );
 

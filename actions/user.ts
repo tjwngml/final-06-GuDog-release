@@ -1,7 +1,7 @@
 "use server";
 
-import { UserInfoRes } from "./../../../../../types/response";
-
+import { UserInfoRes } from "../types/response";
+import { cookies } from "next/headers";
 import { User } from "@/types/user";
 
 // interface User {
@@ -42,6 +42,8 @@ type UserActionState = UserInfoRes | ErrorRes | null;
 // 로그인
 export async function login(state: UserActionState, formData: FormData): Promise<UserActionState> {
   const body = Object.fromEntries(formData.entries());
+  const cookieStore = await cookies();
+  const token = cookieStore.get("accessToken")?.value;
 
   let res: Response;
   let data: UserInfoRes | ErrorRes;

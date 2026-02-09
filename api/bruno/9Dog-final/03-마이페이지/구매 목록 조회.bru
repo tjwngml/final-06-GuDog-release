@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/orders/
+  url: {{url}}/orders/?custom={"period":true}
   body: none
   auth: inherit
+}
+
+params:query {
+  custom: {"period":true}
 }
 
 settings {
