@@ -73,11 +73,6 @@ export async function getReviewStats(): Promise<{ average: number; total: number
       headers: {
         "Client-Id": CLIENT_ID,
       },
-      cache: "force-cache",
-      next: {
-        // revalidate: 60 * 60 * 24,
-        revalidate: 60,
-      },
     });
 
     const data = await res.json();

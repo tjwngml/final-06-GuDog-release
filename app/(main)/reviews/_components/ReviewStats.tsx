@@ -1,13 +1,18 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
 import Badge from "@/components/common/Badge";
 import StarRating from "@/components/common/StarRating";
 import { getReviewStats } from "@/lib";
 
-interface ReviewStatsProps {
-  total: number; // 실시간 전체 개수
-}
+export default function ReviewStats() {
+  const { data: stats } = useQuery({
+    queryKey: ["reviewStats"],
+    queryFn: () => getReviewStats(),
+  });
 
-export default async function ReviewStats({ total }: ReviewStatsProps) {
-  const stats = await getReviewStats();
+  const average = stats?.average ?? 0;
+  const total = stats?.total ?? 0;
 
   return (
     <section className="bg-white rounded-[4rem] p-12 md:p-16 border border-border-primary shadow-soft mb-16 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
@@ -35,8 +40,8 @@ export default async function ReviewStats({ total }: ReviewStatsProps) {
             평균 평점
           </p>
           <div className="flex flex-col items-center">
-            <span className="text-5xl font-black text-text-primary">{stats.average}</span>
-            <StarRating className="mt-0.5" rating={stats.average} size={16} aria-hidden="true" />
+            <span className="text-5xl font-black text-text-primary">{average}</span>
+            <StarRating className="mt-0.5" rating={average} size={16} aria-hidden="true" />
           </div>
         </div>
         <div className="w-px h-20 bg-border-primary hidden md:block" aria-hidden="true" />

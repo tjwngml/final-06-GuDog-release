@@ -116,7 +116,7 @@ export default function ProductDetail({
         className="mx-auto max-w-300 px-2 pb-21 pt-10.5 sm:px-5"
       >
         <Link
-          href="/products"
+          href={`/products?type=${product.extra?.type || "사료"}`}
           className="mb-7 inline-flex cursor-pointer items-center gap-2 border-0 bg-transparent font-semibold text-[#8b8b8f]"
         >
           ‹ 목록으로
@@ -495,6 +495,11 @@ export default function ProductDetail({
             size="sm"
             className="h-11 w-fit self-start whitespace-nowrap rounded-[0.875rem] border-0 bg-[#fba613] px-[1.125rem] text-center text-[0.76875rem] font-bold leading-[1.09375rem] text-white shadow-[0_8px_32px_rgba(251,166,19,0.2)] sm:self-end"
             onClick={() => {
+              if (!token) {
+                showWarning("로그인이 필요합니다.");
+                router.push("/login");
+                return;
+              }
               const params = new URLSearchParams();
               params.set("productName", product.name);
               params.set("productImage", product.mainImages[0]?.path || "");

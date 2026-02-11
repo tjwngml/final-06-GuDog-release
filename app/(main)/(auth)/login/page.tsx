@@ -85,8 +85,8 @@ export default function Login() {
             )}
 
             <form className="space-y-4" action={formAction}>
-              <Input label="이메일 주소" name="email" placeholder="hello@9dog.co.kr" />
-              <Input label="비밀번호" name="password" placeholder="••••••••" type="password" />
+              <Input label="이메일 주소" name="email" placeholder="hello@9dog.co.kr" defaultValue="test@example.com" />
+              <Input label="비밀번호" name="password" placeholder="••••••••" type="password" defaultValue="1234aaaa!" />
 
               <div className="flex items-center justify-between pt-2 mb-6">
                 <Checkbox checked={checkedState} onChange={handleChange} label="로그인 상태 유지" />

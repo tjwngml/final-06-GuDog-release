@@ -21,10 +21,13 @@ export default function ProductCard({
 
   return (
     <li className="flex flex-col max-w-[250px] rounded-3xl sm:rounded-[2.1875rem] border border-black/10 bg-white hover:shadow-lg hover:border-accent-soft transition-all group cursor-pointer">
-      <Link href={`/products/${productId}`} className="flex w-full flex-col no-underline rounded-3xl sm:rounded-[2.1875rem]">
+      <Link
+        href={`/products/${productId}`}
+        className="flex w-full flex-col no-underline rounded-3xl sm:rounded-[2.1875rem]"
+      >
         <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-t-3xl sm:rounded-t-[2.1875rem] bg-white relative">
           <Image
-            src={product.mainImages?.[0]?.path || "/placeholder.png"}
+            src={product.mainImages?.[0]?.path || "/images/product-404.jpg"}
             alt={product.name}
             width={280}
             height={280}

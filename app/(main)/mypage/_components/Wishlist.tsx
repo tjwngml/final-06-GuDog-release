@@ -7,6 +7,7 @@ import Image from "next/image";
 import { deleteWishlist, showDeleteConfirm, showError } from "@/lib";
 import { useRouter } from "next/navigation";
 import { ProductCardSkeleton } from "@/app/(main)/mypage/(layout)/wishlist/Skeleton";
+import { Product404 } from "@/app/(main)/mypage/_components/DogFoodImage";
 
 interface WishlistComponentProps {
   bookmarkId: number;
@@ -16,6 +17,8 @@ interface WishlistComponentProps {
 
 export default function WishlistComponent({ bookmarkId, Product, token }: WishlistComponentProps) {
   const router = useRouter();
+  const imagePath =
+    Product.mainImages && Product.mainImages.length > 0 ? Product.mainImages[0].path : null;
 
   const handleDelete = async () => {
     const result = await showDeleteConfirm("관심 상품에서 삭제하시겠습니까?");
@@ -39,14 +42,19 @@ export default function WishlistComponent({ bookmarkId, Product, token }: Wishli
     <>
       <div className="rounded-[42px] border border-[rgba(0,0,0,0.06)] bg-[#FFFFFF] shadow-[0_2px_12px_0_rgba(0,0,0,0.03)] overflow-hidden">
         <div className="pt-[30px] pl-[30px] pr-[30px] w-full  h-auto   overflow-hidden relative ">
-          <Image
-            src={Product.mainImages[0].path}
-            className="object-cover rounded-[24px]"
-            alt="상품 이미지"
-            // fill
-            width={211}
-            height={211}
-          />
+          {imagePath ? (
+            <Image
+              src={imagePath}
+              className="object-cover rounded-[24px]"
+              alt="상품 이미지"
+              width={211}
+              height={211}
+            />
+          ) : (
+            <div className="w-[211px] h-[211px] relative rounded-[24px] overflow-hidden bg-gray-50">
+              <Product404 className="w-full h-full object-cover" />
+            </div>
+          )}
         </div>
 
         <div className="flex justify-between items-center mt-[27px] px-[29px] pb-[14.5px]">

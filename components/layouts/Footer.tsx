@@ -53,7 +53,7 @@ export default function Footer() {
                 상호명: <span className="text-text-secondary">구DOG</span>
               </p>
               <p className="text-[10px] md:text-[12px] font-bold text-text-tertiary">
-                대표자: <span className="text-text-secondary">고은별</span>
+                제작자: <span className="text-text-secondary">고은별, 문혁진, 서주희, 윤소라</span>
               </p>
             </div>
             <div className="space-y-1 md:space-y-1.5">

@@ -3,39 +3,28 @@
   "product": [
     {
       "price": 45000,
-      "quantity": 127,
+      "quantity": 1127,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 3000,
       "show": true,
       "active": true,
       "name": "스몰퍼피 치킨앤라이스",
+      "content": "DHA와 EPA가 풍부하게 함유되어 성장기 강아지의 두뇌 발달과 시력 형성을 촉진하며, 학습 능력 향상에도 도움을 줍니다. 칼슘과 인이 1.2:1의 최적 비율로 설계되어 소형견 특유의 빠른 골격 성장을 안정적으로 지원합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/S5T-pZwfqIF.png",
-          "name": "small_puppy_chicken_rice.jpg"
+          "name": "PUP-S-01.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788210/febc15-final06-ecad/6qvG0ZlHo.jpg"
         }
       ],
       "extra": {
-        "content": "DHA와 EPA가 풍부하게 함유되어 성장기 강아지의 두뇌 발달과 시력 형성을 촉진하며, 학습 능력 향상에도 도움을 줍니다. 칼슘과 인이 1.2:1의 최적 비율로 설계되어 소형견 특유의 빠른 골격 성장을 안정적으로 지원합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "PUP-S-01",
-        "discount": "4500",
         "weight": 600,
-        "size": ["소형견"],
-        "lifeStage": ["퍼피"],
         "bodyType": ["마름", "적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": [],
-        "kcalPer100g": 400,
         "ingredients": {
           "contains": ["닭고기", "쌀"],
           "avoid": []
@@ -45,6 +34,18 @@
           "diseases": []
         },
         "specialFeatures": ["퍼피 전용", "소형견 키블", "DHA 함유"],
+        "content": "DHA와 EPA가 풍부하게 함유되어 성장기 강아지의 두뇌 발달과 시력 형성을 촉진하며, 학습 능력 향상에도 도움을 줍니다. 칼슘과 인이 1.2:1의 최적 비율로 설계되어 소형견 특유의 빠른 골격 성장을 안정적으로 지원합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["퍼피"],
+        "size": ["소형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 400,
         "nutrition": {
           "protein": 32,
           "fat": 18,
@@ -54,39 +55,28 @@
     },
     {
       "price": 47000,
-      "quantity": 89,
+      "quantity": 189,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 8,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "미디엄퍼피 치킨앤오트밀",
+      "content": "중형견의 성장 속도에 맞춰 칼슘과 인의 균형을 최적화하여 뼈와 관절이 건강하게 발달하도록 설계되었습니다. 오트밀은 소화가 부드럽고 식이섬유가 풍부하여 성장기 강아지의 민감한 장 건강을 보호합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/kZceYBFvBv.png",
-          "name": "medium_puppy_chicken_oatmeal.jpg"
+          "name": "mediumpuppy-chickenoat.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788525/febc15-final06-ecad/w5D1VGklC.png"
         }
       ],
       "extra": {
-        "content": "중형견의 성장 속도에 맞춰 칼슘과 인의 균형을 최적화하여 뼈와 관절이 건강하게 발달하도록 설계되었습니다. 오트밀은 소화가 부드럽고 식이섬유가 풍부하여 성장기 강아지의 민감한 장 건강을 보호합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "PUP-M-01",
-        "discount": "4500",
         "weight": 1000,
-        "size": ["중형견"],
-        "lifeStage": ["퍼피"],
         "bodyType": ["마름", "적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강"],
-        "kcalPer100g": 390,
         "ingredients": {
           "contains": ["닭고기", "귀리"],
           "avoid": []
@@ -96,6 +86,18 @@
           "diseases": []
         },
         "specialFeatures": ["퍼피 전용"],
+        "content": "중형견의 성장 속도에 맞춰 칼슘과 인의 균형을 최적화하여 뼈와 관절이 건강하게 발달하도록 설계되었습니다. 오트밀은 소화가 부드럽고 식이섬유가 풍부하여 성장기 강아지의 민감한 장 건강을 보호합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["퍼피"],
+        "size": ["중형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 390,
         "nutrition": {
           "protein": 30,
           "fat": 17,
@@ -105,39 +107,28 @@
     },
     {
       "price": 52000,
-      "quantity": 43,
+      "quantity": 143,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 4,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "라지퍼피 치킨앤브라운라이스",
+      "content": "글루코사민과 콘드로이틴이 함유되어 대형견 특유의 빠른 체중 증가로 인한 관절 부담을 줄이고, 어린 시절부터 튼튼한 관절 기반을 형성합니다. 대형견 퍼피에게 적합한 380kcal의 적정 칼로리 설계로 급격한 성장을 방지합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/uauCDxTFuz.png",
-          "name": "large_puppy_chicken_brownrice.jpg"
+          "name": "largepuppy-chickenbrownrice.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/TmDXYgInd-.png"
         }
       ],
       "extra": {
-        "content": "글루코사민과 콘드로이틴이 함유되어 대형견 특유의 빠른 체중 증가로 인한 관절 부담을 줄이고, 어린 시절부터 튼튼한 관절 기반을 형성합니다. 대형견 퍼피에게 적합한 380kcal의 적정 칼로리 설계로 급격한 성장을 방지합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "PUP-L-01",
-        "discount": "4500",
         "weight": 1500,
-        "size": ["대형견"],
-        "lifeStage": ["퍼피"],
         "bodyType": ["마름", "적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 400,
         "ingredients": {
           "contains": ["닭고기", "현미"],
           "avoid": []
@@ -147,6 +138,18 @@
           "diseases": []
         },
         "specialFeatures": ["퍼피 전용", "관절 영양 강화"],
+        "content": "글루코사민과 콘드로이틴이 함유되어 대형견 특유의 빠른 체중 증가로 인한 관절 부담을 줄이고, 어린 시절부터 튼튼한 관절 기반을 형성합니다. 대형견 퍼피에게 적합한 380kcal의 적정 칼로리 설계로 급격한 성장을 방지합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["퍼피"],
+        "size": ["대형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 400,
         "nutrition": {
           "protein": 28,
           "fat": 14,
@@ -156,39 +159,28 @@
     },
     {
       "price": 55000,
-      "quantity": 62,
+      "quantity": 162,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 6,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "퍼피 연어앤고구마 그레인프리",
+      "content": "오메가-3 지방산이 풍부한 연어를 주원료로 사용하여 성장기 강아지의 피부 장벽을 강화하고 윤기 있는 모질 발달을 촉진합니다. 곡물을 완전히 배제한 그레인프리 설계로 곡물에 민감한 어린 강아지의 소화기를 보호합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/AVLg5kwD5g.png",
-          "name": "puppy_gf_salmon_sweetpotato.jpg"
+          "name": "puppy-salmonsweetpotato.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788622/febc15-final06-ecad/4gmAJtbth.png"
         }
       ],
       "extra": {
-        "content": "오메가-3 지방산이 풍부한 연어를 주원료로 사용하여 성장기 강아지의 피부 장벽을 강화하고 윤기 있는 모질 발달을 촉진합니다. 곡물을 완전히 배제한 그레인프리 설계로 곡물에 민감한 어린 강아지의 소화기를 보호합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "PUP-GF-01",
-        "discount": "4500",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["퍼피"],
         "bodyType": ["마름", "적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["피부/모질"],
-        "kcalPer100g": 395,
         "ingredients": {
           "contains": ["연어", "고구마", "연어오일"],
           "avoid": ["밀", "옥수수", "쌀", "곡물 전체"]
@@ -198,6 +190,18 @@
           "diseases": []
         },
         "specialFeatures": ["퍼피 전용", "그레인프리", "오메가3 풍부", "저자극성"],
+        "content": "오메가-3 지방산이 풍부한 연어를 주원료로 사용하여 성장기 강아지의 피부 장벽을 강화하고 윤기 있는 모질 발달을 촉진합니다. 곡물을 완전히 배제한 그레인프리 설계로 곡물에 민감한 어린 강아지의 소화기를 보호합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["퍼피"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 395,
         "nutrition": {
           "protein": 30,
           "fat": 16,
@@ -207,39 +211,28 @@
     },
     {
       "price": 43000,
-      "quantity": 156,
+      "quantity": 1156,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 15,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "스몰어덜트 치킨앤라이스",
+      "content": "소형견의 작은 입에 맞춘 미니 사이즈 알갱이로 설계되어 씹기 편하고, 한 번에 적정량을 섭취할 수 있어 과식을 방지합니다. 소형견은 체중 대비 높은 대사율을 가지고 있어 고단백·고칼로리 설계로 에너지 요구량을 충족시킵니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/T1z25ZBJrBp.png",
-          "name": "small_adult_chicken_rice.jpg"
+          "name": "smalladult-chickenrice.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788654/febc15-final06-ecad/WWomVvY8f.png"
         }
       ],
       "extra": {
-        "content": "소형견의 작은 입에 맞춘 미니 사이즈 알갱이로 설계되어 씹기 편하고, 한 번에 적정량을 섭취할 수 있어 과식을 방지합니다. 소형견은 체중 대비 높은 대사율을 가지고 있어 고단백·고칼로리 설계로 에너지 요구량을 충족시킵니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "ADT-S-01",
-        "discount": "4500",
         "weight": 600,
-        "size": ["소형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": [],
-        "kcalPer100g": 370,
         "ingredients": {
           "contains": ["닭고기", "쌀"],
           "avoid": []
@@ -249,6 +242,18 @@
           "diseases": []
         },
         "specialFeatures": ["소형견 키볼"],
+        "content": "소형견의 작은 입에 맞춘 미니 사이즈 알갱이로 설계되어 씹기 편하고, 한 번에 적정량을 섭취할 수 있어 과식을 방지합니다. 소형견은 체중 대비 높은 대사율을 가지고 있어 고단백·고칼로리 설계로 에너지 요구량을 충족시킵니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 370,
         "nutrition": {
           "protein": 28,
           "fat": 16,
@@ -258,39 +263,28 @@
     },
     {
       "price": 44000,
-      "quantity": 97,
+      "quantity": 197,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 9,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "스몰어덜트 오리앤귀리",
+      "content": "오리고기는 닭고기와 다른 단백질 구조를 가지고 있어 닭고기 알러지가 있는 소형견에게 훌륭한 대체 단백질원이 됩니다. 귀리는 수용성 식이섬유인 베타글루칸이 풍부하여 장 건강을 개선하고 혈당을 안정적으로 유지합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/eWcz2IqRiu2.png",
-          "name": "small_adult_duck_oat.jpg"
+          "name": "smalladult-duckoat.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788679/febc15-final06-ecad/9c4QfUpac.png"
         }
       ],
       "extra": {
-        "content": "오리고기는 닭고기와 다른 단백질 구조를 가지고 있어 닭고기 알러지가 있는 소형견에게 훌륭한 대체 단백질원이 됩니다. 귀리는 수용성 식이섬유인 베타글루칸이 풍부하여 장 건강을 개선하고 혈당을 안정적으로 유지합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "ADT-S-02",
-        "discount": "4500",
         "weight": 600,
-        "size": ["소형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["보통"],
         "neutered": "both",
-        "mainProtein": ["오리고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강"],
-        "kcalPer100g": 365,
         "ingredients": {
           "contains": ["오리고기", "귀리"],
           "avoid": []
@@ -300,6 +294,18 @@
           "diseases": []
         },
         "specialFeatures": ["소형견 키볼", "저자극성"],
+        "content": "오리고기는 닭고기와 다른 단백질 구조를 가지고 있어 닭고기 알러지가 있는 소형견에게 훌륭한 대체 단백질원이 됩니다. 귀리는 수용성 식이섬유인 베타글루칸이 풍부하여 장 건강을 개선하고 혈당을 안정적으로 유지합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 365,
         "nutrition": {
           "protein": 27,
           "fat": 15,
@@ -309,39 +315,28 @@
     },
     {
       "price": 46000,
-      "quantity": 78,
+      "quantity": 178,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 7,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "미디엄어덜트 치킨앤보리",
+      "content": "중형견의 체중과 활동량에 최적화된 영양 밸런스로 설계되어 과체중이나 영양 부족 없이 이상적인 체형을 유지할 수 있습니다. 보리는 저혈당 지수 탄수화물로 에너지를 천천히 방출하여 활동적인 중형견이 하루 종일 안정적인 에너지를 유지합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/292vYbvuz7.png",
-          "name": "medium_adult_chicken_barley.jpg"
+          "name": "adult-cickenbarley.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788720/febc15-final06-ecad/3fvrhfgYx.png"
         }
       ],
       "extra": {
-        "content": "중형견의 체중과 활동량에 최적화된 영양 밸런스로 설계되어 과체중이나 영양 부족 없이 이상적인 체형을 유지할 수 있습니다. 보리는 저혈당 지수 탄수화물로 에너지를 천천히 방출하여 활동적인 중형견이 하루 종일 안정적인 에너지를 유지합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "ADT-S-02",
-        "discount": "4500",
         "weight": 600,
-        "size": ["중형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["오리고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강"],
-        "kcalPer100g": 365,
         "ingredients": {
           "contains": ["오리고기", "귀리"],
           "avoid": []
@@ -351,6 +346,18 @@
           "diseases": []
         },
         "specialFeatures": ["소형견 키볼", "저자극성"],
+        "content": "중형견의 체중과 활동량에 최적화된 영양 밸런스로 설계되어 과체중이나 영양 부족 없이 이상적인 체형을 유지할 수 있습니다. 보리는 저혈당 지수 탄수화물로 에너지를 천천히 방출하여 활동적인 중형견이 하루 종일 안정적인 에너지를 유지합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["중형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 365,
         "nutrition": {
           "protein": 27,
           "fat": 15,
@@ -359,91 +366,81 @@
       }
     },
     {
-      "price": 50000,
-      "quantity": 36,
+      "price": 49000,
+      "quantity": 136,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 3,
-      "shippingFees": 0,
       "show": true,
       "active": true,
-      "name": "라지어덜트 치킨앤현미",
+      "name": "미디엄어덜트 양고기앤현미",
+      "content": "글루코사민 800mg과 콘드로이틴 400mg이 함유되어 대형견의 무거운 체중을 지탱하는 관절과 연골 건강을 적극적으로 보호합니다. 대형견에게 적합한 350kcal의 적정 칼로리로 설계되어 과체중을 예방하고 관절에 가해지는 부담을 최소화합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/RIne6wmC0o.png",
-          "name": "large_adult_chicken_brownrice.jpg"
+          "name": "SNR-M-02.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788153/febc15-final06-ecad/kfny3re4k.jpg"
         }
       ],
       "extra": {
-        "content": "글루코사민 800mg과 콘드로이틴 400mg이 함유되어 대형견의 무거운 체중을 지탱하는 관절과 연골 건강을 적극적으로 보호합니다. 대형견에게 적합한 350kcal의 적정 칼로리로 설계되어 과체중을 예방하고 관절에 가해지는 부담을 최소화합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
-        "code": "ADT-L-01",
-        "discount": "4500",
+        "code": "ADT-M-02",
         "weight": 1500,
-        "size": ["대형견"],
-        "lifeStage": ["성견"],
-        "bodyType": ["적정"],
-        "activityLevel": ["보통", "많음"],
+        "bodyType": ["적정", "마름", "과체중"],
+        "activityLevel": ["보통", "많음", "적음"],
         "neutered": "both",
-        "mainProtein": ["닭"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
-        "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 350,
+        "healthBenefits": ["피부/모질", "소화/장 건강"],
         "ingredients": {
           "contains": ["닭고기", "현미"],
           "avoid": []
         },
         "avoidIf": {
-          "allergies": ["닭고기", "밀/곡물"],
+          "allergies": ["밀/곡물", "양고기"],
           "diseases": []
         },
-        "specialFeatures": ["관절 영양 강화"],
+        "specialFeatures": ["저자극성"],
+        "content": "닭고기와 소고기를 모두 배제한 저자극 양고기 포뮬러입니다. 양고기는 국내에서 비교적 낯선 단백질원으로, 기존 사료에 민감 반응을 보이는 중형견에게 훌륭한 대안입니다. 현미가 천천히 에너지를 방출하여 안정적인 활력을 유지합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["중형견"],
+        "mainProtein": ["닭", "양고기"],
+        "kcalPer100g": 365,
         "nutrition": {
           "protein": 25,
-          "fat": 12,
+          "fat": 14,
           "moisture": 10
         }
       }
     },
     {
       "price": 50000,
-      "quantity": 36,
+      "quantity": 136,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 3,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "라지어덜트 치킨앤현미",
+      "content": "글루코사민 800mg과 콘드로이틴 400mg이 함유되어 대형견의 무거운 체중을 지탱하는 관절과 연골 건강을 적극적으로 보호합니다. 대형견에게 적합한 350kcal의 적정 칼로리로 설계되어 과체중을 예방하고 관절에 가해지는 부담을 최소화합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/RIne6wmC0o.png",
-          "name": "large_adult_chicken_brownrice.png"
+          "name": "ADT-L-02.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770789087/febc15-final06-ecad/t0JJFoJC2.png"
         }
       ],
       "extra": {
-        "content": "글루코사민 800mg과 콘드로이틴 400mg이 함유되어 대형견의 무거운 체중을 지탱하는 관절과 연골 건강을 적극적으로 보호합니다. 대형견에게 적합한 350kcal의 적정 칼로리로 설계되어 과체중을 예방하고 관절에 가해지는 부담을 최소화합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "ADT-L-0",
-        "discount": "5000",
         "weight": 1500,
-        "size": ["대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정", "과체중"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 350,
         "ingredients": {
           "contains": ["닭고기", "현미"],
           "avoid": []
@@ -453,6 +450,18 @@
           "diseases": []
         },
         "specialFeatures": ["관절 영양 강화"],
+        "content": "글루코사민 800mg과 콘드로이틴 400mg이 함유되어 대형견의 무거운 체중을 지탱하는 관절과 연골 건강을 적극적으로 보호합니다. 대형견에게 적합한 350kcal의 적정 칼로리로 설계되어 과체중을 예방하고 관절에 가해지는 부담을 최소화합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["대형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 350,
         "nutrition": {
           "protein": 25,
           "fat": 12,
@@ -462,39 +471,28 @@
     },
     {
       "price": 52000,
-      "quantity": 29,
+      "quantity": 129,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 2,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "라지어덜트 연어앤감자",
+      "content": "오메가-3와 오메가-6 지방산이 이상적인 비율로 함유되어 대형견의 넓은 피부 면적을 건강하게 유지하고 풍성한 모질을 가꿔줍니다. 연어는 생체이용률이 높은 고품질 단백질원으로, 대형견의 큰 근육량을 유지합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/xPJsjIURTA.png",
-          "name": "large_adult_salmon_potato.png"
+          "name": "largeadult-salmonpotato.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788753/febc15-final06-ecad/GOSBDAzMy.png"
         }
       ],
       "extra": {
-        "content": "오메가-3와 오메가-6 지방산이 이상적인 비율로 함유되어 대형견의 넓은 피부 면적을 건강하게 유지하고 풍성한 모질을 가꿔줍니다. 연어는 생체이용률이 높은 고품질 단백질원으로, 대형견의 큰 근육량을 유지합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "ADT-L-02",
-        "discount": "5200",
         "weight": 1500,
-        "size": ["대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["피부/모질"],
-        "kcalPer100g": 345,
         "ingredients": {
           "contains": ["연어", "감자", "연어오일"],
           "avoid": []
@@ -504,6 +502,18 @@
           "diseases": []
         },
         "specialFeatures": ["오메가3 풍부"],
+        "content": "오메가-3와 오메가-6 지방산이 이상적인 비율로 함유되어 대형견의 넓은 피부 면적을 건강하게 유지하고 풍성한 모질을 가꿔줍니다. 연어는 생체이용률이 높은 고품질 단백질원으로, 대형견의 큰 근육량을 유지합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 345,
         "nutrition": {
           "protein": 24,
           "fat": 12,
@@ -513,39 +523,28 @@
     },
     {
       "price": 54000,
-      "quantity": 47,
+      "quantity": 147,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 4,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "스킨케어 연어앤고구마",
+      "content": "오메가-3, 오메가-6, 오메가-9 지방산이 황금 비율로 함유되어 피부 세포막을 강화하고, 건조하거나 민감한 피부의 장벽 기능을 회복시킵니다. 비오틴과 아연이 강화되어 모낭 건강을 개선하고, 푸석하거나 빠지기 쉬운 털을 윤기 있고 탄력 있는 건강한 모질로 가꿔줍니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/6xrN1YrivHH.png",
-          "name": "skincare_salmon_sweetpotato.png"
+          "name": "FNC-SK-01.jpg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788331/febc15-final06-ecad/BRUa9QwMn.png"
         }
       ],
       "extra": {
-        "content": "오메가-3, 오메가-6, 오메가-9 지방산이 황금 비율로 함유되어 피부 세포막을 강화하고, 건조하거나 민감한 피부의 장벽 기능을 회복시킵니다. 비오틴과 아연이 강화되어 모낭 건강을 개선하고, 푸석하거나 빠지기 쉬운 털을 윤기 있고 탄력 있는 건강한 모질로 가꿔줍니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "FNC-SK-01",
-        "discount": "5400",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["적음", "보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": true,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["피부/모질"],
-        "kcalPer100g": 360,
         "ingredients": {
           "contains": ["연어", "고구마", "연어오일", "아마씨"],
           "avoid": ["밀", "옥수수", "쌀", "곡물 전체"]
@@ -555,6 +554,18 @@
           "diseases": []
         },
         "specialFeatures": ["그레인프리", "오메가3 풍부", "저자극성"],
+        "content": "오메가-3, 오메가-6, 오메가-9 지방산이 황금 비율로 함유되어 피부 세포막을 강화하고, 건조하거나 민감한 피부의 장벽 기능을 회복시킵니다. 비오틴과 아연이 강화되어 모낭 건강을 개선하고, 푸석하거나 빠지기 쉬운 털을 윤기 있고 탄력 있는 건강한 모질로 가꿔줍니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 360,
         "nutrition": {
           "protein": 26,
           "fat": 15,
@@ -564,39 +575,28 @@
     },
     {
       "price": 53000,
-      "quantity": 68,
+      "quantity": 168,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 6,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "다이제스티브 오리앤귀리",
+      "content": "특허받은 프로바이오틱스 균주가 장내 유익균 증식을 촉진하여 소화 기능을 개선하고, 무른 변이나 설사 증상을 완화하는 데 도움을 줍니다. 프리바이오틱스인 FOS와 MOS가 장 점막을 보호하고 영양소 흡수율을 높입니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/8bE0VkIFAR.png",
-          "name": "digestive_duck_oat.png"
+          "name": "FNC-DG-01 다이제스티브 오리앤귀리 1 1.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/8bE0VkIFAR.png"
         }
       ],
       "extra": {
-        "content": "특허받은 프로바이오틱스 균주가 장내 유익균 증식을 촉진하여 소화 기능을 개선하고, 무른 변이나 설사 증상을 완화하는 데 도움을 줍니다. 프리바이오틱스인 FOS와 MOS가 장 점막을 보호하고 영양소 흡수율을 높입니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "FNC-DG-01",
-        "discount": "5300",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["적음", "보통"],
         "neutered": "both",
-        "mainProtein": ["오리고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강"],
-        "kcalPer100g": 355,
         "ingredients": {
           "contains": ["오리고기", "귀리", "비트펄프"],
           "avoid": []
@@ -606,6 +606,18 @@
           "diseases": []
         },
         "specialFeatures": ["저자극성"],
+        "content": "특허받은 프로바이오틱스 균주가 장내 유익균 증식을 촉진하여 소화 기능을 개선하고, 무른 변이나 설사 증상을 완화하는 데 도움을 줍니다. 프리바이오틱스인 FOS와 MOS가 장 점막을 보호하고 영양소 흡수율을 높입니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 355,
         "nutrition": {
           "protein": 25,
           "fat": 13,
@@ -615,39 +627,28 @@
     },
     {
       "price": 55000,
-      "quantity": 32,
+      "quantity": 132,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 3,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "조인트케어 치킨앤현미",
+      "content": "글루코사민 1,200mg이 연골 조직의 주요 구성 성분을 보충하여 닳아진 연골을 보호하고, 관절의 충격 흡수 능력을 유지합니다. 콘드로이틴 설페이트가 관절액의 점성을 높여 뼈와 뼈 사이의 마찰을 줄이고 부드러운 움직임이 가능하도록 합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/JTaE8IcusF.png",
-          "name": "jointcare_chicken_brownric.png"
+          "name": "FNC-JT-01 조인트케어 치킨앤현미 1 1.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/JTaE8IcusF.png"
         }
       ],
       "extra": {
-        "content": "글루코사민 1,200mg이 연골 조직의 주요 구성 성분을 보충하여 닳아진 연골을 보호하고, 관절의 충격 흡수 능력을 유지합니다. 콘드로이틴 설페이트가 관절액의 점성을 높여 뼈와 뼈 사이의 마찰을 줄이고 부드러운 움직임이 가능하도록 합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "FNC-JT-01",
-        "discount": "5500",
         "weight": 1200,
-        "size": ["중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정", "과체중"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 350,
         "ingredients": {
           "contains": ["닭고기", "현미", "크랜베리"],
           "avoid": []
@@ -657,6 +658,18 @@
           "diseases": []
         },
         "specialFeatures": ["관절 영양 강화"],
+        "content": "글루코사민 1,200mg이 연골 조직의 주요 구성 성분을 보충하여 닳아진 연골을 보호하고, 관절의 충격 흡수 능력을 유지합니다. 콘드로이틴 설페이트가 관절액의 점성을 높여 뼈와 뼈 사이의 마찰을 줄이고 부드러운 움직임이 가능하도록 합니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["중형견", "대형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 350,
         "nutrition": {
           "protein": 26,
           "fat": 12,
@@ -666,39 +679,28 @@
     },
     {
       "price": 56000,
-      "quantity": 24,
+      "quantity": 124,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 2,
-      "shippingFees": 0,
       "show": true,
       "active": true,
-      "name": "조인트케어 연어앤감",
+      "name": "조인트케어 연어앤감자",
+      "content": "연어에 풍부한 오메가-3 지방산(EPA, DHA)이 관절 내 염증 물질 생성을 억제하여 관절염으로 인한 통증과 뻣뻣함을 자연스럽게 완화합니다. 글루코사민과 콘드로이틴이 복합적으로 작용하여 연골 손상을 예방합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/BEQXVh_pDf.png",
-          "name": "jointcare_salmon_potato.png"
+          "name": "FNC-JT-02  조인트케어 연어앤감자 1 1.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/BEQXVh_pDf.png"
         }
       ],
       "extra": {
-        "content": "연어에 풍부한 오메가-3 지방산(EPA, DHA)이 관절 내 염증 물질 생성을 억제하여 관절염으로 인한 통증과 뻣뻣함을 자연스럽게 완화합니다. 글루코사민과 콘드로이틴이 복합적으로 작용하여 연골 손상을 예방합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "FNC-JT-02",
-        "discount": "5600",
         "weight": 1200,
-        "size": ["중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정", "과체중"],
         "activityLevel": ["보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 345,
         "ingredients": {
           "contains": ["연어", "감자", "연어오일"],
           "avoid": []
@@ -708,6 +710,18 @@
           "diseases": []
         },
         "specialFeatures": ["관절 영양 강화", "오메가3 풍부"],
+        "content": "연어에 풍부한 오메가-3 지방산(EPA, DHA)이 관절 내 염증 물질 생성을 억제하여 관절염으로 인한 통증과 뻣뻣함을 자연스럽게 완화합니다. 글루코사민과 콘드로이틴이 복합적으로 작용하여 연골 손상을 예방합니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["중형견", "대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 345,
         "nutrition": {
           "protein": 25,
           "fat": 12,
@@ -717,39 +731,28 @@
     },
     {
       "price": 48000,
-      "quantity": 73,
+      "quantity": 173,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 7,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "웨이트케어 치킨앤보리",
+      "content": "100g당 310kcal의 저칼로리 설계로 평소 급여량을 유지하면서도 자연스럽게 칼로리 섭취를 줄여 건강한 체중 감량을 도와줍니다. L-카르니틴이 체내 지방을 에너지원으로 전환하는 대사 과정을 촉진하여 축적된 체지방을 효과적으로 연소시킵니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/Rzy0ezhpbCJ.png",
-          "name": "weightcare_chicken_barley.png"
+          "name": "FNC-WT-01  웨이트케어 치킨앤보리 1 1.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/Rzy0ezhpbCJ.png"
         }
       ],
       "extra": {
-        "content": "100g당 310kcal의 저칼로리 설계로 평소 급여량을 유지하면서도 자연스럽게 칼로리 섭취를 줄여 건강한 체중 감량을 도와줍니다. L-카르니틴이 체내 지방을 에너지원으로 전환하는 대사 과정을 촉진하여 축적된 체지방을 효과적으로 연소시킵니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "FNC-WT-01",
-        "discount": "4800",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["과체중", "비만"],
         "activityLevel": ["적음", "보통"],
         "neutered": "yes",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["체중 관리"],
-        "kcalPer100g": 310,
         "ingredients": {
           "contains": ["닭고기", "보리", "비트펄프"],
           "avoid": []
@@ -759,6 +762,18 @@
           "diseases": []
         },
         "specialFeatures": ["저칼로리"],
+        "content": "100g당 310kcal의 저칼로리 설계로 평소 급여량을 유지하면서도 자연스럽게 칼로리 섭취를 줄여 건강한 체중 감량을 도와줍니다. L-카르니틴이 체내 지방을 에너지원으로 전환하는 대사 과정을 촉진하여 축적된 체지방을 효과적으로 연소시킵니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 310,
         "nutrition": {
           "protein": 28,
           "fat": 8,
@@ -768,39 +783,28 @@
     },
     {
       "price": 50000,
-      "quantity": 41,
+      "quantity": 141,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 4,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "웨이트케어 칠면조앤고구마",
+      "content": "칠면조는 닭고기보다 지방 함량이 30% 이상 낮으면서도 단백질 함량은 높아 근육량을 유지하면서 체중을 감량하는 데 이상적입니다. 100g당 305kcal로 가장 낮은 칼로리를 자랑하여 심한 비만이나 빠른 체중 감량이 필요한 강아지에게 특히 적합합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/1HYkzw8_uh8.png",
-          "name": "weightcare_turkey_sweetpotato.png"
+          "name": "FNC-WT-02  웨이트케어 칠면조앤고구마 1 1.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/1HYkzw8_uh8.png"
         }
       ],
       "extra": {
-        "content": "칠면조는 닭고기보다 지방 함량이 30% 이상 낮으면서도 단백질 함량은 높아 근육량을 유지하면서 체중을 감량하는 데 이상적입니다. 100g당 305kcal로 가장 낮은 칼로리를 자랑하여 심한 비만이나 빠른 체중 감량이 필요한 강아지에게 특히 적합합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "FNC-WT-02",
-        "discount": "5000",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["과체중", "비만"],
         "activityLevel": ["적음", "보통"],
         "neutered": "yes",
-        "mainProtein": ["칠면조"],
         "grainFree": true,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["체중 관리"],
-        "kcalPer100g": 305,
         "ingredients": {
           "contains": ["칠면조", "고구마"],
           "avoid": ["밀", "옥수수", "쌀", "곡물 전체"]
@@ -810,6 +814,18 @@
           "diseases": []
         },
         "specialFeatures": ["저칼로리", "그레인프리"],
+        "content": "칠면조는 닭고기보다 지방 함량이 30% 이상 낮으면서도 단백질 함량은 높아 근육량을 유지하면서 체중을 감량하는 데 이상적입니다. 100g당 305kcal로 가장 낮은 칼로리를 자랑하여 심한 비만이나 빠른 체중 감량이 필요한 강아지에게 특히 적합합니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["칠면조"],
+        "kcalPer100g": 305,
         "nutrition": {
           "protein": 30,
           "fat": 7,
@@ -819,39 +835,28 @@
     },
     {
       "price": 46000,
-      "quantity": 82,
+      "quantity": 182,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "스몰시니어 치킨앤현미",
+      "content": "글루코사민과 콘드로이틴이 나이가 들면서 자연스럽게 닳아지는 관절 연골을 보호하고, 노령견의 이동성과 활동성을 유지하는 데 도움을 줍니다. 340kcal의 낮은 칼로리 설계로 활동량이 줄어든 노령 소형견의 체중 증가를 방지합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/M3-w42jf3pI.png",
-          "name": "smallsenior-chickenbrownrice.png"
+          "name": "image 10.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787725/febc15-final06-ecad/EctLHubOp.png"
         }
       ],
       "extra": {
-        "content": "글루코사민과 콘드로이틴이 나이가 들면서 자연스럽게 닳아지는 관절 연골을 보호하고, 노령견의 이동성과 활동성을 유지하는 데 도움을 줍니다. 340kcal의 낮은 칼로리 설계로 활동량이 줄어든 노령 소형견의 체중 증가를 방지합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "SNR-S-01",
-        "discount": "4500",
         "weight": 600,
-        "size": ["소형견"],
-        "lifeStage": ["시니어"],
         "bodyType": ["적정", "과체중"],
         "activityLevel": ["적음", "보통"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 340,
         "ingredients": {
           "contains": ["닭고기", "현미"],
           "avoid": []
@@ -861,6 +866,18 @@
           "diseases": []
         },
         "specialFeatures": ["시니어 전용", "소형견 키블", "관절 영양 강화", "저칼로리"],
+        "content": "글루코사민과 콘드로이틴이 나이가 들면서 자연스럽게 닳아지는 관절 연골을 보호하고, 노령견의 이동성과 활동성을 유지하는 데 도움을 줍니다. 340kcal의 낮은 칼로리 설계로 활동량이 줄어든 노령 소형견의 체중 증가를 방지합니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["소형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 340,
         "nutrition": {
           "protein": 25,
           "fat": 11,
@@ -870,39 +887,28 @@
     },
     {
       "price": 47000,
-      "quantity": 59,
+      "quantity": 159,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "스몰시니어 오리앤귀리",
+      "content": "프로바이오틱스와 프리바이오틱스가 노화로 인해 약해진 장 기능을 개선하고, 변비나 설사 등 노령견에게 흔한 소화 문제를 예방합니다. 오리고기는 닭고기에 알러지가 생긴 노령견에게 새로운 단백질원을 제공합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/NxjOidUiY_R.png",
-          "name": "smallsenior-duckoat.png"
+          "name": "image 11.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787754/febc15-final06-ecad/c1iIJhqHU.png"
         }
       ],
       "extra": {
-        "content": "프로바이오틱스와 프리바이오틱스가 노화로 인해 약해진 장 기능을 개선하고, 변비나 설사 등 노령견에게 흔한 소화 문제를 예방합니다. 오리고기는 닭고기에 알러지가 생긴 노령견에게 새로운 단백질원을 제공합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "SNR-S-02",
-        "discount": "4700",
         "weight": 600,
-        "size": ["소형견"],
-        "lifeStage": ["시니어"],
         "bodyType": ["적정", "과체중"],
         "activityLevel": ["적음", "보통"],
         "neutered": "both",
-        "mainProtein": ["오리고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강"],
-        "kcalPer100g": 335,
         "ingredients": {
           "contains": ["오리고기", "귀리", "비트펄프"],
           "avoid": []
@@ -912,6 +918,18 @@
           "diseases": []
         },
         "specialFeatures": ["시니어 전용", "소형견 키블", "저자극성"],
+        "content": "프로바이오틱스와 프리바이오틱스가 노화로 인해 약해진 장 기능을 개선하고, 변비나 설사 등 노령견에게 흔한 소화 문제를 예방합니다. 오리고기는 닭고기에 알러지가 생긴 노령견에게 새로운 단백질원을 제공합니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["소형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 335,
         "nutrition": {
           "protein": 24,
           "fat": 11,
@@ -921,39 +939,28 @@
     },
     {
       "price": 52000,
-      "quantity": 37,
+      "quantity": 137,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "미디엄시니어 연어앤현미",
+      "content": "연어의 오메가-3 지방산이 노화로 건조해지기 쉬운 피부에 수분을 공급하고, 탈모와 비듬을 줄여 건강한 피부와 모질을 유지합니다. 글루코사민, 콘드로이틴, MSM의 관절 복합 성분이 노령견의 관절 건강을 종합적으로 케어합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/r46HfOwN0h.png",
-          "name": "mediunsenior-salmonbrownrice.png"
+          "name": "image 8.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787785/febc15-final06-ecad/9BygDJ4sL.png"
         }
       ],
       "extra": {
-        "content": "연어의 오메가-3 지방산이 노화로 건조해지기 쉬운 피부에 수분을 공급하고, 탈모와 비듬을 줄여 건강한 피부와 모질을 유지합니다. 글루코사민, 콘드로이틴, MSM의 관절 복합 성분이 노령견의 관절 건강을 종합적으로 케어합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "SNR-M-01",
-        "discount": "5200",
         "weight": 1000,
-        "size": ["중형견"],
-        "lifeStage": ["시니어"],
         "bodyType": ["적정", "과체중"],
         "activityLevel": ["적음", "보통"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["피부/모질", "관절/뼈 건강"],
-        "kcalPer100g": 330,
         "ingredients": {
           "contains": ["연어", "현미", "연어오일", "크랜베리"],
           "avoid": []
@@ -963,6 +970,18 @@
           "diseases": []
         },
         "specialFeatures": ["시니어 전용", "관절 영양 강화", "오메가3 풍부", "항산화 성분"],
+        "content": "연어의 오메가-3 지방산이 노화로 건조해지기 쉬운 피부에 수분을 공급하고, 탈모와 비듬을 줄여 건강한 피부와 모질을 유지합니다. 글루코사민, 콘드로이틴, MSM의 관절 복합 성분이 노령견의 관절 건강을 종합적으로 케어합니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["중형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 330,
         "nutrition": {
           "protein": 24,
           "fat": 10,
@@ -972,39 +991,28 @@
     },
     {
       "price": 54000,
-      "quantity": 22,
+      "quantity": 122,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "라지시니어 치킨앤현미",
+      "content": "고함량의 글루코사민과 콘드로이틴이 대형 노령견의 무거운 체중으로 인해 더욱 빨리 닳는 관절을 집중적으로 보호하고 케어합니다. 지방 함량을 낮추어 노화로 기능이 저하된 심장과 순환계에 부담을 줄이고, 타우린이 강화되어 있습니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/eR7aZs_z_n.png",
-          "name": "largesenior-chickenbrownrice.png"
+          "name": "image 9.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787817/febc15-final06-ecad/u3H8y15Mj.png"
         }
       ],
       "extra": {
-        "content": "고함량의 글루코사민과 콘드로이틴이 대형 노령견의 무거운 체중으로 인해 더욱 빨리 닳는 관절을 집중적으로 보호하고 케어합니다. 지방 함량을 낮추어 노화로 기능이 저하된 심장과 순환계에 부담을 줄이고, 타우린이 강화되어 있습니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "SNR-L-01",
-        "discount": "5400",
         "weight": 1500,
-        "size": ["대형견"],
-        "lifeStage": ["시니어"],
         "bodyType": ["적정", "과체중", "비만"],
         "activityLevel": ["적음", "보통"],
         "neutered": "both",
-        "mainProtein": ["닭고기"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강"],
-        "kcalPer100g": 325,
         "ingredients": {
           "contains": ["닭고기", "현미"],
           "avoid": []
@@ -1014,6 +1022,18 @@
           "diseases": ["심장 질환"]
         },
         "specialFeatures": ["시니어 전용", "관절 영양 강화", "저칼로리"],
+        "content": "고함량의 글루코사민과 콘드로이틴이 대형 노령견의 무거운 체중으로 인해 더욱 빨리 닳는 관절을 집중적으로 보호하고 케어합니다. 지방 함량을 낮추어 노화로 기능이 저하된 심장과 순환계에 부담을 줄이고, 타우린이 강화되어 있습니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["대형견"],
+        "mainProtein": ["닭고기"],
+        "kcalPer100g": 325,
         "nutrition": {
           "protein": 23,
           "fat": 10,
@@ -1023,39 +1043,28 @@
     },
     {
       "price": 56000,
-      "quantity": 18,
+      "quantity": 118,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "라지시니어 연어앤감자",
+      "content": "연어의 DHA와 EPA가 노화로 인한 인지 기능 저하를 늦추고 뇌 건강을 지원하여 노령견이 또렷한 정신 상태를 유지하도록 돕습니다. 관절과 피부 건강을 동시에 케어하는 복합 설계로, 대형 노령견의 삶의 질을 종합적으로 높입니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/Jqhrx6LNJP.png",
-          "name": "largesenior-salmonpotato.png"
+          "name": "image 7.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787845/febc15-final06-ecad/AZGA0xsyE.png"
         }
       ],
       "extra": {
-        "content": "연어의 DHA와 EPA가 노화로 인한 인지 기능 저하를 늦추고 뇌 건강을 지원하여 노령견이 또렷한 정신 상태를 유지하도록 돕습니다. 관절과 피부 건강을 동시에 케어하는 복합 설계로, 대형 노령견의 삶의 질을 종합적으로 높입니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "SNR-L-02",
-        "discount": "5600",
         "weight": 1500,
-        "size": ["대형견"],
-        "lifeStage": ["시니어"],
         "bodyType": ["적정", "과체중", "비만"],
         "activityLevel": ["적음", "보통"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": false,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["관절/뼈 건강", "피부/모질"],
-        "kcalPer100g": 320,
         "ingredients": {
           "contains": ["연어", "감자", "연어오일", "크랜베리"],
           "avoid": []
@@ -1071,6 +1080,18 @@
           "저칼로리",
           "항산화 성분"
         ],
+        "content": "연어의 DHA와 EPA가 노화로 인한 인지 기능 저하를 늦추고 뇌 건강을 지원하여 노령견이 또렷한 정신 상태를 유지하도록 돕습니다. 관절과 피부 건강을 동시에 케어하는 복합 설계로, 대형 노령견의 삶의 질을 종합적으로 높입니다.",
+        "detailImages": [
+          {
+            "name": "detail.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787462/febc15-final06-ecad/KlUTiGe76.png"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 320,
         "nutrition": {
           "protein": 22,
           "fat": 9,
@@ -1080,39 +1101,28 @@
     },
     {
       "price": 58000,
-      "quantity": 27,
+      "quantity": 127,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "싱글프로틴 양고기앤고구마",
+      "content": "양고기 하나만을 단백질원으로 사용하는 싱글 프로틴 설계로 어떤 단백질이 알러지를 유발하는지 정확히 파악하고 원인을 차단할 수 있습니다. 곡물, 닭고기, 생선을 모두 배제한 그레인프리 레시피로 복합적인 음식 알러지나 민감성을 가진 강아지도 안심하고 급여할 수 있습니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/LYRE37X7Qq4.png",
-          "name": "singleprotin-lambsweetpotato.png"
+          "name": "LID-01.jpg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787963/febc15-final06-ecad/re2BYfsKL.jpg"
         }
       ],
       "extra": {
-        "content": "양고기 하나만을 단백질원으로 사용하는 싱글 프로틴 설계로 어떤 단백질이 알러지를 유발하는지 정확히 파악하고 원인을 차단할 수 있습니다. 곡물, 닭고기, 생선을 모두 배제한 그레인프리 레시피로 복합적인 음식 알러지나 민감성을 가진 강아지도 안심하고 급여할 수 있습니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "LID-01",
-        "discount": "5800",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["적음", "보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["양고기"],
         "grainFree": true,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강", "피부/모질"],
-        "kcalPer100g": 350,
         "ingredients": {
           "contains": ["양고기", "고구마"],
           "avoid": ["밀", "옥수수", "쌀", "곡물 전체"]
@@ -1122,6 +1132,18 @@
           "diseases": []
         },
         "specialFeatures": ["그레인프리", "저자극성", "싱글프로틴"],
+        "content": "양고기 하나만을 단백질원으로 사용하는 싱글 프로틴 설계로 어떤 단백질이 알러지를 유발하는지 정확히 파악하고 원인을 차단할 수 있습니다. 곡물, 닭고기, 생선을 모두 배제한 그레인프리 레시피로 복합적인 음식 알러지나 민감성을 가진 강아지도 안심하고 급여할 수 있습니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["양고기"],
+        "kcalPer100g": 350,
         "nutrition": {
           "protein": 24,
           "fat": 13,
@@ -1131,39 +1153,28 @@
     },
     {
       "price": 59000,
-      "quantity": 19,
+      "quantity": 119,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "싱글프로틴 연어앤타피오카",
+      "content": "연어만을 단일 동물성 단백질원으로 사용하여 닭고기, 소고기, 양고기 등 육류에 알러지가 있는 강아지를 위한 대안을 제공합니다. 타피오카는 글루텐이 전혀 없고 알러지 유발 가능성이 극히 낮은 탄수화물원으로, 곡물이나 감자에 민감한 강아지에게도 적합합니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/c9KWFwm_pxW.png",
-          "name": "singleprotin-slamontapioca.png"
+          "name": "LID-02.jpg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788039/febc15-final06-ecad/4nPuFdh7C.png"
         }
       ],
       "extra": {
-        "content": "연어만을 단일 동물성 단백질원으로 사용하여 닭고기, 소고기, 양고기 등 육류에 알러지가 있는 강아지를 위한 대안을 제공합니다. 타피오카는 글루텐이 전혀 없고 알러지 유발 가능성이 극히 낮은 탄수화물원으로, 곡물이나 감자에 민감한 강아지에게도 적합합니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "LID-02",
-        "discount": "5900",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["적음", "보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["연어"],
         "grainFree": true,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["피부/모질"],
-        "kcalPer100g": 345,
         "ingredients": {
           "contains": ["연어", "타피오카", "연어오일"],
           "avoid": ["밀", "옥수수", "쌀", "곡물 전체"]
@@ -1173,6 +1184,18 @@
           "diseases": []
         },
         "specialFeatures": ["그레인프리", "저자극성", "오메가3 풍부", "싱글프로틴"],
+        "content": "연어만을 단일 동물성 단백질원으로 사용하여 닭고기, 소고기, 양고기 등 육류에 알러지가 있는 강아지를 위한 대안을 제공합니다. 타피오카는 글루텐이 전혀 없고 알러지 유발 가능성이 극히 낮은 탄수화물원으로, 곡물이나 감자에 민감한 강아지에게도 적합합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 345,
         "nutrition": {
           "protein": 24,
           "fat": 14,
@@ -1182,39 +1205,28 @@
     },
     {
       "price": 57000,
-      "quantity": 31,
+      "quantity": 131,
+      "buyQuantity": 0,
       "seller_id": 1,
-      "buyQuantity": 12,
-      "shippingFees": 0,
       "show": true,
       "active": true,
       "name": "싱글프로틴 오리앤감자",
+      "content": "오리고기만을 단일 동물성 단백질로 사용하여 닭고기, 생선, 양고기 등 여러 단백질에 동시에 알러지가 있는 복합 알러지 강아지도 안전하게 급여할 수 있습니다. 곡물, 닭고기, 생선을 모두 함유하지 않아 가장 흔한 알러지 유발 원료를 완벽히 배제하였습니다.",
       "mainImages": [
         {
-          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769501329/febc15-final06-ecad/-OOLO24ZXnN.png",
-          "name": "singleprotin-duckpotato.png"
+          "name": "LID-03.jpg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788079/febc15-final06-ecad/H2W-sttSY.jpg"
         }
       ],
       "extra": {
-        "content": "오리고기만을 단일 동물성 단백질로 사용하여 닭고기, 생선, 양고기 등 여러 단백질에 동시에 알러지가 있는 복합 알러지 강아지도 안전하게 급여할 수 있습니다. 곡물, 닭고기, 생선을 모두 함유하지 않아 가장 흔한 알러지 유발 원료를 완벽히 배제하였습니다.",
-        "state": ["1회구매", "구독중"],
-        "orderdate": "2026-01-27",
-        "period": "2주 배송",
         "code": "LID-03",
-        "discount": "5700",
         "weight": 1000,
-        "size": ["소형견", "중형견", "대형견"],
-        "lifeStage": ["성견"],
         "bodyType": ["적정"],
         "activityLevel": ["적음", "보통", "많음"],
         "neutered": "both",
-        "mainProtein": ["오리고기"],
         "grainFree": true,
-        "category": ["퍼피", "주니어", "시니어"],
-        "feedstuff": true,
         "foodType": "건식",
         "healthBenefits": ["소화/장 건강"],
-        "kcalPer100g": 350,
         "ingredients": {
           "contains": ["오리고기", "감자"],
           "avoid": ["밀", "옥수수", "쌀", "곡물 전체"]
@@ -1224,12 +1236,889 @@
           "diseases": []
         },
         "specialFeatures": ["그레인프리", "저자극성", "싱글프로틴"],
+        "content": "오리고기만을 단일 동물성 단백질로 사용하여 닭고기, 생선, 양고기 등 여러 단백질에 동시에 알러지가 있는 복합 알러지 강아지도 안전하게 급여할 수 있습니다. 곡물, 닭고기, 생선을 모두 함유하지 않아 가장 흔한 알러지 유발 원료를 완벽히 배제하였습니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 350,
         "nutrition": {
           "protein": 25,
           "fat": 13,
           "moisture": 10
         }
       }
+    },
+    {
+      "price": 48000,
+      "quantity": 135,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "스몰어덜트 연어앤고구마",
+      "content": "소형견의 빠른 대사에 맞춘 고밀도 영양 설계에 연어의 오메가3를 더했습니다. 닭고기와 곡물을 모두 배제하여 복합 알러지를 가진 소형견도 안심하고 급여할 수 있습니다.",
+      "mainImages": [
+        {
+          "name": "ADT-S-03.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1769911849/febc15-final06-ecad/fP-InZXbk.jpg"
+        }
+      ],
+      "extra": {
+        "code": "ADT-S-03",
+        "weight": 1000,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통", "많음"],
+        "neutered": "both",
+        "grainFree": true,
+        "foodType": "건식",
+        "healthBenefits": ["피부/모질"],
+        "ingredients": {
+          "contains": ["연어", "고구마"],
+          "avoid": ["곡물 전체"]
+        },
+        "avoidIf": {
+          "allergies": ["생선"],
+          "diseases": []
+        },
+        "specialFeatures": ["그레인프리", "소형견 키블", "오메가3 풍부"],
+        "content": "소형견의 빠른 대사에 맞춘 고밀도 영양 설계에 연어의 오메가3를 더했습니다. 닭고기와 곡물을 모두 배제하여 복합 알러지를 가진 소형견도 안심하고 급여할 수 있습니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 380,
+        "nutrition": {
+          "protein": 27,
+          "fat": 15,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 50000,
+      "quantity": 140,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "미디엄어덜트 연어앤감자",
+      "content": "중형견의 균형 잡힌 영양에 연어의 오메가3를 더한 피부·모질 케어 포뮬러입니다. 닭고기에 민감한 중형견을 위해 연어를 주단백질로 사용하고, 감자로 소화 부담을 줄였습니다.",
+      "mainImages": [
+        {
+          "name": "ADT-M-03.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787775/febc15-final06-ecad/qsBCDyZ77.jpg"
+        }
+      ],
+      "extra": {
+        "code": "ADT-M-03",
+        "weight": 1500,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통", "많음"],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": ["피부/모질"],
+        "ingredients": {
+          "contains": ["연어", "감자"],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": ["생선"],
+          "diseases": []
+        },
+        "specialFeatures": ["저자극성", "오메가3 풍부"],
+        "content": "중형견의 균형 잡힌 영양에 연어의 오메가3를 더한 피부·모질 케어 포뮬러입니다. 닭고기에 민감한 중형견을 위해 연어를 주단백질로 사용하고, 감자로 소화 부담을 줄였습니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["중형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 360,
+        "nutrition": {
+          "protein": 26,
+          "fat": 14,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 55000,
+      "quantity": 138,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "라지어덜트 오리앤귀리",
+      "content": "대형견의 관절 건강을 기본으로 케어하면서 닭고기를 배제한 저자극 설계입니다. 오리고기가 양질의 단백질을 공급하고, 글루코사민이 무거운 체중을 지탱하는 관절을 보호합니다.",
+      "mainImages": [
+        {
+          "name": "ADT-L-03.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787710/febc15-final06-ecad/xNHhZlZkC.jpg"
+        }
+      ],
+      "extra": {
+        "code": "ADT-L-03",
+        "weight": 2000,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통", "많음"],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": ["관절/뼈 건강"],
+        "ingredients": {
+          "contains": ["오리고기", "귀리"],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": ["밀/곡물"],
+          "diseases": []
+        },
+        "specialFeatures": ["대형견 키블", "저자극성", "관절 영양 강화"],
+        "content": "대형견의 관절 건강을 기본으로 케어하면서 닭고기를 배제한 저자극 설계입니다. 오리고기가 양질의 단백질을 공급하고, 글루코사민이 무거운 체중을 지탱하는 관절을 보호합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["대형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 350,
+        "nutrition": {
+          "protein": 25,
+          "fat": 12,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 52000,
+      "quantity": 130,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "스몰어덜트 그레인프리 연어앤고구마",
+      "content": "곡물에 민감한 소형견을 위한 완전 그레인프리 포뮬러입니다. 연어의 오메가3가 피부와 모질 건강을 지키고, 고구마가 부드러운 소화와 안정적인 에너지를 제공합니다.",
+      "mainImages": [
+        {
+          "name": "ADT-S-GF-01.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787617/febc15-final06-ecad/1f35WB-Ht.jpg"
+        }
+      ],
+      "extra": {
+        "code": "ADT-S-GF-01",
+        "weight": 1000,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통", "많음"],
+        "neutered": "both",
+        "grainFree": true,
+        "foodType": "건식",
+        "healthBenefits": ["피부/모질", "소화/장 건강"],
+        "ingredients": {
+          "contains": ["연어", "고구마"],
+          "avoid": ["곡물 전체"]
+        },
+        "avoidIf": {
+          "allergies": ["생선"],
+          "diseases": []
+        },
+        "specialFeatures": ["그레인프리", "소형견 키블", "저자극성", "오메가3 풍부"],
+        "content": "곡물에 민감한 소형견을 위한 완전 그레인프리 포뮬러입니다. 연어의 오메가3가 피부와 모질 건강을 지키고, 고구마가 부드러운 소화와 안정적인 에너지를 제공합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["소형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 385,
+        "nutrition": {
+          "protein": 28,
+          "fat": 16,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 58000,
+      "quantity": 132,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "라지어덜트 그레인프리 연어앤감자",
+      "content": "곡물 알러지가 있는 대형견을 위한 그레인프리 관절 케어 포뮬러입니다. 연어의 오메가3가 관절 염증을 완화하고, 글루코사민이 무거운 체중을 지탱하는 관절을 강화합니다.",
+      "mainImages": [
+        {
+          "name": "ADT-L-GF-01.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787580/febc15-final06-ecad/MDx5S1xO4.jpg"
+        }
+      ],
+      "extra": {
+        "code": "ADT-L-GF-01",
+        "weight": 2000,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통", "많음"],
+        "neutered": "both",
+        "grainFree": true,
+        "foodType": "건식",
+        "healthBenefits": ["관절/뼈 건강", "피부/모질"],
+        "ingredients": {
+          "contains": ["연어", "감자"],
+          "avoid": ["곡물 전체"]
+        },
+        "avoidIf": {
+          "allergies": ["생선"],
+          "diseases": []
+        },
+        "specialFeatures": ["그레인프리", "대형견 키블", "관절 영양 강화", "오메가3 풍부"],
+        "content": "곡물 알러지가 있는 대형견을 위한 그레인프리 관절 케어 포뮬러입니다. 연어의 오메가3가 관절 염증을 완화하고, 글루코사민이 무거운 체중을 지탱하는 관절을 강화합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["성견"],
+        "size": ["대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 355,
+        "nutrition": {
+          "protein": 25,
+          "fat": 13,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 50000,
+      "quantity": 136,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "미디엄시니어 오리앤귀리",
+      "content": "닭고기에 민감한 중형견 시니어를 위한 저자극 노령견 케어 포뮬러입니다. 오리고기가 소화하기 쉬운 단백질을 공급하고, 글루코사민과 항산화제가 노화를 늦춥니다.",
+      "mainImages": [
+        {
+          "name": "SNR-M-02.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788153/febc15-final06-ecad/kfny3re4k.jpg"
+        }
+      ],
+      "extra": {
+        "code": "SNR-M-02",
+        "weight": 1500,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통"],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": ["관절/뼈 건강", "소화/장 건강"],
+        "ingredients": {
+          "contains": ["오리고기", "귀리"],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": ["밀/곡물"],
+          "diseases": []
+        },
+        "specialFeatures": ["시니어 전용", "저자극성", "관절 영양 강화", "항산화 성분"],
+        "content": "닭고기에 민감한 중형견 시니어를 위한 저자극 노령견 케어 포뮬러입니다. 오리고기가 소화하기 쉬운 단백질을 공급하고, 글루코사민과 항산화제가 노화를 늦춥니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["중형견"],
+        "mainProtein": ["오리고기"],
+        "kcalPer100g": 340,
+        "nutrition": {
+          "protein": 24,
+          "fat": 11,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 54000,
+      "quantity": 128,
+      "buyQuantity": 0,
+      "seller_id": 1,
+      "show": true,
+      "active": true,
+      "name": "시니어 그레인프리 연어앤고구마",
+      "content": "곡물에 민감한 시니어를 위한 완전 그레인프리 노령견 케어 포뮬러입니다. 연어의 오메가3가 노화된 관절과 피부를 케어하고, 항산화제가 면역력 저하를 예방합니다.",
+      "mainImages": [
+        {
+          "name": "SNR-GF-01.jpeg",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770122451/febc15-final06-ecad/vdmRqCLE3.jpg"
+        }
+      ],
+      "extra": {
+        "code": "SNR-GF-01",
+        "weight": 1500,
+        "bodyType": ["마름", "적정", "과체중"],
+        "activityLevel": ["적음", "보통"],
+        "neutered": "both",
+        "grainFree": true,
+        "foodType": "건식",
+        "healthBenefits": ["관절/뼈 건강", "피부/모질", "소화/장 건강"],
+        "ingredients": {
+          "contains": ["연어", "고구마"],
+          "avoid": ["곡물 전체"]
+        },
+        "avoidIf": {
+          "allergies": ["생선"],
+          "diseases": []
+        },
+        "specialFeatures": [
+          "시니어 전용",
+          "그레인프리",
+          "관절 영양 강화",
+          "항산화 성분",
+          "오메가3 풍부"
+        ],
+        "content": "곡물에 민감한 시니어를 위한 완전 그레인프리 노령견 케어 포뮬러입니다. 연어의 오메가3가 노화된 관절과 피부를 케어하고, 항산화제가 면역력 저하를 예방합니다.",
+        "detailImages": [
+          {
+            "name": "desc01.jpg",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770787404/febc15-final06-ecad/O5udNqxgy.jpg"
+          }
+        ],
+        "type": "사료",
+        "lifeStage": ["시니어"],
+        "size": ["소형견", "중형견", "대형견"],
+        "mainProtein": ["연어"],
+        "kcalPer100g": 345,
+        "nutrition": {
+          "protein": 24,
+          "fat": 12,
+          "moisture": 10
+        }
+      }
+    },
+    {
+      "price": 7900,
+      "quantity": 200,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "블루베리 볼",
+      "content": "신선한 블루베리를 더해 상큼한 향과 부드러운 식감을 살린 강아지 간식입니다.\n한입에 먹기 좋은 볼 형태로 제작되어 훈련 보상용으로도 적합합니다.\n인공 색소와 합성 향료를 사용하지 않아 안심하고 급여할 수 있습니다.",
+      "mainImages": [
+        {
+          "name": "blueberryballs.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770789823/febc15-final06-ecad/WUCxqjWVZ.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-BB-01",
+        "weight": 100,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "신선한 블루베리를 더해 상큼한 향과 부드러운 식감을 살린 강아지 간식입니다.\n한입에 먹기 좋은 볼 형태로 제작되어 훈련 보상용으로도 적합합니다.\n인공 색소와 합성 향료를 사용하지 않아 안심하고 급여할 수 있습니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 11900,
+      "quantity": 250,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "츄 저키",
+      "content": "고기를 그대로 건조해 깊은 풍미를 살린 츄 저키입니다.\n쫄깃한 식감으로 씹는 즐거움을 제공하며 스트레스 완화에도 도움을 줍니다.\n훈련 보상용 또는 일상 간식으로 적합합니다.",
+      "mainImages": [
+        {
+          "name": "chewjerky.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770789949/febc15-final06-ecad/c6psz5DO3.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-CJ-01",
+        "weight": 300,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "고기를 그대로 건조해 깊은 풍미를 살린 츄 저키입니다.\n쫄깃한 식감으로 씹는 즐거움을 제공하며 스트레스 완화에도 도움을 줍니다.\n훈련 보상용 또는 일상 간식으로 적합합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 7500,
+      "quantity": 230,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "내추럴 프루트베지 믹스",
+      "content": "사과, 당근, 블루베리 등 자연 재료를 담은 프루트베지 믹스 🥕🍎\n가볍고 부담 없는 식감으로 하루 간식으로 적당해요.\n달지 않고 자연 그대로의 맛을 살렸습니다.",
+      "mainImages": [
+        {
+          "name": "fruitveggie.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790022/febc15-final06-ecad/pkmaRoEB3.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-FV-01",
+        "weight": 100,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "사과, 당근, 블루베리 등 자연 재료를 담은 프루트베지 믹스 🥕🍎\n가볍고 부담 없는 식감으로 하루 간식으로 적당해요.\n달지 않고 자연 그대로의 맛을 살렸습니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 9900,
+      "quantity": 300,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "싱글프로틴 램 트릿",
+      "content": "알러지가 걱정되는 아이를 위한 싱글프로틴 램 트릿 🐑\n양고기만을 사용해 단백질을 단순화했으며,\n한입 사이즈로 부담 없이 급여할 수 있어요.",
+      "mainImages": [
+        {
+          "name": "lambtreats.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790100/febc15-final06-ecad/AytVB0Lwk.png"
+        }
+      ],
+      "extra": {
+        "code": " SN-LM-01",
+        "weight": 100,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "알러지가 걱정되는 아이를 위한 싱글프로틴 램 트릿 🐑\n양고기만을 사용해 단백질을 단순화했으며,\n한입 사이즈로 부담 없이 급여할 수 있어요.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 12900,
+      "quantity": 150,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "동결건조 비프 리버 큐브",
+      "content": "신선한 소 간을 동결건조하여 영양을 그대로 담았습니다.\n기호성이 뛰어나 훈련 보상용으로 적합한 고단백 간식입니다.\n인공 첨가물 없이 원재료 그대로의 맛을 살렸습니다.",
+      "mainImages": [
+        {
+          "name": "beefliver.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790173/febc15-final06-ecad/Bskv6Vl9W.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-BL-01",
+        "weight": 80,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "신선한 소 간을 동결건조하여 영양을 그대로 담았습니다.\n기호성이 뛰어나 훈련 보상용으로 적합한 고단백 간식입니다.\n인공 첨가물 없이 원재료 그대로의 맛을 살렸습니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 21900,
+      "quantity": 160,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "뉴트리 퍼피 밀크",
+      "content": "아직 작은 우리 아이를 위한 영양 한 컵 🍼\n성장기에 필요한 영양을 균형 있게 담아 건강한 발달을 돕습니다.\n물에 잘 녹아 간편하게 급여할 수 있어요.",
+      "mainImages": [
+        {
+          "name": "puppymilk.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790242/febc15-final06-ecad/kW3b8FL7-.png"
+        }
+      ],
+      "extra": {
+        "code": "NM-PM-01",
+        "weight": 300,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "아직 작은 우리 아이를 위한 영양 한 컵 🍼\n성장기에 필요한 영양을 균형 있게 담아 건강한 발달을 돕습니다.\n물에 잘 녹아 간편하게 급여할 수 있어요.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 9900,
+      "quantity": 180,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "소프트 크리미 밀크 츄",
+      "content": "부드러운 밀크향이 더해진 소프트 츄 간식입니다.\n쫄깃하면서도 과하게 딱딱하지 않아 부담 없이 급여할 수 있습니다.\n일상 간식 및 보상용으로 적합합니다.",
+      "mainImages": [
+        {
+          "name": "creamymilkchews.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790312/febc15-final06-ecad/b4jvqLCQw.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-CMC-01",
+        "weight": 150,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "부드러운 밀크향이 더해진 소프트 츄 간식입니다.\n쫄깃하면서도 과하게 딱딱하지 않아 부담 없이 급여할 수 있습니다.\n일상 간식 및 보상용으로 적합합니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 7900,
+      "quantity": 220,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "내추럴 버터스쿼시 바이트",
+      "content": "달콤한 호박 향이 은은하게 퍼지는 버터스쿼시 바이트 🎃\n가볍게 씹히는 식감으로 부담 없이 급여할 수 있어요.\n자연 재료 그대로의 맛을 담았습니다.",
+      "mainImages": [
+        {
+          "name": "buttersquash.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790380/febc15-final06-ecad/5yqPVTCM4.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-BS-01",
+        "weight": 180,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "달콤한 호박 향이 은은하게 퍼지는 버터스쿼시 바이트 🎃\n가볍게 씹히는 식감으로 부담 없이 급여할 수 있어요.\n자연 재료 그대로의 맛을 담았습니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 11900,
+      "quantity": 250,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "오랄케어 덴탈 츄",
+      "content": "씹는 시간을 늘려주어 치아 관리에 도움을 줄 수 있는 덴탈 간식입니다.\n적당한 경도의 츄 타입으로 치석 형성 감소에 도움을 줄 수 있습니다.\n일상 간식으로 부담 없이 급여할 수 있습니다.",
+      "mainImages": [
+        {
+          "name": "dentalchews.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790525/febc15-final06-ecad/-fjqywSCh.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-DC-01",
+        "weight": 200,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "씹는 시간을 늘려주어 치아 관리에 도움을 줄 수 있는 덴탈 간식입니다.\n적당한 경도의 츄 타입으로 치석 형성 감소에 도움을 줄 수 있습니다.\n일상 간식으로 부담 없이 급여할 수 있습니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 9900,
+      "quantity": 230,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "리얼 치킨 저키",
+      "content": "가장 기본이 되는 인기 간식 🐔\n고소한 닭고기 풍미가 살아있는 치킨 저키입니다.\n데일리 간식으로 부담 없이 급여하기 좋아요.",
+      "mainImages": [
+        {
+          "name": "chickenjerky.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790603/febc15-final06-ecad/PbSyd5ewh.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-CK-01",
+        "weight": 300,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "가장 기본이 되는 인기 간식 🐔\n고소한 닭고기 풍미가 살아있는 치킨 저키입니다.\n데일리 간식으로 부담 없이 급여하기 좋아요.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
+    },
+    {
+      "price": 10900,
+      "quantity": 230,
+      "buyQuantity": 0,
+      "shippingFees": 0,
+      "name": "오메가 살몬 스틱",
+      "content": "고소한 연어 풍미가 살아있는 살몬 스틱 🐟\n부드럽게 찢어 급여할 수 있어 훈련 보상용으로도 좋아요.\n매일 간식 시간에 부담 없이 즐길 수 있습니다.",
+      "mainImages": [
+        {
+          "name": "salmonstick.png",
+          "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770790668/febc15-final06-ecad/e7QWcug5z.png"
+        }
+      ],
+      "extra": {
+        "code": "SN-SM-01",
+        "weight": 150,
+        "bodyType": [],
+        "activityLevel": [],
+        "neutered": "both",
+        "grainFree": false,
+        "foodType": "건식",
+        "healthBenefits": [],
+        "ingredients": {
+          "contains": [],
+          "avoid": []
+        },
+        "avoidIf": {
+          "allergies": [],
+          "diseases": []
+        },
+        "specialFeatures": [],
+        "lineTag": "",
+        "content": "고소한 연어 풍미가 살아있는 살몬 스틱 🐟\n부드럽게 찢어 급여할 수 있어 훈련 보상용으로도 좋아요.\n매일 간식 시간에 부담 없이 즐길 수 있습니다.",
+        "detailImages": [
+          {
+            "name": "Group 161.png",
+            "path": "https://res.cloudinary.com/ddedslqvv/image/upload/v1770788529/febc15-final06-ecad/bgoYcV9gL.png"
+          }
+        ],
+        "type": "간식"
+      },
+      "show": true,
+      "seller_id": 1,
+      "active": true
     }
   ],
   "order": [],
@@ -1245,71 +2134,85 @@
         {
           "sort": 1,
           "code": "OS010",
+          "type": "사료",
           "value": "주문 완료"
         },
         {
           "sort": 2,
           "code": "OS020",
+          "type": "사료",
           "value": "결제 완료"
         },
         {
           "sort": 3,
           "code": "OS030",
+          "type": "사료",
           "value": "배송 준비중"
         },
         {
           "sort": 4,
           "code": "OS035",
+          "type": "사료",
           "value": "배송중"
         },
         {
           "sort": 5,
           "code": "OS040",
+          "type": "사료",
           "value": "배송 완료"
         },
         {
           "sort": 6,
           "code": "OS110",
+          "type": "사료",
           "value": "반품 요청"
         },
         {
           "sort": 7,
           "code": "OS120",
+          "type": "사료",
           "value": "반품 처리중"
         },
         {
           "sort": 8,
           "code": "OS130",
+          "type": "사료",
           "value": "반품 완료"
         },
         {
           "sort": 9,
           "code": "OS210",
+          "type": "사료",
           "value": "교환 요청"
         },
         {
           "sort": 10,
           "code": "OS220",
+          "type": "사료",
           "value": "교환 처리중"
         },
         {
           "sort": 11,
           "code": "OS230",
+          "type": "사료",
           "value": "교환 완료"
         },
         {
           "sort": 12,
           "code": "OS310",
+          "type": "사료",
           "value": "환불 요청"
         },
         {
           "sort": 13,
           "code": "OS320",
+          "type": "사료",
           "value": "환불 처리중"
         },
         {
           "sort": 14,
           "code": "OS330",
+          "type": "사료",
           "value": "환불 완료"
         }
       ]
@@ -1317,7 +2220,6 @@
   ],
   "config": [
     {
-      "_id": "shippingFees",
       "title": "배송비",
       "value": 3500
     },

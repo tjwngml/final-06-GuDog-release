@@ -14,12 +14,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { deleteCartItems } from "@/actions/cart";
 import { showWarning, showSuccess, showError } from "@/lib";
+import { getUser } from "@/lib/user";
 
 function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { checkoutItems, getSelectCartTotal, clearPurchasedItems, fetchCart } = useCartStore();
   const [isSearching, setIsSearching] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // 토큰 가져오기
   const { user } = useUserStore();
@@ -41,6 +43,26 @@ function CheckoutContent() {
     detailAddress: "",
     request: "",
   });
+
+  // 회원 정보로 배송 정보 기본값 설정
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user?._id) return;
+      const res = await getUser(user._id);
+      if (res.ok === 1) {
+        const profile = res.item;
+        setShippingInfo((prev) => ({
+          ...prev,
+          recipient: profile.name || "",
+          phone: profile.phone || "",
+          zipcode: profile.extra?.zipcode || "",
+          address: profile.address || "",
+          detailAddress: profile.extra?.detailaddress || "",
+        }));
+      }
+    };
+    fetchProfile();
+  }, [user?._id]);
 
   // 배송 정보 입력 ref
   const recipientRef = useRef<HTMLInputElement>(null);
@@ -238,6 +260,8 @@ function CheckoutContent() {
       return;
     }
 
+    setIsProcessing(true);
+
     try {
       // 포트원 결제창 호출
       const response = await PortOne.requestPayment({
@@ -253,6 +277,7 @@ function CheckoutContent() {
       // 결제 결과 확인
       if (!response || response.code !== undefined) {
         //결제 취소, 오류 발생 시
+        setIsProcessing(false);
         return;
       }
 
@@ -261,6 +286,7 @@ function CheckoutContent() {
     } catch (err) {
       console.error("결제 오류", err);
       showError("결제 중 오류가 발생했습니다.");
+      setIsProcessing(false);
     }
   };
 
@@ -317,6 +343,13 @@ function CheckoutContent() {
   };
 
   if (finalCheckoutItems.length === 0) {
+    if (isProcessing) {
+      return (
+        <main className="flex flex-col items-center py-40 gap-4">
+          <p className="text-text-secondary font-bold">주문을 처리하고 있습니다...</p>
+        </main>
+      );
+    }
     return (
       <main className="flex flex-col items-center py-40 gap-4" role="alert">
         <p className="text-text-secondary font-bold">결제할 상품 정보가 없습니다.</p>
@@ -352,11 +385,13 @@ function CheckoutContent() {
                 </h2>
                 <div className="flex gap-2 sm:gap-5">
                   <div className="w-20 h-20 sm:w-17 shrink-0">
-                    <ProductImage
-                      src={firstItem.product.image?.path}
-                      alt={firstItem.product.name}
-                      className="rounded-[0.875rem] overflow-hidden object-cover"
-                    />
+                    {firstItem && (
+                      <ProductImage
+                        src={firstItem.product.image?.path}
+                        alt={firstItem.product.name}
+                        className="rounded-[0.875rem] overflow-hidden object-cover"
+                      />
+                    )}
                   </div>
                   <div className="flex flex-col gap-0.5 sm:gap-1 mt-2.5">
                     <p className="text-[1rem] text-(--color-text-primary) font-black">

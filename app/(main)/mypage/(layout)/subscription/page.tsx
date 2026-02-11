@@ -94,7 +94,9 @@ export default function Subscription() {
                             sizes="(max-width: 1024px) 50vw, 25vw"
                           />
                         ) : (
-                          <Product404 />
+                          <div className="w-full h-full">
+                            <Product404 className="w-full h-full object-cover" />
+                          </div>
                         )}
                       </div>
                     }

@@ -138,7 +138,7 @@ export default function AdminDashboardPage() {
     let lowStockList: Product[] = [];
 
     if (productsRes.ok) {
-      lowStockList = productsRes.item.filter((p: Product) => p.quantity - p.buyQuantity <= 100);
+      lowStockList = productsRes.item.filter((p: Product) => p.quantity - (p.buyQuantity ?? 0) <= 100);
       lowStockCount = lowStockList.length;
     }
 
@@ -321,7 +321,7 @@ export default function AdminDashboardPage() {
               <div className="p-6 text-center text-gray-500">재고 부족 상품이 없습니다.</div>
             ) : (
               lowStockProducts.map((product) => {
-                const stock = product.quantity - product.buyQuantity;
+                const stock = product.quantity - (product.buyQuantity ?? 0);
                 return (
                   <Link href={`/admin/products/${product._id}/modify`} key={product._id}>
                     <div className="p-4 hover:bg-gray-50 transition-colors">
