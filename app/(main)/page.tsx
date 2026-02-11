@@ -1,24 +1,32 @@
+import { Metadata } from "next";
 import FeatureCard from "@/app/(main)/_components/FeatureCard";
 import FeatureItem from "@/app/(main)/_components/FeatureItem";
 import HeroSwiper from "@/app/(main)/_components/HeroSwiper";
 import ProductCard from "@/app/(main)/_components/ProductCard";
 import SectionTitle from "@/app/(main)/_components/SectionTitle";
-import { getProducts } from "@/lib/product";
+import { getProducts } from "@/lib";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "반려견 맞춤형 건강 식단 구독 서비스",
+  description: "건강한 반려견 사료와 간식을 정기구독으로 만나보세요.",
+};
 
 export default async function Home() {
   const bestProductsRes = await getProducts({ sort: { rating: -1 }, limit: 3 });
 
   if (!bestProductsRes.ok) {
-    return <div>{bestProductsRes.message}</div>;
+    return (
+      <div role="alert" aria-live="assertive">
+        {bestProductsRes.message}
+      </div>
+    );
   }
 
-  console.log("Home");
   const bestProducts = bestProductsRes.item;
-  // console.log(bestProducts);
 
   return (
-    <>
+    <main>
       <div className="w-full">
         <HeroSwiper />
       </div>
@@ -96,7 +104,7 @@ export default async function Home() {
             description="구독의 모든 사료는 원재료의 풍미를 살린 저온 조리 방식을 채택합니다."
             descriptionWidth="w-full"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12" role="list">
             {bestProducts.map((product) => {
               const totalKcal =
                 product.extra?.kcalPer100g && product.extra?.weight
@@ -104,18 +112,19 @@ export default async function Home() {
                   : null;
 
               return (
-                <ProductCard
-                  key={product._id}
-                  image={`${product.mainImages[0]?.path}`}
-                  title={product.name}
-                  kcal={totalKcal ? `${totalKcal.toLocaleString()} kcal` : ""}
-                  description={product.content ? product.content : ""}
-                  tag={product.extra?.category?.[0] ?? ""}
-                  href={`/products/${product._id}`}
-                />
+                <li key={product._id}>
+                  <ProductCard
+                    image={`${product.mainImages[0]?.path}`}
+                    title={product.name}
+                    kcal={totalKcal ? `${totalKcal.toLocaleString()} kcal` : ""}
+                    description={product.extra.content || product.content}
+                    tag={product.extra?.category?.[0] ?? ""}
+                    href={`/products/${product._id}`}
+                  />
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -135,19 +144,33 @@ export default async function Home() {
               />
               <div className="flex flex-col items-center lg:items-start gap-10 -mt-6">
                 <FeatureItem
-                  icon={<img src="/icons/chart-box-orange.svg" alt="" className="w-14.5 h-14.5" />}
+                  icon={
+                    <img
+                      src="/icons/chart-box-orange.svg"
+                      alt="차트 아이콘"
+                      className="w-14.5 h-14.5"
+                    />
+                  }
                   title="실시간 영양 최적화"
                   description="우리는 모든 반려견이 건강하고 행복한 삶을 살 수 있도록, 최고 품질의 사료와 과학적인 영양배합으로 사료를 제공합니다."
                 />
                 <FeatureItem
-                  icon={<img src="/icons/verify-box-orange.svg" alt="" className="w-14.5 h-14.5" />}
+                  icon={
+                    <img
+                      src="/icons/verify-box-orange.svg"
+                      alt="검증 아이콘"
+                      className="w-14.5 h-14.5"
+                    />
+                  }
                   title="맞춤 영양 솔루션"
-                  description="10년 이상의 연구와 경험을 바탕으로 반려견의 나이, 크기, 건강상태에 
+                  description="10년 이상의 연구와 경험을 바탕으로 반려견의 나이, 크기, 건강상태에
 맞는 맞춤형 영양 솔루션을 개발했습니다."
                 />
 
                 <FeatureItem
-                  icon={<img src="/icons/qr-box-orange.svg" alt="" className="w-14.5 h-14.5" />}
+                  icon={
+                    <img src="/icons/qr-box-orange.svg" alt="QR 아이콘" className="w-14.5 h-14.5" />
+                  }
                   title="신선한 원재료"
                   description="정기 구독을 통해 편리하게 신선한 사료를 받아보시고, 우리 아이의 건강한
 식습관을 함께 만들어가세요."
@@ -157,13 +180,13 @@ export default async function Home() {
             <Image
               className="hidden lg:inline-block"
               src="/images/logo-D.png"
-              alt=""
+              alt="구독 브랜드 로고"
               width={394}
               height={459}
             />
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

@@ -20,7 +20,7 @@ export default function ProductCard({
   href,
 }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-[49px] shadow-[0px_4px_24px_-4px_rgba(0,0,0,0.04),0px_0px_0px_1px_rgba(0,0,0,0.02)] overflow-hidden">
+    <div className="flex flex-col h-full bg-white rounded-[49px] shadow-[0px_4px_24px_-4px_rgba(0,0,0,0.04),0px_0px_0px_1px_rgba(0,0,0,0.02)] overflow-hidden">
       {/* 이미지 영역 */}
       <div className="relative">
         <ProductImage src={image} alt={title} />
@@ -30,7 +30,7 @@ export default function ProductCard({
       </div>
 
       {/* 콘텐츠 영역 */}
-      <div className="p-[42px] flex flex-col gap-[21px]">
+      <div className="p-[42px] flex flex-col gap-[21px] flex-1">
         {/* 타이틀 + kcal */}
         <div className="flex gap-4 flex-wrap items-center">
           <h3 className="text-[24.5px] font-black text-[#1A1A1C] tracking-[-1.3px] leading-8">
@@ -40,10 +40,12 @@ export default function ProductCard({
         </div>
 
         {/* 설명 */}
-        <p className="text-sm font-medium text-[#646468] leading-[160%]">{description}</p>
+        <p className="text-sm font-medium text-[#646468] leading-[160%] line-clamp-2">
+          {description}
+        </p>
 
         {/* 버튼 */}
-        <div className="flex justify-between items-center pt-7 border-t border-black/6">
+        <div className="flex justify-between items-center mt-auto pt-7 border-t border-black/6">
           <Button href={href} variant="secondary" size="md" rightIcon className="w-full">
             상세 정보
           </Button>

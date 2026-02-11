@@ -1,17 +1,23 @@
 "use client";
 
-import OnetimeCart from "@/app/(main)/cart/onetime-cart";
-import SubscriptionCart from "@/app/(main)/cart/subscription-cart";
+import OnetimeCart from "@/app/(main)/cart/_components/OnetimeCart";
+import SubscriptionCart from "@/app/(main)/cart/_components/SubscriptionCart";
 import useCartStore from "@/zustand/useCartStore";
 import Badge from "@/components/common/Badge";
 import Tab from "@/components/common/Tab";
 import useUserStore from "@/zustand/useStore";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type TabType = "oneTime" | "subscription";
 
-export default function Cart() {
-  const [activeTab, setActiveTab] = useState<TabType>("oneTime");
+function CartContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get("tab") as TabType | null;
+
+  // URL 파라미터를 activeTab으로 사용 (기본값: "oneTime")
+  const activeTab: TabType = tabParam === "subscription" ? "subscription" : "oneTime";
 
   // 토큰 가져오기
   const { user } = useUserStore();
@@ -27,6 +33,11 @@ export default function Cart() {
     }
   }, [accessToken, fetchCart]);
 
+  // 탭 변경 핸들러 (URL 업데이트)
+  const handleTabChange = (tab: TabType) => {
+    router.push(`/cart?tab=${tab}`);
+  };
+
   // 1회 구매와 정기구독 탭 카운트
   const onetimeCount = getOnetimeItems().length;
   const subscriptionCount = getSubscriptionItems().length;
@@ -37,7 +48,7 @@ export default function Cart() {
   ];
 
   // 로딩
-  if (isLoading && !cartData) {
+  if (isLoading || !cartData) {
     return (
       <div className="bg-[#F9F9FB]">
         <div className="xl:max-w-300 min-w-90 mx-auto px-4 pt-8 pb-[8.75rem]">
@@ -75,10 +86,28 @@ export default function Cart() {
 
         {/* 탭 버튼 */}
         <section className="flex justify-center mb-9">
-          <Tab tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+          <Tab tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
         </section>
         {activeTab === "oneTime" ? <OnetimeCart /> : <SubscriptionCart />}
       </div>
     </div>
+  );
+}
+
+export default function Cart() {
+  return (
+    <Suspense
+      fallback={
+        <div className="bg-[#F9F9FB]">
+          <div className="xl:max-w-300 min-w-90 mx-auto px-4 pt-8 pb-[8.75rem]">
+            <div className="text-center py-20">
+              <p className="text-text-tertiary">로딩 중...</p>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <CartContent />
+    </Suspense>
   );
 }

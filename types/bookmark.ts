@@ -1,4 +1,4 @@
-import { Product } from "@/types/product";
+import { Product } from "./product";
 // 즐겨찾기를 한 유저 정보
 export interface BookmarkUser {
   _id: number;

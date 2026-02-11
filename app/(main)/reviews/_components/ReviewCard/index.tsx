@@ -1,7 +1,7 @@
 import ReviewImage from "@/components/common/ReviewImage";
 import ProductImage from "@/components/common/ProductImage";
 import Link from "next/link";
-import { Review } from "@/types/review";
+import { Review } from "@/types";
 
 interface ReviewCardProps {
   review: Review;

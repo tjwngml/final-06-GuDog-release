@@ -15,11 +15,11 @@ export default function FeatureCard({
 }: FeatureCardProps) {
   return (
     <div
-      className={`${bgColor} border border-border-primary p-12 rounded-[2.5rem] text-center hover:shadow-soft transition-all group`}
+      className={`${bgColor} border border-border-primary p-12 rounded-[2.5rem] text-center group`}
     >
       <div
         style={{ backgroundColor: iconBgColor }}
-        className="w-14 h-14 text-accent-primary rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-sm group-hover:scale-110 transition-transform border border-border-primary"
+        className="w-14 h-14 text-accent-primary rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-sm border border-border-primary"
       >
         {icon}
       </div>

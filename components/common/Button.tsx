@@ -58,7 +58,7 @@ const sizeStyles: Record<ButtonSize, string> = {
   xs: "px-4 py-1 text-[0.625rem] gap-1",
   sm: "px-5 py-3 text-xs gap-1.5",
   md: "px-6 py-4 text-xs gap-2",
-  lg: "px-7 py-5 text-base gap-2.5",
+  lg: "px-5 py-3 text-sm gap-2 lg:px-7 lg:py-5 lg:text-base lg:gap-2.5",
 };
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -108,9 +108,17 @@ export default function Button(props: ButtonProps) {
 
   const content = (
     <>
-      {renderLeftIcon() && <span className="shrink-0">{renderLeftIcon()}</span>}
+      {renderLeftIcon() && (
+        <span className="shrink-0" aria-hidden="true">
+          {renderLeftIcon()}
+        </span>
+      )}
       {children}
-      {renderRightIcon() && <span className="shrink-0">{renderRightIcon()}</span>}
+      {renderRightIcon() && (
+        <span className="shrink-0" aria-hidden="true">
+          {renderRightIcon()}
+        </span>
+      )}
     </>
   );
 

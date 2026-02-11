@@ -1,6 +1,5 @@
 import AnswerForm from "@/app/(admin)/admin/_components/AnswerForm";
-import { getPost } from "@/lib/post";
-import { getProduct } from "@/lib/product";
+import { getPost, getProduct } from "@/lib";
 import { notFound } from "next/navigation";
 
 interface QnAAnswerPageProps {

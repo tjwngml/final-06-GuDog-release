@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Button from "@/components/common/Button";
 import Tab from "@/components/common/Tab";
-import QuantityControl from "@/components/common/Quantitycontrol";
-import { Product } from "@/types/product";
-import { addToCart } from "@/lib/cart";
+import QuantityControl from "@/components/common/QuantityControl";
+import { Product } from "@/types";
+import { addToCart, showWarning, showSuccess, showError, showConfirm } from "@/lib";
 import useUserStore from "@/zustand/useStore";
 
 type PurchaseType = "oneTime" | "subscription";
@@ -52,7 +52,7 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
 
   const handleAddToCart = async () => {
     if (!user?.token?.accessToken) {
-      alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+      showWarning("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
       router.push("/login");
       return;
     }
@@ -67,13 +67,18 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
 
     if (res.ok === 1) {
       incrementCart(1);
-      const goToCart = confirm("장바구니에 담았습니다.\n장바구니로 이동하시겠습니까?");
-      if (goToCart) {
+      const result = await showConfirm(
+        "장바구니에 담았습니다.",
+        "장바구니로 이동하시겠습니까?",
+        "확인",
+        "취소",
+      );
+      if (result.isConfirmed) {
         onClose();
-        router.push(purchaseType === "subscription" ? "/cart?tab=subscription" : "/cart");
+        router.push(`/cart?tab=${purchaseType}`);
       }
     } else {
-      alert("장바구니 담기에 실패했습니다.");
+      showError("장바구니 담기에 실패했습니다.");
     }
   };
 
@@ -81,13 +86,14 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-500 flex items-end justify-center bg-black/50 overflow-y-auto"
+      className="fixed inset-0 z-500 overflow-y-auto bg-black/50"
       onClick={onClose}
     >
-      <div
-        className="flex flex-col w-[73rem] rounded-t-4xl bg-white px-20 py-10 shadow-xl"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="flex min-h-full items-end justify-center">
+        <div
+          className="flex flex-col w-full sm:max-w-[73rem] rounded-t-4xl bg-white px-5 sm:px-20 py-10 shadow-xl"
+          onClick={(e) => e.stopPropagation()}
+        >
         {/* 닫기 막대 */}
         <div className="flex justify-center pb-7 cursor-pointer" onClick={onClose}>
           <span className="h-1.5 w-15 rounded-full bg-gray-200" />
@@ -104,27 +110,31 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
         </div>
 
         {/* 상품 정보 */}
-        <div className="flex items-stretch gap-6 mt-10">
+        <div className="flex items-stretch gap-4 sm:gap-6 mt-10">
           <Image
             src={product.mainImages[0]?.path || "/images/product-404.jpg"}
             alt={product.name}
             width={130}
             height={130}
-            className="rounded-3xl"
+            className="shrink-0 rounded-3xl w-[80px] h-[80px] sm:w-[130px] sm:h-[130px]"
           />
-          <div className="flex flex-col h-full justify-center items-start gap-2">
+          <div className="flex flex-col min-w-0 h-full justify-center items-start gap-2">
             {purchaseType !== "subscription" && (
               <span className="inline-block rounded-lg bg-gray-200 px-2 py-1 text-xs font-semibold text-gray-600">
                 일회성구매
               </span>
             )}
-            <p className="text-center font-bold text-2xl">{product.name}</p>
-            <p className="font-bold text-xl text-[#fba613]">{basePrice.toLocaleString()}원</p>
+            <p className="text-center font-bold text-base sm:text-2xl truncate max-w-full">
+              {product.name}
+            </p>
+            <p className="font-bold text-sm sm:text-xl text-[#fba613]">
+              {basePrice.toLocaleString()}원
+            </p>
           </div>
 
           <button
             type="button"
-            className="ml-auto self-start text-l text-[#646468]"
+            className="ml-auto shrink-0 self-start text-l text-[#646468]"
             onClick={onClose}
           >
             X
@@ -134,8 +144,8 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
         {/* 1회 구매 */}
         {purchaseType !== "subscription" && (
           <div className="flex flex-col gap-15 mt-10">
-            <div className="rounded-full border border-black/10 bg-gray-50 px-6 py-5.5 text-center">
-              <span className="flex justify-center text-l font-semibold text-[#646468]">
+            <div className="rounded-full border border-black/10 bg-gray-50 px-4 sm:px-6 py-4 sm:py-5.5 text-center">
+              <span className="flex justify-center text-xs sm:text-base font-semibold text-[#646468]">
                 현재 &nbsp; <span className="font-bold text-black">1회성 일반 구매</span>를
                 선택하셨습니다.
               </span>
@@ -148,18 +158,18 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
         {purchaseType === "subscription" && (
           <div className="flex flex-col gap-6 mt-10">
             <span className="font-semibold text-m">배송주기 선택</span>
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+            <div className="flex flex-row gap-2 sm:gap-4">
               <Button
                 variant={deliveryCycle === "2w" ? "secondary" : "outline"}
                 onClick={() => setDeliveryCycle("2w")}
-                className="flex-1 w-[35rem]"
+                className="flex-1 min-w-0"
               >
                 격주 배송(2주)
               </Button>
               <Button
                 variant={deliveryCycle === "4w" ? "secondary" : "outline"}
                 onClick={() => setDeliveryCycle("4w")}
-                className="flex-1 w-[35rem]"
+                className="flex-1 min-w-0"
               >
                 매월 배송(4주)
               </Button>
@@ -180,38 +190,45 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
         <div className="h-px bg-gray-200 mt-10" />
 
         {/* 총 결제금액 */}
-        <div className="flex justify-between mt-10">
-          <div className="flex justify-center items-center gap-3">
-            <p className="font-semibold text-xl">총 결제금액</p>
+        <div className="flex justify-between items-center mt-10 gap-2">
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
+            <p className="font-semibold text-sm sm:text-xl whitespace-nowrap">총 결제금액</p>
             {purchaseType === "subscription" && (
-              <span className="rounded-lg bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-600">
-                10% 할인
-              </span>
+              <>
+                <span className="rounded-lg bg-blue-100 px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs font-semibold text-blue-600 whitespace-nowrap">
+                  무료배송
+                </span>
+                <span className="rounded-lg bg-blue-100 px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs font-semibold text-blue-600 whitespace-nowrap">
+                  10% 할인
+                </span>
+              </>
             )}
             {purchaseType !== "subscription" && (
-              <span className="rounded-lg bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-600">
+              <span className="rounded-lg bg-blue-100 px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs font-semibold text-blue-600 whitespace-nowrap">
                 무료배송
               </span>
             )}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
             {purchaseType === "subscription" && (
-              <span className="text-2xl text-gray-400 line-through">
+              <span className="text-sm sm:text-2xl text-gray-400 line-through whitespace-nowrap">
                 {(basePrice * quantity).toLocaleString()}원
               </span>
             )}
-            <p className="font-bold text-2xl text-[#fba613]">{totalPrice.toLocaleString()}원</p>
+            <p className="font-bold text-sm sm:text-2xl text-[#fba613] whitespace-nowrap">
+              {totalPrice.toLocaleString()}원
+            </p>
           </div>
         </div>
 
         {/* 하단 버튼 */}
-        <div className="mt-6 flex flex-col sm:flex-row sm:gap-4">
+        <div className="mt-6 flex flex-row gap-2 sm:gap-4">
           <Button
             type="button"
             size="lg"
             variant="outline"
             onClick={handleAddToCart}
-            className="flex-1 w-[35rem] border border-black rounded bg-white py-2"
+            className="flex-1 min-w-0 border border-black rounded bg-white py-2"
           >
             장바구니 담기
           </Button>
@@ -221,7 +238,7 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
             variant="primary"
             onClick={() => {
               if (!user?.token?.accessToken) {
-                alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+                showWarning("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
                 router.push("/login");
                 return;
               }
@@ -238,11 +255,12 @@ export default function PurchaseModal({ isOpen, onClose, product }: Props) {
               }
               router.push(`/checkout?${params.toString()}`);
             }}
-            className="flex-1 w-[35rem] rounded py-2"
+            className="flex-1 min-w-0 rounded py-2"
           >
             바로 구매하기
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );

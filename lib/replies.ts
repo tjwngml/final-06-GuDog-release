@@ -1,5 +1,5 @@
-import { API_URL, CLIENT_ID } from "@/lib/config";
-import { ResData, ReviewListRes } from "@/types/response";
+import { API_URL, CLIENT_ID } from "./config";
+import { ResData, ReviewListRes } from "@/types";
 
 interface GetAllRepliesOptions {
   rating?: string;
@@ -46,8 +46,6 @@ export async function getAllReplies(
     if (sort) params.append("sort", JSON.stringify(sort));
     if (page) params.append("page", String(page));
     if (limit) params.append("limit", String(limit));
-
-    console.log(params.toString());
 
     const res = await fetch(`${API_URL}/replies/all?${params.toString()}`, {
       headers: {

@@ -1,11 +1,11 @@
 "use client";
 
-import { Post } from "@/types/post";
-import { Product } from "@/types/product";
+import { Post, Product } from "@/types";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { ArrowLeft, Trash2, User, Calendar, Save, MessageCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { deletePost, deleteReply, saveReply } from "@/actions/qna";
+import { showSuccess, showError } from "@/lib";
 
 // ===== Props 타입 =====
 interface AnswerFormProps {
@@ -81,10 +81,10 @@ export default function AnswerForm({ postId, questionData, productData }: Answer
     try {
       await saveReply(postId, { content: answer }, isModifyMode ? existingReply._id : undefined);
 
-      alert(isModifyMode ? "답변이 수정되었습니다." : "답변이 등록되었습니다.");
+      showSuccess("완료", isModifyMode ? "답변이 수정되었습니다." : "답변이 등록되었습니다.");
       router.push("/admin/qna");
     } catch (error) {
-      alert(error instanceof Error ? error.message : "오류가 발생했습니다.");
+      showError("오류", error instanceof Error ? error.message : "오류가 발생했습니다.");
     } finally {
       setIsSubmitting(false);
     }
@@ -101,14 +101,14 @@ export default function AnswerForm({ postId, questionData, productData }: Answer
     try {
       if (deleteType === "post") {
         await deletePost(postId);
-        alert("질문이 삭제되었습니다.");
+        showSuccess("삭제 완료", "질문이 삭제되었습니다.");
       } else if (existingReply) {
         await deleteReply(postId, existingReply._id);
-        alert("답변이 삭제되었습니다.");
+        showSuccess("삭제 완료", "답변이 삭제되었습니다.");
       }
       router.push("/admin/qna");
     } catch (error) {
-      alert(error instanceof Error ? error.message : "삭제에 실패했습니다.");
+      showError("삭제 실패", error instanceof Error ? error.message : "삭제에 실패했습니다.");
     } finally {
       setShowDeleteModal(false);
     }

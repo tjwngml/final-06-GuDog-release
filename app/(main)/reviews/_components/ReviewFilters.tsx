@@ -19,9 +19,11 @@ export const ReviewFilters = ({
   onSortChange,
 }: ReviewFiltersProps) => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+    <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6" role="search">
       <div className="relative group w-full md:w-64">
+        <label htmlFor="rating-filter" className="sr-only">별점 필터</label>
         <select
+          id="rating-filter"
           value={ratingFilter}
           onChange={onRatingFilterChange}
           className="w-full px-8 py-4 bg-white border-2 border-border-primary focus:border-accent-primary rounded-2xl shadow-soft outline-none font-black text-text-primary transition-all appearance-none cursor-pointer"
@@ -33,19 +35,20 @@ export const ReviewFilters = ({
           <option value="2">★★☆☆☆ 2점만 보기</option>
           <option value="1">★☆☆☆☆ 1점만 보기</option>
         </select>
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-text-tertiary group-focus-within:text-accent-primary group-focus-within:rotate-180 transition-all">
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-text-tertiary group-focus-within:text-accent-primary group-focus-within:rotate-180 transition-all" aria-hidden="true">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
           </svg>
         </div>
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2" role="group">
         <Button
           variant={sort === "new" ? "secondary" : "outline"}
           size="sm"
           onClick={() => onSortChange("new")}
           disabled={isLoading}
+          aria-pressed={sort === "new"}
         >
           최신순
         </Button>
@@ -54,6 +57,7 @@ export const ReviewFilters = ({
           size="sm"
           onClick={() => onSortChange("old")}
           disabled={isLoading}
+          aria-pressed={sort === "old"}
         >
           오래된순
         </Button>

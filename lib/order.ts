@@ -1,4 +1,4 @@
-import { OrderListRes, ResData } from "@/types/response";
+import { OrderListRes, ResData } from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || "";
@@ -61,7 +61,6 @@ export async function getOrders(
     const queryString = params.toString();
 
     const typepath = options?.type === "user" ? "" : "seller/";
-    console.log(typepath, "타입패스");
     const url = queryString
       ? `${API_URL}/${typepath}orders?${queryString}`
       : `${API_URL}/${typepath}orders`;

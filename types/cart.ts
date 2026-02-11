@@ -1,4 +1,4 @@
-import { Product, ProductImage } from "@/types/product";
+import { Product, ProductImage } from "./product";
 
 // cart 전용 Product타입
 export interface CartProduct extends Omit<Product, "mainImages"> {

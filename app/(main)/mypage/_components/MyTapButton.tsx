@@ -23,9 +23,14 @@ export default function MyTapButton({ content, icon, isActive = false, href }: M
     <Link
       href={href}
       className={`flex flex-col items-center shrink-0 active:scale-95 transition-all
-        w-[274px] 
-        p-[28px]
-        max-lg:w-[140px] 
+        lg:pr-[60px]
+        lg:pl-[60px]
+        pr-[20px]
+        pl-[20px]
+        pt-[28px]
+        pb-[28px]
+        
+        
         rounded-[35px] 
         gap-[10px] 
         ${containerStyle}`}

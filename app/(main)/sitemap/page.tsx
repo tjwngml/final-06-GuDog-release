@@ -177,24 +177,26 @@ const SitemapPage = () => {
     <div className="bg-bg-secondary min-h-screen pb-40 pt-20">
       <div className="container-custom">
         {/* 헤더 */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-black mb-4">사이트맵</h2>
+        <header className="text-center mb-16">
+          <h1 className="text-5xl font-black mb-4">사이트맵</h1>
           <p className="text-text-secondary">작업자 확인용 임시페이지 입니다.</p>
-        </div>
+        </header>
 
         {/* 사이트맵 그리드 */}
-        <div className="max-w-300 mx-auto px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sitemapData.map((sectionData, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-3xl p-8 border border-border-primary shadow-soft"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-accent-soft text-accent-primary rounded-xl flex items-center justify-center">
-                  {sectionIcons[sectionData.section]}
+        <main>
+          <div className="max-w-300 mx-auto px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sitemapData.map((sectionData, idx) => (
+              <section
+                key={idx}
+                className="bg-white rounded-3xl p-8 border border-border-primary shadow-soft"
+                aria-labelledby={`section-${idx}`}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-accent-soft text-accent-primary rounded-xl flex items-center justify-center" aria-hidden="true">
+                    {sectionIcons[sectionData.section]}
+                  </div>
+                  <h2 id={`section-${idx}`} className="text-lg font-bold">{sectionData.section}</h2>
                 </div>
-                <h3 className="text-lg font-bold">{sectionData.section}</h3>
-              </div>
 
               <ul className="space-y-2">
                 {sectionData.items.map((item, i) => (
@@ -222,6 +224,7 @@ const SitemapPage = () => {
                                   ? "bg-bg-tertiary text-text-secondary"
                                   : "bg-border-primary text-text-tertiary"
                           }`}
+                          aria-label={`깊이 레벨 ${item.depth}`}
                         >
                           D{item.depth}
                         </span>
@@ -231,37 +234,38 @@ const SitemapPage = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           ))}
         </div>
 
-        {/* Depth 범례 */}
-        <div className="mt-12 flex justify-center gap-6 text-sm">
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-accent-primary text-white text-xs font-medium">
-              D0
-            </span>
-            <span className="text-text-secondary">메인</span>
+          {/* Depth 범례 */}
+          <div className="mt-12 flex justify-center gap-6 text-sm" role="note" aria-label="페이지 깊이 레벨 안내">
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-accent-primary text-white text-xs font-medium" aria-hidden="true">
+                D0
+              </span>
+              <span className="text-text-secondary">메인</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-accent-soft text-accent-primary text-xs font-medium" aria-hidden="true">
+                D1
+              </span>
+              <span className="text-text-secondary">1차 메뉴</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-bg-tertiary text-text-secondary text-xs font-medium" aria-hidden="true">
+                D2
+              </span>
+              <span className="text-text-secondary">2차 메뉴</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-border-primary text-text-tertiary text-xs font-medium" aria-hidden="true">
+                D3
+              </span>
+              <span className="text-text-secondary">3차 메뉴</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-accent-soft text-accent-primary text-xs font-medium">
-              D1
-            </span>
-            <span className="text-text-secondary">1차 메뉴</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-bg-tertiary text-text-secondary text-xs font-medium">
-              D2
-            </span>
-            <span className="text-text-secondary">2차 메뉴</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-border-primary text-text-tertiary text-xs font-medium">
-              D3
-            </span>
-            <span className="text-text-secondary">3차 메뉴</span>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
   );

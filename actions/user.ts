@@ -2,7 +2,7 @@
 
 import { UserInfoRes } from "../types/response";
 import { cookies } from "next/headers";
-import { User } from "@/types/user";
+import { User } from "@/types";
 
 // interface User {
 //   _id: number;

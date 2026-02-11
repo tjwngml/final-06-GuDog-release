@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { getUser } from "@/lib/user";
+import { getUser } from "@/lib";
 import MyTapButton from "@/app/(main)/mypage/_components/MyTapButton";
 import {
   SubscriptionIcon,
@@ -42,7 +42,7 @@ export default async function Mypagelayout({ children }: Readonly<{ children: Re
       <div className="w-full bg-linear-to-l from-[#FFF9F2] to-[#FFFFFF] h-105.25 relative z-10">
         <div className="flex flex-col pt-[129px] items-center relative">
           <img
-            className="w-[97px] h-[97px] rounded-full ring-4 ring-white shadow-2xl object-cover"
+            className="w-[97px] h-[97px] rounded-full ring-4 ring-white shadow-2xl object-cover relative z-50"
             src={profileImage}
             alt="프로필 이미지"
           />
@@ -57,8 +57,8 @@ export default async function Mypagelayout({ children }: Readonly<{ children: Re
       </div>
 
       {/* 회색 영역 (탭 버튼) */}
-      <div className="w-full bg-[#F9F9FB]">
-        <div className="flex justify-center gap-[14px] pb-4 relative z-20 -mt-[50px] max-lg:flex max-lg:flex-wrap max-lg:ml-[20px] max-lg:mr-[20px]">
+      <div className="w-full bg-[#F9F9FB] ">
+        <div className="max-w-[1200px] px-[30px] pb-4 relative z-20 -mt-[50px] mx-auto grid grid-cols-2 gap-[14px] lg:grid-cols-4">
           <MyTapButton
             content="회원 정보"
             href="/mypage/profile"

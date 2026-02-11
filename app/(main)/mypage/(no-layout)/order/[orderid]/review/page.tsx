@@ -13,13 +13,13 @@ import { useState } from "react";
 import {
   uploadFile,
   createReview,
-} from "@/app/(main)/mypage/(no-layout)/order/[orderid]/review/postreview";
-import MyReviewList from "@/app/(main)/mypage/_components/reviewItem";
-import { getOrders } from "@/lib/order";
+} from "@/app/(main)/mypage/(no-layout)/order/[orderid]/review/PostReview";
+import MyReviewList from "@/app/(main)/mypage/_components/ReviewItem";
+import { getOrders, showWarning, showSuccess, showError } from "@/lib";
 import useUserStore from "@/zustand/useStore";
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import { OrderStateCode } from "@/types/codes";
+import { Order, OrderListRes, OrderProduct, ResData } from "@/types";
 
 export default function Review() {
   const user = useUserStore((state) => state.user);
@@ -43,8 +43,8 @@ export default function Review() {
   const MAX_LEN = 100;
 
   const token = Cookies.get("accessToken");
-
-  const { data: resOrderlist, isLoading } = useQuery({
+  const product_id_str = String(searchParams.get("productid"));
+  const { data: resOrderlist, isLoading } = useQuery<ResData<OrderListRes>>({
     queryKey: ["order", order_id],
     queryFn: () =>
       getOrders(token ?? "", {
@@ -54,7 +54,10 @@ export default function Review() {
     enabled: !!order_id && !!token,
   });
 
-  const order = resOrderlist?.ok === 1 ? resOrderlist.item[0] : null;
+  const orderData = resOrderlist?.ok === 1 ? resOrderlist.item : [];
+  const currentOrder = orderData.find((o) => o._id === order_id);
+
+  const targetProduct = currentOrder?.products.find((p) => String(p._id) === product_id_str);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -74,10 +77,19 @@ export default function Review() {
   };
 
   const handleSubmit = async () => {
-    if (rating === 0) return alert("만족도를 선택해 주세요.");
-    if (!reviewContent.trim()) return alert("후기 내용을 입력해 주세요.");
+    if (rating === 0) {
+      showWarning("만족도를 선택해 주세요.");
+      return;
+    }
+    if (!reviewContent.trim()) {
+      showWarning("후기 내용을 입력해 주세요.");
+      return;
+    }
 
-    if (!order_id || !product_id) return alert("주문 정보를 확인할 수 없습니다.");
+    if (!order_id || !product_id) {
+      showWarning("주문 정보를 확인할 수 없습니다.");
+      return;
+    }
 
     try {
       setIsSubmitting(true);
@@ -87,7 +99,6 @@ export default function Review() {
         const formData = new FormData();
         formData.append("attach", selectedFile);
         attachedImage = await uploadFile(formData);
-        console.log("업로드된 이미지 정보:", attachedImage);
       }
 
       await createReview({
@@ -101,10 +112,10 @@ export default function Review() {
         },
       });
 
-      alert("소중한 후기가 등록되었습니다!");
+      showSuccess("소중한 후기가 등록되었습니다!");
       router.push("/mypage/order");
     } catch (error) {
-      alert("리뷰 등록 중 오류가 발생했습니다.");
+      showError("리뷰 등록 중 오류가 발생했습니다.");
     } finally {
       setIsSubmitting(false);
     }
@@ -114,7 +125,7 @@ export default function Review() {
     <div className="w-full min-w-[360px] bg-[#F9F9F9] lg:bg-transparent">
       <div className="pt-[70px] pb-[112px] px-[20px] max-w-[1280px] mx-auto lg:px-0 flex flex-col items-center">
         <div className="w-full max-w-[632px]">
-          <Link className="flex flex-row gap-[7px] mb-[35px]" href={"/mypage/subscription"}>
+          <Link className="flex flex-row gap-[7px] mb-[35px]" href={"/mypage/order"}>
             <PrevIcon className="w-[17.5px] h-[17.5px] text-[#909094]" />
             <p className="text-[#909094] text-[11.7px] font-black">뒤로가기</p>
           </Link>
@@ -133,13 +144,13 @@ export default function Review() {
         <div className="w-full max-w-[632px] mb-[35px]">
           {isLoading ? (
             <p>로딩 중...</p>
-          ) : order ? (
+          ) : currentOrder && targetProduct ? (
             <MyReviewList
-              image={order.products[0].image.path || preview}
-              name={order.products[0].name}
-              price={order.products[0].price.toLocaleString() + "원"}
-              date={order.createdAt.split(" ")[0]}
-              state={order.state as OrderStateCode}
+              image={targetProduct?.image?.path || preview}
+              name={targetProduct?.name || ""}
+              price={targetProduct?.price.toLocaleString() + "원"}
+              date={currentOrder.createdAt.split(" ")[0]}
+              state={"배송중"}
             />
           ) : (
             <div className="col-span-full py-20 text-center">

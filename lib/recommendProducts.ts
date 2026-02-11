@@ -1,4 +1,4 @@
-import { getProducts, getProductsByCodes as fetchProductsByCodes } from "@/lib/product";
+import { getProducts, getProductsByCodes as fetchProductsByCodes } from "./product";
 
 // 기본 설문 타입
 export interface SurveyFormData {
@@ -22,6 +22,7 @@ export interface ExtendedSurveyFormData extends SurveyFormData {
 
 // 상품 데이터 타입
 export interface ProductData {
+  _id: number;
   price: number;
   quantity: number;
   name: string;
@@ -30,6 +31,7 @@ export interface ProductData {
   mainImages?: { path: string; name: string }[];
   show?: boolean;
   extra: {
+    type: "사료" | "간식";
     code: string;
     weight: number;
     size: string[];
@@ -183,6 +185,7 @@ function filterBySuitability(
   mappedFoodType: string | null,
 ): ProductData[] {
   return products.filter((product) => {
+    if (!product.extra) return false;
     if (mappedSize && !product.extra.size.includes(mappedSize)) return false;
     if (mappedAge && !product.extra.lifeStage.includes(mappedAge)) return false;
     if (mappedFoodType && product.extra.foodType !== mappedFoodType) return false;
@@ -269,7 +272,10 @@ export async function recommendProducts(
   formData: ExtendedSurveyFormData,
 ): Promise<RecommendationResult[] | null> {
   // 전체 상품 데이터 조회
-  const allProductsRes = await getProducts({ sort: { rating: -1 } });
+  const allProductsRes = await getProducts({
+    sort: { rating: -1 },
+    custom: { "extra.type": "사료" },
+  });
 
   if (!allProductsRes.ok || !allProductsRes.item) {
     console.error("상품 데이터 조회 실패");

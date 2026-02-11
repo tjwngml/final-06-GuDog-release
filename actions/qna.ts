@@ -1,5 +1,4 @@
-import { Reply } from "@/types/post";
-import { PostInfoRes, ReplyListRes, ResData } from "@/types/response";
+import { Reply, PostInfoRes, ReplyListRes, ResData } from "@/types";
 import useUserStore from "@/zustand/useStore";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;

@@ -8,8 +8,9 @@ import Image from "next/image";
 import useUserStore from "@/zustand/useStore";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getOrders } from "@/lib/order";
+import { getOrders } from "@/lib";
 import Cookies from "js-cookie";
+import { MyItemListSkeleton } from "@/app/(main)/mypage/(layout)/order/Skeleton";
 
 export default function Subscription() {
   const user = useUserStore((state) => state.user);
@@ -19,7 +20,11 @@ export default function Subscription() {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
-  const { data: resOrderlist, isLoading } = useQuery({
+  const {
+    data: resOrderlist,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ["orders", page],
     queryFn: () =>
       getOrders(token ?? "", {
@@ -37,25 +42,27 @@ export default function Subscription() {
     }
   };
 
+  const showSkeleton = isLoading || isFetching;
+
   return (
-    <div className="w-full pb-[70px]">
+    <main className="w-full pb-[70px]">
       <div className="mt-[108px]">
-        <p className="text-[#1A1A1C] text-center text-[26px] font-[900]">
-          {userName}님이 이용 중인
-        </p>
-        <div className="flex flex-row justify-center">
-          <p className="text-[#FBA613] text-center text-[26px] font-[900]">정기 구독 플랜</p>
-          <p className="text-[#1A1A1C] text-center text-[26px] font-[900]">목록입니다</p>
-        </div>
+        <h1 className="text-[#1A1A1C] text-center text-[26px] font-[900] px-4 break-keep">
+          {userName}님이 이용 중인 <span className="text-[#FBA613]">정기 구독 플랜</span> 목록입니다
+        </h1>
       </div>
 
       <div className="max-w-[1280px] mx-auto pt-[57px] pb-[110px] px-[20px] lg:px-0">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-10 lg:gap-x-7 gap-y-10 justify-items-center max-w-[500px] md:max-w-[700px] lg:max-w-none mx-auto">
-          {isLoading ? (
-            <div className="col-span-full py-20 text-center">불러오는 중...</div>
+        <ul className="grid grid-cols-[repeat(auto-fill,240px)] gap-4 max-w-6xl mx-auto justify-center">
+          {showSkeleton ? (
+            Array.from({ length: 4 }).map((_, i) => (
+              <li key={`skeleton-${i}`} className="w-full max-w-[280px]">
+                <MyItemListSkeleton />
+              </li>
+            ))
           ) : resOrderlist?.ok === 1 && resOrderlist.item.length > 0 ? (
             resOrderlist.item.map((item) => (
-              <div key={item._id} className="w-full max-w-[280px]">
+              <li key={item._id} className="w-full max-w-[280px]">
                 <MyItemList
                   subscriptionId={String(item._id)}
                   title={item.products[0].name}
@@ -64,7 +71,7 @@ export default function Subscription() {
                       {item.products[0].image?.path ? (
                         <Image
                           src={item.products[0].image?.path}
-                          alt={item.products[0].name}
+                          alt={`${item.products[0].name} 상품 이미지`}
                           fill
                           className="object-cover"
                           sizes="(max-width: 1024px) 50vw, 25vw"
@@ -83,23 +90,24 @@ export default function Subscription() {
                   quantity={item.products[0].quantity}
                   price={`${item.products[0].price.toLocaleString()}원`}
                   mark={<RigthMark />}
+                  nextdeliverydate={item.nextdeliverydate}
                 />
-              </div>
+              </li>
             ))
           ) : (
-            <div className="col-span-full py-20 text-center text-[#909094]">
-              현재 이용 중인 정기 구독 플랜이 없습니다.
-            </div>
+            <li className="col-span-full py-20 text-center text-[#909094]">
+              <p role="status">현재 이용 중인 정기 구독 플랜이 없습니다.</p>
+            </li>
           )}
-        </div>
+        </ul>
       </div>
 
-      <div className="flex justify-center">
+      <nav className="flex justify-center">
         <PaginationWrapper
           currentPage={page}
           totalPages={resOrderlist?.ok === 1 ? resOrderlist.pagination.totalPages : 1}
         />
-      </div>
-    </div>
+      </nav>
+    </main>
   );
 }

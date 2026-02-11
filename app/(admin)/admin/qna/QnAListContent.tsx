@@ -6,7 +6,7 @@ import { MessageCircle, CircleCheckBig, Clock, ChevronRight } from "lucide-react
 import StatCard from "@/app/(admin)/admin/_components/StatCard";
 import SearchFilter from "@/app/(admin)/admin/_components/SearchFilter";
 import Pagination from "@/app/(admin)/admin/_components/Pagination";
-import { getPosts } from "@/lib/post";
+import { getPosts } from "@/lib";
 import { useQuery } from "@tanstack/react-query";
 import { useUrlParams } from "@/hooks/useUrlParams";
 import Link from "next/link";
@@ -139,7 +139,7 @@ export default function QnAListPage() {
   ];
 
   return (
-    <>
+    <main>
       {/* 타이틀 */}
       <div className="mb-6">
         <div className="flex items-center mb-4">
@@ -195,24 +195,25 @@ export default function QnAListPage() {
         {/* 테이블 */}
         <div className="overflow-x-auto">
           <table className="w-full">
+            <caption className="sr-only">Q&A 문의 목록</caption>
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   번호
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   질문
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   작성자
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   상태
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   작성일
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   작업
                 </th>
               </tr>
@@ -255,9 +256,10 @@ export default function QnAListPage() {
                       <Link
                         href={`/admin/qna/${item._id}/answer`}
                         className="text-blue-600 hover:text-blue-800 inline-flex items-center"
+                        aria-label={`${item.title} 문의 ${(item.repliesCount ?? 0) > 0 ? "답변 수정하기" : "답변하기"}`}
                       >
                         <span>{(item.repliesCount ?? 0) > 0 ? "답변수정하기" : "답변하기"}</span>
-                        <ChevronRight className="w-4 h-4 ml-1" />
+                        <ChevronRight className="w-4 h-4 ml-1" aria-hidden="true" />
                       </Link>
                     </td>
                   </tr>
@@ -276,6 +278,6 @@ export default function QnAListPage() {
           label="개 문의"
         />
       </div>
-    </>
+    </main>
   );
 }

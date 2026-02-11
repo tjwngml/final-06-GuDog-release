@@ -1,6 +1,6 @@
 export const EmptyState = () => (
-  <div className="col-span-full py-32 text-center bg-white rounded-[3rem] border border-border-primary">
-    <div className="w-20 h-20 bg-bg-secondary rounded-full flex items-center justify-center mx-auto mb-6 text-text-tertiary">
+  <div className="col-span-full py-32 text-center bg-white rounded-[3rem] border border-border-primary" role="status" aria-live="polite">
+    <div className="w-20 h-20 bg-bg-secondary rounded-full flex items-center justify-center mx-auto mb-6 text-text-tertiary" aria-hidden="true">
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
@@ -10,7 +10,7 @@ export const EmptyState = () => (
         />
       </svg>
     </div>
-    <h4 className="text-xl font-black text-text-primary mb-2">선택한 별점의 후기가 없습니다</h4>
+    <h3 className="text-xl font-black text-text-primary mb-2">선택한 별점의 후기가 없습니다</h3>
     <p className="text-text-secondary font-medium">다른 별점 필터를 선택해 보세요.</p>
   </div>
 );

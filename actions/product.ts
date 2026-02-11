@@ -1,4 +1,4 @@
-import { uploadFiles } from "@/actions/Uploadfiles";
+import { uploadFiles } from "@/actions/uploadfiles";
 import useUserStore from "@/zustand/useStore";
 import {
   Product,
@@ -15,7 +15,7 @@ import {
   HealthBenefit,
   SpecialFeature,
   LineTag,
-} from "@/types/product";
+} from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || "";

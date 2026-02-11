@@ -7,28 +7,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/common/Button";
 import PaginationWrapper from "@/components/common/PaginationWrapper";
 import PurchaseModal from "@/app/(main)/products/_components/Modal";
-import { Product } from "@/types/product";
-import { Review } from "@/types/review";
-import { Post } from "@/types/post";
+import { Product, Review, Post } from "@/types";
 import Cookies from "js-cookie";
 import useUserStore from "@/zustand/useStore";
-import { addBookmark, getWishlist, deleteWishlist } from "@/lib/bookmark";
-
-function StarRating({ rating, size = 16 }: { rating: number; size?: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => (
-        <Image
-          key={i}
-          src={i < rating ? "/images/fullStar.svg" : "/images/emptyStar.svg"}
-          width={size}
-          height={size}
-          alt={i < rating ? "fullstar" : "emptystar"}
-        />
-      ))}
-    </div>
-  );
-}
+import { addBookmark, getWishlist, deleteWishlist, showWarning } from "@/lib";
+import StarRating from "@/components/common/StarRating";
 
 interface Props {
   product: Product;
@@ -91,7 +74,7 @@ export default function ProductDetail({
   // 하트 클릭
   const handleToggleBookmark = async () => {
     if (!token) {
-      alert("로그인이 필요합니다.");
+      showWarning("로그인이 필요합니다.");
       router.push("/login");
       return;
     }
@@ -128,7 +111,10 @@ export default function ProductDetail({
 
   return (
     <main className="mx-auto w-full min-w-[360px] max-w-300 items-center px-4 pb-35 pt-17.5 sm:px-5">
-      <section className="mx-auto max-w-300 px-2 pb-21 pt-10.5 sm:px-5">
+      <section
+        aria-labelledby="product-title"
+        className="mx-auto max-w-300 px-2 pb-21 pt-10.5 sm:px-5"
+      >
         <Link
           href="/products"
           className="mb-7 inline-flex cursor-pointer items-center gap-2 border-0 bg-transparent font-semibold text-[#8b8b8f]"
@@ -155,7 +141,10 @@ export default function ProductDetail({
               </span>
             )}
             <div>
-              <h1 className="mb-6 text-2xl font-bold sm:mb-12.5 sm:text-[2.625rem]">
+              <h1
+                id="product-title"
+                className="mb-6 text-2xl font-bold sm:mb-12.5 sm:text-[2.625rem]"
+              >
                 {product.name}
               </h1>
             </div>
@@ -186,9 +175,7 @@ export default function ProductDetail({
             </div>
 
             <p className="pb-[2.63281rem] font-['Abhaya_Libre_Medium'] text-sm font-medium leading-[1.42188rem] text-[#646468]">
-              가장 신선한 원재료로 아이의 입맛과 건강을 동시에 챙기세요.
-              <br />
-              인공 첨가물 없이 정직하게 만들었습니다.
+              {product.extra?.content}
             </p>
 
             {/* 구매하기 버튼 */}
@@ -207,13 +194,20 @@ export default function ProductDetail({
               </button>
 
               {/* 관심상품 버튼 */}
-              <button type="button" className="cursor-pointer" onClick={handleToggleBookmark}>
+              <button
+                type="button"
+                className="cursor-pointer"
+                onClick={handleToggleBookmark}
+                aria-label={isLiked ? "관심상품에서 제거" : "관심상품에 추가"}
+                aria-pressed={isLiked}
+              >
                 <svg
                   width="81"
                   height="53"
                   viewBox="0 0 81 53"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
                   <rect width="81" height="52.5" rx="14" fill="white" />
                   <rect
@@ -243,7 +237,10 @@ export default function ProductDetail({
 
       {/* 메뉴 이동 버튼 */}
       <nav className="mx-auto flex w-full max-w-[75rem] flex-col items-center border-y border-black/[0.06] bg-white/95 px-2 backdrop-blur-[12px] sm:px-5">
-        <div className="flex w-full max-w-[75rem] items-start justify-center self-stretch px-0 sm:px-5">
+        <div
+          className="flex w-full max-w-[75rem] items-start justify-center self-stretch px-0 sm:px-5"
+          role="tablist"
+        >
           {[
             { key: "detail" as const, value: "상세정보" },
             { key: "review" as const, value: `리뷰 (${reviewCount})` },
@@ -252,6 +249,9 @@ export default function ProductDetail({
             <button
               key={tab.key}
               type="button"
+              role="tab"
+              aria-selected={activeTab === tab.key}
+              aria-controls={tab.key}
               onClick={() => {
                 setActiveTab(tab.key);
                 document.getElementById(tab.key)?.scrollIntoView({ behavior: "smooth" });
@@ -264,7 +264,10 @@ export default function ProductDetail({
             >
               {tab.value}
               {activeTab === tab.key && (
-                <div className="absolute bottom-0 h-[0.21875rem] w-[5rem] rounded-[624.9375rem] bg-[#fba613] sm:w-[7.9375rem]" />
+                <div
+                  className="absolute bottom-0 h-[0.21875rem] w-[5rem] rounded-[624.9375rem] bg-[#fba613] sm:w-[7.9375rem]"
+                  aria-hidden="true"
+                />
               )}
             </button>
           ))}
@@ -272,7 +275,7 @@ export default function ProductDetail({
       </nav>
 
       {/* 상세정보 */}
-      <section id="detail" className="w-full">
+      <section id="detail" role="tabpanel" aria-labelledby="상세정보" className="w-full">
         <div
           className={`relative overflow-hidden transition-all duration-500 ${
             isDetailExpanded ? "max-h-none" : "max-h-[400px]"
@@ -313,12 +316,14 @@ export default function ProductDetail({
         </div>
 
         {/* 상세 더보기 */}
-        <div className="flex items-center justify-center self-stretch border-y border-black/[0.06] bg-white/95 px-[2.625rem] py-[1.09375rem] backdrop-blur-[12px]">
-          <button
-            type="button"
-            onClick={() => setIsDetailExpanded(!isDetailExpanded)}
-            className="flex items-center gap-1 text-center text-[0.8125rem] font-bold leading-[17.5px] text-gray-600"
-          >
+        <button
+          type="button"
+          onClick={() => setIsDetailExpanded(!isDetailExpanded)}
+          aria-expanded={isDetailExpanded}
+          aria-label={isDetailExpanded ? "상세 정보 접기" : "상세 정보 더보기"}
+          className="flex w-full cursor-pointer items-center justify-center self-stretch border-y border-black/[0.06] bg-white/95 px-[2.625rem] py-[1.09375rem] backdrop-blur-[12px]"
+        >
+          <span className="flex items-center gap-1 text-center text-[0.8125rem] font-bold leading-[17.5px] text-gray-600">
             {isDetailExpanded ? "상세 접기" : "상세 더보기"}
             <svg
               width="18"
@@ -327,6 +332,7 @@ export default function ProductDetail({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={`transition-transform ${isDetailExpanded ? "rotate-180" : ""}`}
+              aria-hidden="true"
             >
               <path
                 d="M4.5 6.75L9 11.25L13.5 6.75"
@@ -336,17 +342,22 @@ export default function ProductDetail({
                 strokeLinejoin="round"
               />
             </svg>
-          </button>
-        </div>
+          </span>
+        </button>
       </section>
 
       {/* 리뷰 */}
       <section
         id="review"
-        className="mt-[4rem] flex flex-col gap-4 border-b border-black/[0.06] pb-[2.1875rem] sm:mt-[7rem] sm:flex-row sm:items-end sm:justify-between"
+        role="tabpanel"
+        aria-labelledby="review-heading"
+        className="mt-[4rem] scroll-mt-24 flex flex-col gap-4 border-b border-black/[0.06] pb-[2.1875rem] sm:mt-[7rem] sm:flex-row sm:items-end sm:justify-between"
       >
         <div className="flex w-full flex-col items-start justify-end gap-[0.4375rem] pt-[2.375rem] sm:w-auto">
-          <h2 className="text-xl font-black leading-[2.1875rem] tracking-[-0.09844rem] text-[#1a1a1c] sm:text-[1.96875rem]">
+          <h2
+            id="review-heading"
+            className="text-xl font-black leading-[2.1875rem] tracking-[-0.09844rem] text-[#1a1a1c] sm:text-[1.96875rem]"
+          >
             구매 견주님들의 솔직 후기
           </h2>
           <div className="flex items-center">
@@ -370,11 +381,12 @@ export default function ProductDetail({
             </div>
           </div>
         </div>
-        <div className="flex items-start gap-[0.4375rem]">
+        <div className="flex items-start gap-[0.4375rem]" role="group">
           <Button
             variant={reviewFilter === "latest" ? "primary" : "outline"}
             size="sm"
             onClick={() => handleReviewFilter("latest")}
+            aria-pressed={reviewFilter === "latest"}
           >
             최신순
           </Button>
@@ -382,15 +394,16 @@ export default function ProductDetail({
             variant={reviewFilter === "photo" ? "primary" : "secondary"}
             size="sm"
             onClick={() => handleReviewFilter("photo")}
+            aria-pressed={reviewFilter === "photo"}
           >
             사진후기만
           </Button>
         </div>
       </section>
 
-      <section className="mt-[1.75rem]">
+      <section aria-label="리뷰 목록" className="mt-[1.75rem]">
         {reviews.length === 0 ? (
-          <div className="flex items-center justify-center py-16 text-[#909094]">
+          <div className="flex items-center justify-center py-16 text-[#909094]" role="status">
             등록된 리뷰가 없습니다.
           </div>
         ) : (
@@ -440,9 +453,9 @@ export default function ProductDetail({
       />
 
       {/* QnA */}
-      <div id="qna" className="mx-auto mt-14 flex max-w-[75rem] flex-col gap-2.5 sm:mt-28">
+      <div className="mx-auto mt-14 flex max-w-[75rem] flex-col gap-2.5 sm:mt-28">
         <section className="flex flex-col gap-4 border-b border-black/[0.06] pb-5 sm:flex-row sm:justify-between sm:gap-6">
-          <div className="flex flex-col items-start gap-2">
+          <div id="qna" className="scroll-mt-33 flex flex-col items-start gap-2">
             <span className="inline-flex h-7 w-fit items-center justify-center">
               <svg
                 width="46"
@@ -629,7 +642,7 @@ export default function ProductDetail({
                         <div className="flex flex-1 flex-col gap-1">
                           {item.replies.map((reply) => (
                             <div key={reply._id} className="flex flex-col gap-2">
-                              <p className="text-sm text-[black]">{reply.content}</p>
+                              <p className="whitespace-pre-wrap text-sm text-[black]">{reply.content}</p>
                               <p className="self-end text-xs text-[#808084]">
                                 {reply.createdAt.slice(0, 20)}
                               </p>

@@ -3,12 +3,12 @@
 import Badge from "@/components/common/Badge";
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
-import { signup } from "@/lib/user";
+import { signup, showError, showSuccess } from "@/lib";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function SignupForm() {
+export default function Signup() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     type: "user" as "user" | "seller",
@@ -30,7 +30,7 @@ export default function SignupForm() {
     e.preventDefault();
 
     if (formData.password !== formData.passwordConfirm) {
-      alert("비밀번호가 일치하지 않습니다.");
+      showError("비밀번호가 일치하지 않습니다.");
       return;
     }
 
@@ -39,10 +39,10 @@ export default function SignupForm() {
     const result = await signup(signupData);
 
     if (result.ok === 1) {
-      alert(`${result.item.name}님, 가입을 환영합니다!`);
+      showSuccess(`${result.item.name}님, 가입을 환영합니다!`);
       router.push("/login");
     } else {
-      alert(result.message || "회원가입에 실패했습니다.");
+      showError(result.message || "회원가입에 실패했습니다.");
     }
   };
 
@@ -50,19 +50,19 @@ export default function SignupForm() {
     <>
       <div className="bg-bg-secondary min-h-screen py-20 px-4">
         <div className="max-w-125 mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
-          <div className="text-center mb-12">
-            <Badge variant="accent" className="mb-4">
+          <header className="text-center mb-12">
+            <Badge variant="accent" className="mb-4" aria-hidden="true">
               JOIN US
             </Badge>
-            <h2 className="text-2xl font-black text-text-primary tracking-tight">
+            <h1 className="text-2xl font-black text-text-primary tracking-tight">
               새로운 가족이 되어주세요
-            </h2>
+            </h1>
             <p className="text-sm font-medium text-text-tertiary mt-2">
               아이의 건강을 위한 첫 걸음, 9독과 함께해요
             </p>
-          </div>
+          </header>
 
-          <div className="bg-white rounded-[3.5rem] p-10 md:p-14 shadow-card border border-border-primary">
+          <main className="bg-white rounded-[3.5rem] p-10 md:p-14 shadow-card border border-border-primary">
             <form onSubmit={handleSignup} className="space-y-8">
               <Input
                 label="이름"
@@ -115,9 +115,9 @@ export default function SignupForm() {
                 가입하고 시작하기
               </Button>
             </form>
-          </div>
+          </main>
 
-          <div className="text-center mt-12">
+          <nav className="text-center mt-12">
             <p className="text-sm font-bold text-text-secondary">
               이미 계정이 있으신가요?
               <Link
@@ -127,7 +127,7 @@ export default function SignupForm() {
                 로그인 하기
               </Link>
             </p>
-          </div>
+          </nav>
         </div>
       </div>
     </>

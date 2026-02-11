@@ -4,15 +4,16 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { OrderDetailItem } from "@/app/(main)/mypage/(layout)/order/types/order";
+import { OrderDetailItem } from "@/types/mypage-order";
 import { PrevIcon } from "@/app/(main)/mypage/_components/Icons";
 import { Product404 } from "@/app/(main)/mypage/_components/DogFoodImage";
 import Badge from "@/components/common/Badge";
 import Button from "@/components/common/Button";
 import DetailSub from "@/app/(main)/mypage/_components/DetailSub";
 import DeliveryPeri from "@/app/(main)/mypage/_components/DeliveryPeri";
-import Adjustdelivery from "@/app/(main)/mypage/_components/adjustdelivery";
-import { updateSubscriptionPlan } from "@/app/(main)/mypage/(no-layout)/subscription/[subscriptionId]/editSub";
+import Adjustdelivery from "@/app/(main)/mypage/_components/AdjustDelivery";
+import { updateSubscriptionPlan } from "@/app/(main)/mypage/(no-layout)/subscription/[subscriptionId]/EditSub";
+import { showSuccess, showError } from "@/lib";
 
 interface Props {
   initialData: OrderDetailItem;
@@ -23,28 +24,33 @@ export default function SubscriptionEditClient({ initialData, orderId }: Props) 
   const router = useRouter();
   const product = initialData.products[0];
 
-  const [deteletedPeriod, setDeletedPeriod] = useState(initialData.period);
-  const [selectedPeriod, setSelectedPeriod] = useState(initialData.period);
+  // const [deteletedPeriod, setDeletedPeriod] = useState(initialData.period);
+  const [selectedPeriod, setSelectedPeriod] = useState(initialData.period || product.size || "");
   const [selectedDate, setSelectedDate] = useState(initialData.nextdeliverydate || "");
   const isSaveDisabled = !selectedPeriod || !selectedDate;
 
   const onDelete = async () => {
     try {
-      await updateSubscriptionPlan(orderId, { period: "", date: "" });
-      alert("변경 사항이 성공적으로 저장되었습니다.");
+      await updateSubscriptionPlan(orderId, { _id: product._id, color: "", size: "", date: "" });
+      showSuccess("변경 사항이 성공적으로 저장되었습니다.");
       router.push("/mypage/subscription");
     } catch (error) {
-      alert("저장 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      showError("저장 중 오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };
 
   const handleSave = async () => {
     try {
-      await updateSubscriptionPlan(orderId, { period: selectedPeriod, date: selectedDate });
-      alert("변경 사항이 성공적으로 저장되었습니다.");
+      await updateSubscriptionPlan(orderId, {
+        _id: product._id,
+        color: "subscription",
+        size: selectedPeriod,
+        date: selectedDate,
+      });
+      showSuccess("변경 사항이 성공적으로 저장되었습니다.");
       router.push("/mypage/subscription");
     } catch (error) {
-      alert("저장 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      showError("저장 중 오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };
 

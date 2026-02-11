@@ -1,4 +1,4 @@
-import { PostInfoRes, PostListRes, ReplyListRes, ResData } from "@/types/response";
+import { PostInfoRes, PostListRes, ReplyListRes, ResData } from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || "";
@@ -51,8 +51,6 @@ export async function getPosts(options: GetPostsOptions): Promise<ResData<PostLi
     if (keyword) params.append("keyword", keyword);
     if (sort) params.append("sort", JSON.stringify(sort));
     if (custom) params.append("custom", JSON.stringify(custom));
-
-    console.log(params.toString());
 
     const res = await fetch(`${API_URL}/posts?${params.toString()}`, {
       headers: {

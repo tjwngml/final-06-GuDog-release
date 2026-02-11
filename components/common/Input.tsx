@@ -37,6 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const generatedId = useId();
     const inputId = id ?? generatedId;
+    const errorId = `${inputId}-error`;
 
     return (
       <div className={`flex flex-col items-start gap-[14px] ${className}`}>
@@ -50,7 +51,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         </label>
         <div className="relative w-full">
           {isSearch && (
-            <span className="absolute left-5 top-1/2 -translate-y-1/2">
+            <span className="absolute left-5 top-1/2 -translate-y-1/2" aria-hidden="true">
               <SearchIcon />
             </span>
           )}
@@ -58,18 +59,24 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             aria-invalid={isError}
-            className={`w-full h-12 px-5 py-4 bg-[#F9F9FB] shadow-sm rounded-2xl text-md font-bold leading-4 text-[#1A1A1C] placeholder:text-[#9CA3AF] outline-none ring-2 focus:ring-2 transition-shadow ${
+            aria-describedby={isError && errorMessage ? errorId : undefined}
+            className={`w-full h-12 px-5 py-4 bg-[#F9F9FB] shadow-sm rounded-2xl text-md font-bold leading-4 text-[#1A1A1C] placeholder:text-[#9CA3AF] outline-none transition-shadow ${
               isSearch ? "pl-[3.5rem]" : ""
             } ${
               isError
-                ? "ring-[#F87171] focus:ring-[#F87171]"
-                : "ring-transparent focus:ring-[#FBA613]"
+                ? "ring-2 ring-[#F87171]"
+                : ""
             }`}
             {...props}
           />
         </div>
         {isError && errorMessage && (
-          <p className="text-xs font-bold text-red-500 ml-2 animate-in fade-in slide-in-from-top-1">
+          <p
+            id={errorId}
+            className="text-xs font-bold text-red-500 ml-2 animate-in fade-in slide-in-from-top-1"
+            role="alert"
+            aria-live="assertive"
+          >
             {errorMessage}
           </p>
         )}

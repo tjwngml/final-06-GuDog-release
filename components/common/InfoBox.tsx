@@ -4,9 +4,9 @@ interface InfoBoxProps {
 
 export default function InfoBox({ children }: InfoBoxProps) {
   return (
-    <div className="p-10 bg-accent-soft/30 rounded-[2.5rem] border border-accent-soft flex items-start space-x-6">
-      <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-accent-primary shadow-soft shrink-0">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div className="p-5 md:p-10 bg-accent-soft/30 rounded-2xl md:rounded-[2.5rem] border border-accent-soft flex items-start space-x-4 md:space-x-6">
+      <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl md:rounded-2xl flex items-center justify-center text-accent-primary shadow-soft shrink-0">
+        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -15,7 +15,7 @@ export default function InfoBox({ children }: InfoBoxProps) {
           />
         </svg>
       </div>
-      <p className="text-sm font-bold text-accent-primaryDark leading-relaxed pt-1">{children}</p>
+      <p className="text-xs md:text-sm font-bold text-accent-primaryDark leading-relaxed pt-1">{children}</p>
     </div>
   );
 }

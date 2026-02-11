@@ -1,6 +1,5 @@
 // lib/bookmark.ts
-import { BookmarkInfoRes, BookmarkListRes, ResData } from "@/types/response";
-import { EmptyRes } from "@/types/response";
+import { BookmarkInfoRes, BookmarkListRes, ResData, EmptyRes } from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || "";
@@ -33,9 +32,7 @@ export async function getWishlist(
       },
       cache: "no-store",
     });
-    console.log(`${API_URL}/bookmarks/product?${params.toString()}`);
     const data = await res.json();
-    console.log(data, "데이터");
     return data;
   } catch (error) {
     console.error("getWishlist 에러:", error);

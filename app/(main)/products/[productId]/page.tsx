@@ -1,6 +1,19 @@
 import ProductDetail from "@/app/(main)/products/_components/ProductDetail";
-import { getPosts, getReplies } from "@/lib/post";
-import { getProduct } from "@/lib/product";
+import { getPosts, getReplies, getProduct } from "@/lib";
+
+export async function generateMetadata({ params }: { params: Promise<{ productId: string }> }) {
+  const { productId } = await params;
+
+  const res = await getProduct(Number(productId));
+
+  if (res.ok === 1 && res.item) {
+    const product = res.item;
+    return {
+      title: product.name,
+      description: `${product.name} - 9DOG 맞춤 사료`,
+    };
+  }
+}
 
 interface Props {
   params: Promise<{ productId: string }>;
@@ -35,10 +48,10 @@ export default async function ProductPage({ params, searchParams }: Props) {
 
   // 최신순 정렬 또는 사진후기만(필터링)
   let filteredReviews = [...allReviews].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
   if (currentReviewFilter === "photo") {
-    filteredReviews = filteredReviews.filter((review) => review.product?.image);
+    filteredReviews = filteredReviews.filter((review) => review.extra?.image);
   }
 
   const reviewTotalPages = Math.max(1, Math.ceil(filteredReviews.length / REVIEW_PER_PAGE));
@@ -59,7 +72,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
         ...post,
         replies: repliesData.ok === 1 ? repliesData.item : [],
       };
-    }),
+    })
   );
 
   const qnaTotalPages = Math.max(1, Math.ceil(qna.length / QNA_PER_PAGE));
@@ -70,7 +83,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
       productId={Number(productId)}
       reviews={filteredReviews.slice(
         (currentReviewPage - 1) * REVIEW_PER_PAGE,
-        currentReviewPage * REVIEW_PER_PAGE,
+        currentReviewPage * REVIEW_PER_PAGE
       )}
       qna={qna.slice((currentQnaPage - 1) * QNA_PER_PAGE, currentQnaPage * QNA_PER_PAGE)}
       currentReviewPage={currentReviewPage}

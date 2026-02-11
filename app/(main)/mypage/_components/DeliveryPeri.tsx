@@ -15,16 +15,16 @@ export default function DeliveryPeri({ currentPeriod, onChange }: Props) {
       id: "2weeks",
       title: "격주 배송 (2주)",
       description: "보편적인 식사량이에요",
-      value: "2주 주기 배송",
+      value: "2w",
     },
     {
       id: "4weeks",
       title: "매달 배송 (4주)",
       description: "가장 많이 선택하시는 주기에요",
-      value: "4주 주기 배송",
+      value: "4w",
     },
   ];
-
+  console.log("현재주기", currentPeriod);
   return (
     <div className="flex flex-col items-start self-stretch gap-[28px] p-[35px] rounded-[42px] border border-black/5 bg-white shadow-[0_2px_12px_0_rgba(0,0,0,0.03)]">
       <div className="flex flex-row gap-[11px] ">
@@ -34,7 +34,7 @@ export default function DeliveryPeri({ currentPeriod, onChange }: Props) {
 
       <div className="flex flex-col gap-3 w-full">
         {options.map((option) => {
-          const isSelected = currentPeriod === option.value;
+          const isSelected = currentPeriod?.toString().trim() === option.value;
 
           return (
             <button

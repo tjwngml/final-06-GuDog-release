@@ -1,7 +1,7 @@
-import { User } from "@/types/user";
+import { User } from "@/types";
 import { create, StateCreator } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { getCartItems } from "@/lib/cart";
+import { getCartItems } from "@/lib";
 
 // 로그인한 사용자 정보를 관리하는 스토어의 상태 인터페이스
 interface UserStoreState {

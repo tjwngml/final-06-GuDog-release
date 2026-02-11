@@ -43,10 +43,6 @@ export default function Footer() {
           <button className="text-[11px] md:text-xs font-black text-text-secondary hover:text-accent-primary transition-colors">
             정기구독 안내
           </button>
-          <span className="hidden md:inline text-border-secondary text-xs">|</span>
-          <button className="text-[11px] md:text-xs font-black text-text-secondary hover:text-accent-primary transition-colors">
-            FAQ
-          </button>
         </div>
 
         {/* 하단 섹션: 사업자 상세 정보 */}

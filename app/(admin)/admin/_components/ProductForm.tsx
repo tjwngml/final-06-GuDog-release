@@ -18,9 +18,10 @@ import {
   HealthBenefit,
   SpecialFeature,
   LineTag,
-} from "@/types/product";
+} from "@/types";
 import { createProduct, updateProduct } from "@/actions/product";
 import { useRouter } from "next/navigation";
+import { showSuccess } from "@/lib";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -471,7 +472,7 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
 
         const result = await createProduct(submitForm, newThumbnailFile, newDetailFiles);
         console.log("등록 완료:", result);
-        alert("상품이 등록되었습니다.");
+        showSuccess("등록 완료", "상품이 등록되었습니다.");
       } else {
         if (!initialData?._id) throw new Error("상품 ID가 없습니다.");
 
@@ -484,7 +485,7 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
           existingDetailImages,
         );
         console.log("수정 완료:", result);
-        alert("상품이 수정되었습니다.");
+        showSuccess("수정 완료", "상품이 수정되었습니다.");
       }
       router.push("/admin/products");
     } catch (e) {
@@ -495,16 +496,17 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 md:p-12">
+    <main className="min-h-screen bg-gray-50 p-6 md:p-12">
       <div className="max-w-7xl mx-auto">
         {/* 헤더 */}
         <div className="mb-6">
           <div className="flex items-center mb-4">
             <button
               type="button"
+              onClick={() => router.back()}
               className="mr-4 p-2 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer"
             >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
+              <ArrowLeft className="w-5 h-5 text-gray-600" aria-hidden="true" />
             </button>
             <div>
               <h1 className="text-3xl font-semibold text-gray-900">
@@ -536,7 +538,7 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
         </div>
 
         {error && (
-          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div role="alert" className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
             {error}
           </div>
         )}
@@ -549,9 +551,10 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">기본 정보</h2>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">상품명 *</label>
+                    <label htmlFor="product-name" className="block text-sm font-medium text-gray-700 mb-2">상품명 *</label>
                     <input
                       type="text"
+                      id="product-name"
                       name="name"
                       required
                       value={form.name}
@@ -562,9 +565,10 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">코드명 *</label>
+                    <label htmlFor="product-code" className="block text-sm font-medium text-gray-700 mb-2">코드명 *</label>
                     <input
                       type="text"
+                      id="product-code"
                       name="code"
                       required
                       value={form.extra.code}
@@ -576,10 +580,11 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">가격 *</label>
+                      <label htmlFor="product-price" className="block text-sm font-medium text-gray-700 mb-2">가격 *</label>
                       <div className="relative">
                         <input
                           type="number"
+                          id="product-price"
                           name="price"
                           required
                           min={0}
@@ -587,13 +592,13 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                           onChange={handleRootNumber}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-8"
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" aria-hidden="true">
                           원
                         </span>
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="product-quantity" className="block text-sm font-medium text-gray-700 mb-2">
                         재고 수량 *
                         {formType === "modify" && buyQuantity > 0 && (
                           <span className="ml-2 text-xs text-blue-600 font-normal">
@@ -603,6 +608,7 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                       </label>
                       <input
                         type="number"
+                        id="product-quantity"
                         name="quantity"
                         required
                         min={0}
@@ -613,11 +619,12 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="product-weight" className="block text-sm font-medium text-gray-700 mb-2">
                         용량(g) *
                       </label>
                       <input
                         type="number"
+                        id="product-weight"
                         name="weight"
                         required
                         min={1}
@@ -630,10 +637,11 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="product-content" className="block text-sm font-medium text-gray-700 mb-2">
                       상품 설명 *
                     </label>
                     <textarea
+                      id="product-content"
                       name="content"
                       required
                       value={form.content}
@@ -644,10 +652,11 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="product-lineTag" className="block text-sm font-medium text-gray-700 mb-2">
                       라인 태그 (관리용)
                     </label>
                     <select
+                      id="product-lineTag"
                       name="lineTag"
                       value={form.extra.lineTag}
                       onChange={handleExtraText}
@@ -670,16 +679,25 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                   <div
                     className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer"
                     onClick={() => detailImagesInputRef.current?.click()}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        detailImagesInputRef.current?.click();
+                      }
+                    }}
                   >
                     <input
                       ref={detailImagesInputRef}
                       type="file"
+                      id="detail-images-input"
                       accept="image/*"
                       multiple
                       onChange={handleDetailImagesChange}
                       className="hidden"
                     />
-                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                    <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" aria-hidden="true" />
                     <p className="text-sm text-gray-600 mb-1">
                       <span className="text-blue-600 font-medium">클릭하여 업로드</span>
                     </p>
@@ -692,7 +710,7 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                         <div key={index} className="relative group">
                           <img
                             src={getDetailImageSrc(image)}
-                            alt={`Detail ${index}`}
+                            alt={`상세 이미지 ${index + 1}`}
                             className="w-full h-30 object-cover rounded-lg border border-gray-200"
                           />
                           {/* 기존 이미지 표시 */}
@@ -705,8 +723,9 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                             type="button"
                             onClick={() => removeDetailImage(index)}
                             className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                            aria-label={`상세 이미지 ${index + 1} 삭제`}
                           >
-                            <X className="w-4 h-4" />
+                            <X className="w-4 h-4" aria-hidden="true" />
                           </button>
                           <p className="mt-1 text-[10px] text-gray-500 truncate px-1">
                             {getDetailImageName(image)}
@@ -842,16 +861,18 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                         </div>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-700 mb-2 block">
+                        <label htmlFor="product-kcal" className="text-sm font-medium text-gray-700 mb-2 block">
                           100g당 칼로리(kcal) *
                         </label>
                         <input
                           type="number"
+                          id="product-kcal"
                           name="kcalPer100g"
                           min={1}
                           value={form.extra.kcalPer100g}
                           onChange={handleExtraNumber}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                          aria-label="100g당 칼로리"
                         />
                       </div>
                     </div>
@@ -934,33 +955,39 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                       </div>
                       <div className="flex gap-4">
                         <div className="w-1/3">
-                          <label className="text-xs text-gray-500 mb-1 block">조단백(%) *</label>
+                          <label htmlFor="nutrition-protein" className="text-xs text-gray-500 mb-1 block">조단백(%) *</label>
                           <input
                             type="number"
+                            id="nutrition-protein"
                             name="protein"
                             value={form.extra.nutrition.protein}
                             onChange={handleNutritionChange}
                             className="w-full px-2 py-1 border rounded"
+                            aria-label="조단백 함량"
                           />
                         </div>
                         <div className="w-1/3">
-                          <label className="text-xs text-gray-500 mb-1 block">조지방(%) *</label>
+                          <label htmlFor="nutrition-fat" className="text-xs text-gray-500 mb-1 block">조지방(%) *</label>
                           <input
                             type="number"
+                            id="nutrition-fat"
                             name="fat"
                             value={form.extra.nutrition.fat}
                             onChange={handleNutritionChange}
                             className="w-full px-2 py-1 border rounded"
+                            aria-label="조지방 함량"
                           />
                         </div>
                         <div className="w-1/3">
-                          <label className="text-xs text-gray-500 mb-1 block">수분(%) *</label>
+                          <label htmlFor="nutrition-moisture" className="text-xs text-gray-500 mb-1 block">수분(%) *</label>
                           <input
                             type="number"
+                            id="nutrition-moisture"
                             name="moisture"
                             value={form.extra.nutrition.moisture}
                             onChange={handleNutritionChange}
                             className="w-full px-2 py-1 border rounded"
+                            aria-label="수분 함량"
                           />
                         </div>
                       </div>
@@ -979,11 +1006,11 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                     <div className="relative">
                       <img
                         src={getThumbnailSrc()}
-                        alt="Thumbnail"
+                        alt="상품 썸네일"
                         className="w-full h-48 object-cover rounded-lg border border-gray-200"
                       />
                       {thumbnail.type === "existing" && (
-                        <span className="absolute top-2 left-2 px-2 py-1 bg-gray-800/70 text-white text-xs rounded">
+                        <span className="absolute top-2 left-2 px-2 py-1 bg-gray-800/70 text-white text-xs rounded" aria-label="기존 이미지">
                           기존 이미지
                         </span>
                       )}
@@ -991,8 +1018,9 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                         type="button"
                         onClick={removeThumbnail}
                         className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full cursor-pointer"
+                        aria-label="썸네일 이미지 삭제"
                       >
-                        <X className="w-4 h-4" />
+                        <X className="w-4 h-4" aria-hidden="true" />
                       </button>
                       <p className="mt-2 text-xs text-gray-600 truncate">
                         {thumbnail.type === "new" ? thumbnail.file.name : thumbnail.data.name}
@@ -1002,15 +1030,26 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
                     <div
                       className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer"
                       onClick={() => thumbnailInputRef.current?.click()}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          thumbnailInputRef.current?.click();
+                        }
+                      }}
+                      aria-label="썸네일 이미지 업로드"
                     >
                       <input
                         ref={thumbnailInputRef}
                         type="file"
+                        id="thumbnail-input"
                         accept="image/*"
                         onChange={handleThumbnailChange}
                         className="hidden"
+                        aria-label="썸네일 이미지 파일 선택"
                       />
-                      <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+                      <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" aria-hidden="true" />
                       <p className="text-sm text-gray-600 mb-1">
                         <span className="text-blue-600 font-medium">클릭하여 업로드</span>
                       </p>
@@ -1045,6 +1084,6 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 }

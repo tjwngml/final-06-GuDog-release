@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import ProductFrom from "@/app/(admin)/admin/_components/ProductForm";
-import { getProduct } from "@/lib/product";
-import { Product } from "@/types/product";
+import { getProduct } from "@/lib";
+import { Product } from "@/types";
 
 export default function ProductEditPage() {
   const params = useParams();

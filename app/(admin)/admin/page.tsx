@@ -1,25 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  MessageCircle,
-  Clock,
-  AlertTriangle,
-  Users,
-  ShoppingCart,
-  ArrowRight,
-  Eye,
-  DollarSign,
-} from "lucide-react";
-import { getProducts } from "@/lib/product";
-import { getPosts } from "@/lib/post";
-import { Order } from "@/types/order";
-import { User } from "@/types/user";
-import { Product } from "@/types/product";
-import { Post } from "@/types/post";
-import { getOrders } from "@/lib/order";
-import { getUsers } from "@/lib/user";
-import { getOrderStatistics } from "@/lib/statistics";
+import { Clock, AlertTriangle, Users, ShoppingCart, ArrowRight, DollarSign } from "lucide-react";
+import { getProducts, getPosts, getOrders, getUsers, getOrderStatistics, showWarning } from "@/lib";
+import { Order, Product, Post } from "@/types";
 import useUserStore from "@/zustand/useStore";
 import Link from "next/link";
 
@@ -111,7 +95,8 @@ export default function AdminDashboardPage() {
     setLoading(true);
 
     if (!token) {
-      return alert("재로그인이 필요합니다");
+      showWarning("재로그인 필요", "재로그인이 필요합니다");
+      return;
     }
 
     // 1. 주문 통계 (총 판매금액 + 총 주문건수)
@@ -173,7 +158,7 @@ export default function AdminDashboardPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className="flex items-center justify-center h-64" role="status" aria-live="polite">
         <p className="text-gray-500">로딩 중...</p>
       </div>
     );
@@ -188,9 +173,9 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* 상단 통계 카드 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+      <section className="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4 mb-6">
         {/* 총 판매금액 */}
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-white rounded-lg shadow p-5" role="region">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">총 판매금액</p>
@@ -198,67 +183,67 @@ export default function AdminDashboardPage() {
                 {formatPrice(stats.totalSales)}
               </p>
             </div>
-            <div className="p-3 bg-green-100 rounded-lg">
+            <div className="p-3 bg-green-100 rounded-lg" aria-hidden="true">
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
           </div>
         </div>
 
         {/* 총 주문건수 */}
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-white rounded-lg shadow p-5" role="region">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">총 주문건수</p>
               <p className="text-2xl font-semibold text-gray-900">{stats.totalOrders}건</p>
             </div>
-            <div className="p-3 bg-blue-100 rounded-lg">
+            <div className="p-3 bg-blue-100 rounded-lg" aria-hidden="true">
               <ShoppingCart className="w-6 h-6 text-blue-600" />
             </div>
           </div>
         </div>
 
         {/* 총 회원수 */}
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-white rounded-lg shadow p-5" role="region">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">총 회원수</p>
               <p className="text-2xl font-semibold text-gray-900">{stats.totalUsers}명</p>
             </div>
-            <div className="p-3 bg-purple-100 rounded-lg">
+            <div className="p-3 bg-purple-100 rounded-lg" aria-hidden="true">
               <Users className="w-6 h-6 text-purple-600" />
             </div>
           </div>
         </div>
 
         {/* 답변 대기 */}
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-white rounded-lg shadow p-5" role="region">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">답변 대기</p>
               <p className="text-2xl font-semibold text-orange-600">{stats.pendingQna}건</p>
             </div>
-            <div className="p-3 bg-orange-100 rounded-lg">
+            <div className="p-3 bg-orange-100 rounded-lg" aria-hidden="true">
               <Clock className="w-6 h-6 text-orange-600" />
             </div>
           </div>
         </div>
 
         {/* 재고 부족 */}
-        <div className="bg-white rounded-lg shadow p-5">
+        <div className="bg-white rounded-lg shadow p-5" role="region">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">재고 부족</p>
               <p className="text-2xl font-semibold text-red-600">{stats.lowStockCount}건</p>
             </div>
-            <div className="p-3 bg-red-100 rounded-lg">
+            <div className="p-3 bg-red-100 rounded-lg" aria-hidden="true">
               <AlertTriangle className="w-6 h-6 text-red-600" />
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* 메인 콘텐츠 그리드 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
         {/* 답변 대기 Q&A */}
         <div className="lg:col-span-2 bg-white rounded-lg shadow">
           <div className="p-6 border-b border-gray-200 flex items-center justify-between">
@@ -341,7 +326,7 @@ export default function AdminDashboardPage() {
                     <div className="flex items-center gap-3">
                       <img
                         src={product.mainImages?.[0]?.path || "/placeholder.png"}
-                        alt={product.name}
+                        alt={`${product.name} 썸네일`}
                         className="w-12 h-12 rounded-lg object-cover border border-gray-200"
                       />
                       <div className="flex-1 min-w-0">
@@ -371,24 +356,43 @@ export default function AdminDashboardPage() {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
+            <caption className="sr-only">최근 주문 목록</caption>
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   주문번호
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   고객명
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   상품
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   금액
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   상태
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   주문일시
                 </th>
               </tr>

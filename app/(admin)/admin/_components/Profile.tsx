@@ -4,8 +4,6 @@ import Image from "next/image";
 export default function Profile() {
   const image = useUserStore((state) => state.user?.image);
 
-  console.log(image);
-
   return (
     <div className="hidden sm:flex items-center">
       <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">

@@ -2,7 +2,7 @@
 
 import { InputHTMLAttributes } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface MyItemListProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "className"> {
   title: string;
@@ -19,6 +19,8 @@ interface MyItemListProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "c
   subscriptionId?: string;
   productid?: number;
   isReviewed?: boolean; // 리뷰 완료 여부 추가
+  nextdeliverydate?: string;
+  showNextDelivery?: boolean;
 }
 
 export default function MyItemList({
@@ -34,7 +36,9 @@ export default function MyItemList({
   className = "",
   orderId = "1",
   subscriptionId = "1",
+  nextdeliverydate = "",
   productid,
+  showNextDelivery = true,
   isReviewed = false,
 }: MyItemListProps) {
   const router = useRouter();
@@ -56,7 +60,7 @@ export default function MyItemList({
       className={`rounded-[42px] border border-[rgba(0,0,0,0.06)] bg-[#FFFFFF] shadow-[0_2px_12px_0_rgba(0,0,0,0.03)] ${className}`}
     >
       <div className="mt-[30px] ml-[30px] mr-[30px]">{image}</div>
-      <div className="pt-[27px] pl-[29px] pb-[14.5px] text-[#1A1A1C] text-[18px] font-black ">
+      <div className="pt-[27px] pl-[29px] pr-[29px] pb-[14.5px] text-[#1A1A1C] text-[18px] font-black truncate ">
         {title}
       </div>
 
@@ -76,12 +80,22 @@ export default function MyItemList({
       </div>
 
       <hr className="w-[calc(100%-58px)] h-px mx-auto border-0 bg-[rgba(0,0,0,0.06)] " />
-      <div className="pb-9 pt-[15px] flex pl-[29px] justify-between pr-[29px] ">
+      {showNextDelivery && (
+        <>
+          <hr className="w-[calc(100%-58px)] h-px mx-auto border-0 bg-[rgba(0,0,0,0.06)] " />
+          <div className="flex my-[7px] px-[29px] justify-between">
+            <p className="text-[#909094] text-[12px] font-medium">다음 배송일</p>
+            <p className="text-[#646468] text-[12px]">{nextdeliverydate}</p>
+          </div>
+        </>
+      )}
+
+      <hr className="w-[calc(100%-58px)] h-px mx-auto border-0 bg-[rgba(0,0,0,0.06)] " />
+      <div className="pb-3 pt-[15px] flex pl-[29px] justify-between pr-[29px] ">
         <p className="text-[#1A1A1C] text-[12px] font-black">결제금액</p>
         <p className="text-[#FBA613] text-[12px] font-black">{price}</p>
       </div>
       <hr className="w-[calc(100%-58px)] h-px mx-auto border-0 bg-[rgba(0,0,0,0.06)] " />
-
       <button
         className="w-full flex justify-center gap-[12px] items-center px-[29px] py-[20px]"
         onClick={getHref}

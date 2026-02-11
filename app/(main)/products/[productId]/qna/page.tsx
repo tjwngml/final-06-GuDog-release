@@ -9,10 +9,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import useUserStore from "@/zustand/useStore";
 import { createQnaPost } from "@/actions/qna";
+import { showWarning, showSuccess, showError } from "@/lib";
 
-// const CATEGORY_OPTIONS = ["상품", "배송", "교환/환불", "기타"] as const;
-
-export default function ProductQna() {
+export default function ProductQnaForm() {
   const user = useUserStore((state) => state.user);
   const router = useRouter();
   const params = useParams();
@@ -29,11 +28,17 @@ export default function ProductQna() {
   const MAX_LEN = 200;
 
   const handleSubmit = async () => {
-    if (!title.trim()) return alert("제목을 입력해 주세요.");
-    if (!content.trim()) return alert("문의 내용을 입력해 주세요.");
+    if (!title.trim()) {
+      showWarning("제목을 입력해 주세요.");
+      return;
+    }
+    if (!content.trim()) {
+      showWarning("문의 내용을 입력해 주세요.");
+      return;
+    }
 
     if (!user?.token?.accessToken) {
-      alert("로그인이 필요합니다.");
+      showWarning("로그인이 필요합니다.");
       router.push("/login");
       return;
     }
@@ -50,10 +55,10 @@ export default function ProductQna() {
         product_img: productImage,
       });
 
-      alert("문의가 등록되었습니다!");
+      showSuccess("문의가 등록되었습니다!");
       router.push(`/products/${productId}`);
     } catch {
-      alert("문의 등록 중 오류가 발생했습니다.");
+      showError("문의 등록 중 오류가 발생했습니다.");
     } finally {
       setIsSubmitting(false);
     }
@@ -61,26 +66,27 @@ export default function ProductQna() {
 
   return (
     <div className="w-full min-w-[360px] gap-[35px] bg-[#F9F9F9] lg:bg-transparent">
-      <div className="pt-[70px] pb-[112px] px-[20px] max-w-[1280px] mx-auto lg:px-0 flex flex-col items-center">
+      <main className="pt-[70px] pb-[112px] px-[20px] max-w-[1280px] mx-auto lg:px-0 flex flex-col items-center">
         <div className="w-full max-w-[632px]">
           <button
             type="button"
             className="flex flex-row gap-[7px] mb-[35px] bg-transparent border-0 cursor-pointer"
             onClick={() => router.back()}
+            aria-label="이전 페이지로 돌아가기"
           >
-            <PrevIcon className="w-[17.5px] h-[17.5px] text-[#909094]" />
-            <p className="text-[#909094] text-[11.7px] font-black">뒤로가기</p>
+            <PrevIcon className="w-[17.5px] h-[17.5px] text-[#909094]" aria-hidden="true" />
+            <span className="text-[#909094] text-[11.7px] font-black">뒤로가기</span>
           </button>
         </div>
 
-        <div className="flex flex-col items-center gap-[14px]">
+        <header className="flex flex-col items-center gap-[14px]">
           <h1 className="text-[#1A1A1C] text-center text-[29.5px] font-black">
             궁금한 점을 문의해 주세요
           </h1>
           <p className="text-[#646468] text-center text-[14.7px] font-medium pb-[35px] break-keep">
             관리자가 확인 후 정성스럽게 답변해 드립니다.
           </p>
-        </div>
+        </header>
 
         {/* 문의 대상 상품 카드 */}
         {productName && (
@@ -102,7 +108,10 @@ export default function ProductQna() {
         )}
 
         {/* 문의 작성 폼 */}
-        <div className="bg-white w-full max-w-[632px] rounded-[35px] flex flex-col items-center p-[20px] lg:p-[40px] shadow-sm">
+        <div
+          className="bg-white w-full max-w-[632px] rounded-[35px] flex flex-col items-center p-[20px] lg:p-[40px] shadow-sm"
+          role="form"
+        >
           {/* 문의 유형 */}
           {/* <div className="w-full max-w-[532px]">
             <p className="text-[#1A1A1C] text-[11.5px] font-black mb-[12px]">문의 유형</p>
@@ -122,26 +131,35 @@ export default function ProductQna() {
 
           {/* 제목 */}
           <div className="w-full max-w-[532px]">
-            <p className="text-[#1A1A1C] text-[11.5px] font-black mb-[8px]">제목</p>
+            <label
+              htmlFor="qna-title"
+              className="text-[#1A1A1C] text-[11.5px] font-black mb-[8px] block"
+            >
+              제목
+            </label>
             <Input
+              id="qna-title"
               className="w-full mb-[28px]"
               label=""
               placeholder="제목을 입력해 주세요"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </div>
 
           {/* 문의 내용 */}
-          <Contentdetail
-            className="w-full max-w-[532px]"
-            label="문의 내용"
-            placeholder="아이의 연령, 상태 등 구체적인 정보를 포함하면 더 정확한 답변이 가능합니다."
-            currentLength={content.length}
-            maxLength={MAX_LEN}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+          <div className="w-full max-w-[532px]">
+            <Contentdetail
+              className="w-full"
+              label="문의 내용"
+              placeholder="아이의 연령, 상태 등 구체적인 정보를 포함하면 더 정확한 답변이 가능합니다."
+              currentLength={content.length}
+              maxLength={MAX_LEN}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
 
           {/* 하단 버튼 영역 */}
           <div className="w-full max-w-[532px] mt-[50px] pb-[20px]">
@@ -163,8 +181,11 @@ export default function ProductQna() {
         </div>
 
         {/* 안내 문구 */}
-        <div className="w-full max-w-[632px] mt-[40px] flex items-center gap-[12px] pt-[35px] pb-[28px] px-[28px] bg-[#FFF5E6]/30 rounded-[21px]">
-          <div className="flex-shrink-0 bg-white rounded-[15px] p-[10px]">
+        <div
+          className="w-full max-w-[632px] mt-[40px] flex items-center gap-[12px] pt-[35px] pb-[28px] px-[28px] bg-[#FFF5E6]/30 rounded-[21px]"
+          role="note"
+        >
+          <div className="flex-shrink-0 bg-white rounded-[15px] p-[10px]" aria-hidden="true">
             <svg
               width="30"
               height="30"
@@ -186,7 +207,7 @@ export default function ProductQna() {
             </p>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

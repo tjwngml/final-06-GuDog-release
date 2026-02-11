@@ -1,43 +1,78 @@
-import PaginationWrapper from "@/components/common/PaginationWrapper";
-import Image from "next/image";
-import Link from "next/link";
-import { getProducts } from "@/lib/product";
+"use client";
 
-interface Props {
-  searchParams: Promise<{
-    page?: string;
-    lifeStage?: string;
-    category?: string;
-    type?: string;
-  }>;
-}
+import { Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import PaginationWrapper from "@/components/common/PaginationWrapper";
+import Link from "next/link";
+import { getProducts } from "@/lib";
+import ProductsSkeleton from "@/app/(main)/products/_components/productsList/Skeleton";
+import ProductCard from "@/components/common/ProductCard";
 
 // 상품 목록 페이지
-export default async function Products({ searchParams }: Props) {
-  const { page, lifeStage, category, type } = await searchParams;
-  const currentPage = Number(page) || 1;
+export default function Products() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsContent />
+    </Suspense>
+  );
+}
+
+function ProductsLoading() {
+  return (
+    <main
+      className="w-full min-w-90 bg-bg-secondary px-4 py-10 lg:py-17.5 lg:pb-35"
+      role="status"
+      aria-live="polite"
+    >
+      <div className="mx-auto flex flex-col items-center gap-8 sm:gap-10 lg:gap-14">
+        <section className="flex w-full max-w-290 flex-col items-center text-center px-2">
+          <h1 className="pb-3 text-2xl sm:text-3xl lg:text-[2.625rem]">상품 목록</h1>
+          <p className="text-sm sm:text-base text-text-secondary">
+            아이의 연령대와 건강 상태에 맞게 설계된 프리미엄 영양 식단을 만나보세요.
+          </p>
+        </section>
+        <section className="w-full">
+          <ul className="grid grid-cols-[repeat(auto-fill,240px)] gap-4 max-w-6xl mx-auto justify-center">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <ProductsSkeleton key={i} />
+            ))}
+          </ul>
+        </section>
+      </div>
+    </main>
+  );
+}
+
+function ProductsContent() {
+  const searchParams = useSearchParams();
+
+  const lifeStage = searchParams.get("lifeStage") || "";
+  const category = searchParams.get("category") || "";
+  const type = searchParams.get("type") || "";
+  const currentPage = Number(searchParams.get("page")) || 1;
+
   const custom = {
     ...(lifeStage && { "extra.lifeStage": lifeStage }),
     ...(category && { "extra.category": category }),
     "extra.type": type || "사료",
   };
 
-  const resProducts = await getProducts({
-    custom,
-    page: currentPage,
-    limit: 10,
+  const {
+    data: resProducts,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["products", lifeStage, category, type, currentPage],
+    queryFn: () => getProducts({ custom, page: currentPage, limit: 12, showSoldOut: true }),
   });
 
-  if (resProducts.ok === 0) {
-    return <div>{resProducts.message}</div>;
-  }
-
-  const products = resProducts.item;
-  const totalPages = resProducts.pagination.totalPages;
+  const products = resProducts?.ok === 1 ? resProducts.item : [];
+  const totalPages = resProducts?.ok === 1 ? resProducts.pagination.totalPages : 0;
 
   return (
-    <div className="w-full min-w-90 bg-bg-secondary px-4 py-10 sm:px-10 md:px-20 lg:px-89 lg:py-17.5 lg:pb-35">
-      <div className="mx-auto flex max-w-300 flex-col items-center gap-8 sm:gap-10 lg:gap-14">
+    <main className="w-full min-w-90 bg-bg-secondary px-4 py-10 lg:py-17.5 lg:pb-35">
+      <div className="mx-auto flex flex-col items-center gap-8 sm:gap-10 lg:gap-14">
         <section className="flex w-full max-w-290 flex-col items-center text-center px-2">
           <h1 className="pb-3 text-2xl sm:text-3xl lg:text-[2.625rem]">상품 목록</h1>
           <p className="text-sm sm:text-base text-text-secondary">
@@ -67,6 +102,7 @@ export default async function Products({ searchParams }: Props) {
                   <Link
                     key={filter.label}
                     href={href}
+                    aria-current={isActive ? "page" : undefined}
                     className={`relative h-10 sm:h-12.5 w-full sm:w-28 md:w-32 lg:w-38 rounded-[1.25rem] sm:rounded-[1.75rem] text-xs sm:text-sm text-center flex items-center justify-center ${
                       isActive
                         ? "bg-accent-primary text-white font-extrabold"
@@ -75,7 +111,10 @@ export default async function Products({ searchParams }: Props) {
                   >
                     {filter.label}
                     {isActive && (
-                      <span className="pointer-events-none absolute -bottom-6 left-1/2 h-10 w-40 -translate-x-1/2 rounded-full bg-accent-primary/40 blur-2xl hidden sm:block" />
+                      <span
+                        className="pointer-events-none absolute -bottom-6 left-1/2 h-10 w-40 -translate-x-1/2 rounded-full bg-accent-primary/40 blur-2xl hidden sm:block"
+                        aria-hidden="true"
+                      />
                     )}
                   </Link>
                 );
@@ -86,54 +125,25 @@ export default async function Products({ searchParams }: Props) {
 
         {/* 상품 목록 그리드 */}
         <section className="w-full">
-          <ul className="flex flex-wrap justify-center gap-4 sm:gap-5 lg:gap-7">
-            {/* map을 사용해서 하드코딩한 li를 여러개 찍어 낼수 있음 */}
-            {/* 1요소 > item > li 1개 생성 */}
-            {products.map((product) => (
-              <li
-                key={product._id}
-                className="flex w-[calc(25%-21px)] min-w-62.5 flex-col overflow-hidden rounded-3xl sm:rounded-[2.1875rem] border border-black/10 bg-white"
-              >
-                <Link
-                  href={`/products/${product._id}`}
-                  className="flex w-full flex-col no-underline"
-                >
-                  <div className="flex aspect-square w-full items-center justify-center overflow-hidden bg-white">
-                    <Image
-                      src={product.mainImages[0]?.path || "/placeholder.png"}
-                      alt={product.name}
-                      width={280}
-                      height={280}
-                      className="block h-full w-full object-contain transition-transform duration-300 ease-in-out hover:scale-110"
-                    />
-                  </div>
-
-                  <div className="flex flex-col items-start gap-2 px-3 py-3 sm:px-4 sm:py-4">
-                    <h3 className="text-base sm:text-lg font-black leading-6 tracking-tight text-text-primary">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm sm:text-base font-black leading-6 text-text-secondary">
-                      {product.price.toLocaleString()}원
-                    </p>
-
-                    {product.extra?.lifeStage?.map((lifeStage) => (
-                      <span
-                        key={lifeStage}
-                        className="inline-flex items-center rounded-md bg-orange-500/80 px-2.5 py-1 text-[0.625rem] font-normal uppercase leading-none tracking-wider text-white backdrop-blur-sm"
-                      >
-                        {lifeStage}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
+          <ul
+            className="grid grid-cols-[repeat(auto-fill,240px)] gap-4 max-w-6xl mx-auto justify-center"
+            role="list"
+          >
+            {isLoading ? (
+              Array.from({ length: 12 }).map((_, i) => <ProductsSkeleton key={i} />)
+            ) : isError ? (
+              <li role="alert" aria-live="assertive" className="col-span-full text-center py-10">
+                <p>상품을 불러오지 못했습니다.</p>
               </li>
-            ))}
+            ) : (
+              products.map((product) => <ProductCard key={product._id} product={product} />)
+            )}
           </ul>
         </section>
 
         {/* 페이지네이션 */}
         <PaginationWrapper currentPage={currentPage} totalPages={totalPages} />
       </div>
-    </div>
+    </main>
   );
 }
