@@ -130,11 +130,11 @@ export default function SubscriptionItemList({
         </div>
 
         {/* 상품 이미지 */}
-        <div className="row-span-2 w-20 h-20 sm:w-24 sm:h-24 shrink-0 place-self-center">
+        <div className="row-span-2 w-20 h-20 sm:w-24 sm:h-24 shrink-0 place-self-center ">
           <ProductImage
             src={cart.product.image?.path}
             alt=""
-            className={`rounded-[0.875rem] ${soldOut ? "grayscale" : ""}`}
+            className={`rounded-[0.875rem] overflow-hidden ${soldOut ? "grayscale" : ""}`}
           />
         </div>
 

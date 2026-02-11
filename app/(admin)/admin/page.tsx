@@ -150,7 +150,7 @@ export default function AdminDashboardPage() {
       lowStockCount,
     });
 
-    setPendingQnAs(pendingList.slice(0, 3)); // 상위 3건
+    setPendingQnAs(pendingList.slice(0, 4)); // 상위 4건
     setLowStockProducts(lowStockList.slice(0, 5)); // 상위 5건
     setRecentOrders(recentOrders);
 
@@ -323,24 +323,28 @@ export default function AdminDashboardPage() {
               lowStockProducts.map((product) => {
                 const stock = product.quantity - product.buyQuantity;
                 return (
-                  <div key={product._id} className="p-4 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src={product.mainImages?.[0]?.path || "/placeholder.png"}
-                        alt={`${product.name} 썸네일`}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded-lg object-cover border border-gray-200"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate">{product.name}</p>
-                        <div className="flex items-center gap-2 mt-1">
-                          <StockStatusBadge stock={stock} />
-                          <span className="text-xs text-gray-500">재고: {stock}개</span>
+                  <Link href={`/admin/products/${product._id}/modify`} key={product._id}>
+                    <div className="p-4 hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center gap-3">
+                        <Image
+                          src={product.mainImages?.[0]?.path || "/placeholder.png"}
+                          alt={`${product.name} 썸네일`}
+                          width={48}
+                          height={48}
+                          className="w-12 h-12 rounded-lg object-cover border border-gray-200"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-gray-900 truncate">
+                            {product.name}
+                          </p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <StockStatusBadge stock={stock} />
+                            <span className="text-xs text-gray-500">재고: {stock}개</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })
             )}

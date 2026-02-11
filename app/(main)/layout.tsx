@@ -21,10 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="front-page">
       <Header />
       <div id="main-content">{children}</div>
       <Footer />
-    </>
+    </div>
   );
 }

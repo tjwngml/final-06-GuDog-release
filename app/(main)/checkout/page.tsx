@@ -11,7 +11,7 @@ import useCartStore from "@/zustand/useCartStore";
 import useUserStore from "@/zustand/useStore";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { deleteCartItems } from "@/actions/cart";
 import { showWarning, showSuccess, showError } from "@/lib";
 
@@ -40,6 +40,18 @@ function CheckoutContent() {
     address: "",
     detailAddress: "",
     request: "",
+  });
+
+  // 배송 정보 입력 ref
+  const recipientRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const addressSectionRef = useRef<HTMLDivElement>(null);
+
+  // 배송 정보 에러 상태
+  const [shippingErrors, setShippingErrors] = useState({
+    recipient: false,
+    phone: false,
+    address: false,
   });
 
   // 단건 구매(쿼리 파라미터)
@@ -95,6 +107,8 @@ function CheckoutContent() {
           zipcode: data.zonecode,
           address: roadAddr + extraRoadAddr,
         }));
+
+        if (shippingErrors.address) setShippingErrors((prev) => ({ ...prev, address: false }));
 
         setIsSearching(false);
 
@@ -152,7 +166,7 @@ function CheckoutContent() {
   // 결제하기 버튼 활성화 조건 계산
   const isAllChecked = useMemo(() => {
     if (isSubscribe) {
-      // 정기구독: 3개 모두 체크 필요
+      // 정기구독: 3개 모두 체크 필요,
       return checkedList.order && checkedList.autoPay && checkedList.thirdParty;
     }
     // 일반구매: 주문동의와 제3자제공동의 2개 체크 필요
@@ -187,10 +201,40 @@ function CheckoutContent() {
 
   const finalAmount = totalPrice - discount;
 
+  // 배송 정보 유효성 검사 (순서대로 하나씩 에러 표시)
+  const validateShipping = () => {
+    if (shippingInfo.recipient.trim() === "") {
+      setShippingErrors({ recipient: true, phone: false, address: false });
+      recipientRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      recipientRef.current?.focus();
+      return false;
+    }
+    if (shippingInfo.phone.trim() === "") {
+      setShippingErrors({ recipient: false, phone: true, address: false });
+      phoneRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      phoneRef.current?.focus();
+      return false;
+    }
+    if (shippingInfo.address.trim() === "") {
+      setShippingErrors({ recipient: false, phone: false, address: true });
+      addressSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return false;
+    }
+    setShippingErrors({ recipient: false, phone: false, address: false });
+    return true;
+  };
+
   // 결제 요청 핸들러
   const handlePayment = async () => {
     if (!accessToken) {
       showWarning("로그인이 필요합니다.");
+      return;
+    }
+
+    if (!validateShipping()) return;
+
+    if (!isAllChecked) {
+      showWarning("필수 동의 항목을 모두 체크해주세요.");
       return;
     }
 
@@ -242,34 +286,31 @@ function CheckoutContent() {
 
     if (allSuccess) {
       showSuccess("주문이 완료되었습니다.");
-      router.push("/mypage/order");
 
-      // 장바구니 정리
+      // 장바구니 정리를 먼저 완료
       if (!productId && finalCheckoutItems.length > 0) {
         const purchasedIds = finalCheckoutItems.map((item) => item._id);
 
-        (async () => {
-          try {
-            // 서버에서 삭제
-            const formData = new FormData();
-            formData.append("cartIds", JSON.stringify(purchasedIds));
-            formData.append("accessToken", token);
+        try {
+          // 서버에서 삭제
+          const formData = new FormData();
+          formData.append("cartIds", JSON.stringify(purchasedIds));
+          formData.append("accessToken", token);
 
-            const deleteResult = await deleteCartItems(null, formData);
+          await deleteCartItems(null, formData);
 
-            if (deleteResult === null) {
-            }
+          // Zustand 업데이트
+          clearPurchasedItems(purchasedIds);
 
-            // Zustand 업데이트
-            clearPurchasedItems(purchasedIds);
-
-            // 최신 데이터 가져오기
-            await fetchCart(token);
-          } catch (error) {
-            console.error("백그라운드 정리 실패:", error);
-          }
-        })();
+          // 최신 데이터 가져오기
+          await fetchCart(token);
+        } catch (error) {
+          console.error("장바구니 정리 실패:", error);
+        }
       }
+
+      // 장바구니 정리 완료 후 페이지 이동
+      router.push("/mypage/order");
     } else {
       showError("주문 데이터 처리에 실패했습니다.");
     }
@@ -314,7 +355,7 @@ function CheckoutContent() {
                     <ProductImage
                       src={firstItem.product.image?.path}
                       alt={firstItem.product.name}
-                      className="w-full h-full rounded-[0.875rem] object-cover"
+                      className="rounded-[0.875rem] overflow-hidden object-cover"
                     />
                   </div>
                   <div className="flex flex-col gap-0.5 sm:gap-1 mt-2.5">
@@ -347,25 +388,35 @@ function CheckoutContent() {
                 <div className="flex flex-col gap-5">
                   <div className="flex gap-5">
                     <Input
+                      ref={recipientRef}
                       label="수령인"
                       placeholder=""
                       className="w-full"
                       value={shippingInfo.recipient}
-                      onChange={(e) =>
-                        setShippingInfo((prev) => ({ ...prev, recipient: e.target.value }))
-                      }
+                      isError={shippingErrors.recipient}
+                      errorMessage="수령인을 입력해주세요."
+                      onChange={(e) => {
+                        setShippingInfo((prev) => ({ ...prev, recipient: e.target.value }));
+                        if (shippingErrors.recipient)
+                          setShippingErrors((prev) => ({ ...prev, recipient: false }));
+                      }}
                     />
                     <Input
+                      ref={phoneRef}
                       label="연락처"
                       placeholder=""
                       className="w-full"
                       value={shippingInfo.phone}
-                      onChange={(e) =>
-                        setShippingInfo((prev) => ({ ...prev, phone: e.target.value }))
-                      }
+                      isError={shippingErrors.phone}
+                      errorMessage="연락처를 입력해주세요."
+                      onChange={(e) => {
+                        setShippingInfo((prev) => ({ ...prev, phone: e.target.value }));
+                        if (shippingErrors.phone)
+                          setShippingErrors((prev) => ({ ...prev, phone: false }));
+                      }}
                     />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col" ref={addressSectionRef}>
                     <div className="flex gap-2.5 items-end">
                       <Input
                         label="배송지 주소"
@@ -373,6 +424,7 @@ function CheckoutContent() {
                         value={shippingInfo.zipcode}
                         readOnly
                         className="w-32"
+                        isError={shippingErrors.address}
                       />
                       <Button
                         variant="primary"
@@ -384,6 +436,9 @@ function CheckoutContent() {
                         주소 찾기
                       </Button>
                     </div>
+                    {shippingErrors.address && (
+                      <p className="text-xs text-red-500 mt-1">배송지 주소를 입력해주세요.</p>
+                    )}
                     <Input
                       label=""
                       placeholder="기본 주소"
@@ -491,7 +546,6 @@ function CheckoutContent() {
                     </li>
                   </ul>
                   <Button
-                    disabled={!isAllChecked}
                     onClick={handlePayment}
                     aria-label={`${finalAmount.toLocaleString()}원 결제하기`}
                   >

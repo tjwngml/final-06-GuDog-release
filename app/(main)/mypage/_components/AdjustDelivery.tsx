@@ -9,15 +9,21 @@ interface Props {
 }
 
 export default function Adjustdelivery({ value, onChange }: Props) {
-  const getTodayDate = (): string => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
+  const getMinDate = (): string => {
+    // const today = new Date();
+    const date = new Date();
+    date.setDate(date.getDate() + 3);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    // const year = today.getFullYear();
+    // const month = String(today.getMonth() + 1).padStart(2, "0");
+    // const day = String(today.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
-  const todayDate = getTodayDate();
+  const minDate = getMinDate();
+  // const todayDate = getTodayDate();
 
   return (
     <div className="flex flex-row w-full">
@@ -31,7 +37,7 @@ export default function Adjustdelivery({ value, onChange }: Props) {
 
         <div className="w-full relative mb-[13px]">
           <Input
-            min={todayDate}
+            min={minDate}
             label=""
             type="date"
             value={value}

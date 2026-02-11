@@ -18,7 +18,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   }, [userType, router]);
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 admin-page">
       <AdminLayoutClient>{children}</AdminLayoutClient>
     </div>
   );

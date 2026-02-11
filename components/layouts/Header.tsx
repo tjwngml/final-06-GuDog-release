@@ -103,9 +103,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      const firstFocusable = drawerRef.current?.querySelector<HTMLElement>(
-        'a[href], button'
-      );
+      const firstFocusable = drawerRef.current?.querySelector<HTMLElement>("a[href], button");
       firstFocusable?.focus();
     }
   }, [isMobileMenuOpen]);
@@ -199,7 +197,7 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-4 md:space-x-16 w-full">
             {/* 로고 */}
             <Link href="/" className="flex items-center">
-              <Image src="/images/logo.png" alt="9Dog" width={120} height={40} />
+              <Image src="/images/logo.png" alt="9Dog 로고" width={120} height={40} />
             </Link>
 
             {/* 네비게이션 메뉴 (데스크탑) */}
@@ -213,9 +211,7 @@ const Header: React.FC = () => {
                     onMouseLeave={() => setActiveMenu(null)}
                     onFocus={() => setActiveMenu(item.name)}
                     onBlur={(e) => {
-                      if (
-                        !e.currentTarget.contains(e.relatedTarget as Node)
-                      ) {
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
                         setActiveMenu(null);
                       }
                     }}
@@ -343,7 +339,7 @@ const Header: React.FC = () => {
           }
           if (e.key === "Tab") {
             const focusable = drawerRef.current?.querySelectorAll<HTMLElement>(
-              'a[href], button, [tabindex]:not([tabindex="-1"])'
+              'a[href], button, [tabindex]:not([tabindex="-1"])',
             );
             if (!focusable || focusable.length === 0) return;
             const first = focusable[0];

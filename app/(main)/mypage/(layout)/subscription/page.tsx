@@ -36,6 +36,17 @@ export default function Subscription() {
     // enabled: !!token,
   });
 
+  const addDays = (dateString: string, days: number): string => {
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + days);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
   const getPeriodText = (color: string, size?: string) => {
     if (color === "subscription") {
       return size === "2w" ? "2주 주기 배송" : "4주 주기 배송";
@@ -61,39 +72,46 @@ export default function Subscription() {
               </li>
             ))
           ) : resOrderlist?.ok === 1 && resOrderlist.item.length > 0 ? (
-            resOrderlist.item.map((item) => (
-              <li key={item._id} className="w-full max-w-[280px]">
-                <MyItemList
-                  subscriptionId={String(item._id)}
-                  title={item.products[0].name}
-                  image={
-                    <div className="rounded-3xl overflow-hidden w-full aspect-square relative bg-gray-50">
-                      {item.products[0].image?.path ? (
-                        <Image
-                          src={item.products[0].image?.path}
-                          alt={`${item.products[0].name} 상품 이미지`}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 50vw, 25vw"
-                        />
-                      ) : (
-                        <Product404 />
-                      )}
-                    </div>
-                  }
-                  content="상세 보기"
-                  date={item.createdAt.split(" ")[0]}
-                  period={getPeriodText(
-                    item.products[0]?.color ?? "oneTime",
-                    item.products[0].size,
-                  )}
-                  quantity={item.products[0].quantity}
-                  price={`${item.products[0].price.toLocaleString()}원`}
-                  mark={<RigthMark />}
-                  nextdeliverydate={item.nextdeliverydate}
-                />
-              </li>
-            ))
+            resOrderlist.item.map((item) => {
+              // 1. 기본 생성일 가져오기
+              const createdDate = item.createdAt.split(" ")[0];
+              // 2. 만약 API에서 받은 nextdeliverydate가 없으면 생성일 + 3일 적용
+              const defaultNextDelivery = item.nextdeliverydate || addDays(createdDate, 3);
+
+              return (
+                <li key={item._id} className="w-full max-w-[280px]">
+                  <MyItemList
+                    subscriptionId={String(item._id)}
+                    title={item.products[0].name}
+                    image={
+                      <div className="rounded-3xl overflow-hidden w-full aspect-square relative bg-gray-50">
+                        {item.products[0].image?.path ? (
+                          <Image
+                            src={item.products[0].image?.path}
+                            alt={`${item.products[0].name} 상품 이미지`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 50vw, 25vw"
+                          />
+                        ) : (
+                          <Product404 />
+                        )}
+                      </div>
+                    }
+                    content="상세 보기"
+                    date={item.createdAt.split(" ")[0]}
+                    period={getPeriodText(
+                      item.products[0]?.color ?? "oneTime",
+                      item.products[0].size,
+                    )}
+                    quantity={item.products[0].quantity}
+                    price={`${item.products[0].price.toLocaleString()}원`}
+                    mark={<RigthMark />}
+                    nextdeliverydate={defaultNextDelivery}
+                  />
+                </li>
+              );
+            })
           ) : (
             <li className="col-span-full py-20 text-center text-[#909094]">
               <p role="status">현재 이용 중인 정기 구독 플랜이 없습니다.</p>

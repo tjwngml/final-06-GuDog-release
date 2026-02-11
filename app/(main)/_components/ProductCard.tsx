@@ -7,7 +7,7 @@ interface ProductCardProps {
   title: string;
   kcal: string;
   description: string;
-  tag: string;
+  tag: string[];
   href: string;
 }
 
@@ -24,10 +24,14 @@ export default function ProductCard({
       {/* 이미지 영역 */}
       <div className="relative">
         <ProductImage src={image} alt={title} />
-        {tag && (
-          <Badge className="absolute top-8 right-8" variant="accent">
-            {tag}
-          </Badge>
+        {Array.isArray(tag) && tag.length > 0 && (
+          <div className="absolute top-6 right-8 flex flex-wrap gap-2">
+            {tag.slice(0, 1).map((item, index) => (
+              <Badge key={index} variant="accent">
+                {item}
+              </Badge>
+            ))}
+          </div>
         )}
       </div>
 

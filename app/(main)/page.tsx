@@ -118,7 +118,7 @@ export default async function Home() {
                     title={product.name}
                     kcal={totalKcal ? `${totalKcal.toLocaleString()} kcal` : ""}
                     description={product.extra.content || product.content}
-                    tag={product.extra?.category?.[0] ?? ""}
+                    tag={product.extra?.lifeStage ?? []}
                     href={`/products/${product._id}`}
                   />
                 </li>
@@ -144,35 +144,19 @@ export default async function Home() {
               />
               <div className="flex flex-col items-center lg:items-start gap-10 -mt-6">
                 <FeatureItem
-                  icon={
-                    <Image
-                      src="/icons/chart-box-orange.svg"
-                      alt="차트 아이콘"
-                      width={58}
-                      height={58}
-                    />
-                  }
+                  icon={<Image src="/icons/chart-box-orange.svg" alt="" width={58} height={58} />}
                   title="실시간 영양 최적화"
                   description="우리는 모든 반려견이 건강하고 행복한 삶을 살 수 있도록, 최고 품질의 사료와 과학적인 영양배합으로 사료를 제공합니다."
                 />
                 <FeatureItem
-                  icon={
-                    <Image
-                      src="/icons/verify-box-orange.svg"
-                      alt="검증 아이콘"
-                      width={58}
-                      height={58}
-                    />
-                  }
+                  icon={<Image src="/icons/verify-box-orange.svg" alt="" width={58} height={58} />}
                   title="맞춤 영양 솔루션"
                   description="10년 이상의 연구와 경험을 바탕으로 반려견의 나이, 크기, 건강상태에
 맞는 맞춤형 영양 솔루션을 개발했습니다."
                 />
 
                 <FeatureItem
-                  icon={
-                    <Image src="/icons/qr-box-orange.svg" alt="QR 아이콘" width={58} height={58} />
-                  }
+                  icon={<Image src="/icons/qr-box-orange.svg" alt="" width={58} height={58} />}
                   title="신선한 원재료"
                   description="정기 구독을 통해 편리하게 신선한 사료를 받아보시고, 우리 아이의 건강한
 식습관을 함께 만들어가세요."

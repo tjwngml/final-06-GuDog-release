@@ -79,7 +79,6 @@ export default function MyItemList({
         <p className="text-[#646468] text-[12px]">{period}</p>
       </div>
 
-      <hr className="w-[calc(100%-58px)] h-px mx-auto border-0 bg-[rgba(0,0,0,0.06)] " />
       {showNextDelivery && (
         <>
           <hr className="w-[calc(100%-58px)] h-px mx-auto border-0 bg-[rgba(0,0,0,0.06)] " />
@@ -107,7 +106,7 @@ export default function MyItemList({
         >
           {isReviewed ? "리뷰 등록 완료" : content}
         </div>{" "}
-        <span className="flex items-center">{mark}</span>
+        <span className="flex items-center w-[12px] h-[12px]">{mark}</span>
       </button>
     </div>
   );

@@ -182,15 +182,15 @@ export default function ProductDetail({
             <div className="flex w-full flex-row items-start gap-3.5">
               <button
                 className={`flex h-[3.25rem] flex-1 items-center justify-center rounded-[0.875rem] px-4 py-[1.09375rem] sm:px-[1.3125rem] ${
-                  product.quantity <= 0
+                  product.quantity - product.buyQuantity <= 0
                     ? "cursor-not-allowed bg-[#d1d1d6] text-white"
                     : "bg-[#fba613] text-white shadow-[0_0.5rem_2rem_0_rgba(251,166,19,0.2)]"
                 }`}
                 type="button"
-                disabled={product.quantity <= 0}
+                disabled={product.quantity - product.buyQuantity <= 0}
                 onClick={() => setIsModalOpen(true)}
               >
-                {product.quantity <= 0 ? "Sold Out" : "구매하기"}
+                {product.quantity - product.buyQuantity <= 0 ? "Sold Out" : "구매하기"}
               </button>
 
               {/* 관심상품 버튼 */}
@@ -254,7 +254,13 @@ export default function ProductDetail({
               aria-controls={tab.key}
               onClick={() => {
                 setActiveTab(tab.key);
-                document.getElementById(tab.key)?.scrollIntoView({ behavior: "smooth" });
+                const el = document.getElementById(tab.key);
+                if (el) {
+                  const header = document.querySelector("header");
+                  const headerHeight = header?.offsetHeight ?? 0;
+                  const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+                  window.scrollTo({ top, behavior: "smooth" });
+                }
               }}
               className={`relative flex flex-col items-center justify-center px-3 py-[1.09375rem] text-center text-[0.65rem] leading-[1.09375rem] transition-colors sm:px-[2.625rem] sm:text-[0.76875rem] ${
                 activeTab === tab.key
@@ -351,7 +357,7 @@ export default function ProductDetail({
         id="review"
         role="tabpanel"
         aria-labelledby="review-heading"
-        className="mt-[4rem] scroll-mt-24 flex flex-col gap-4 border-b border-black/[0.06] pb-[2.1875rem] sm:mt-[7rem] sm:flex-row sm:items-end sm:justify-between"
+        className="mt-[4rem] flex flex-col gap-4 border-b border-black/[0.06] pb-[2.1875rem] sm:mt-[7rem] sm:flex-row sm:items-end sm:justify-between"
       >
         <div className="flex w-full flex-col items-start justify-end gap-[0.4375rem] pt-[2.375rem] sm:w-auto">
           <h2
@@ -455,7 +461,7 @@ export default function ProductDetail({
       {/* QnA */}
       <div className="mx-auto mt-14 flex max-w-[75rem] flex-col gap-2.5 sm:mt-28">
         <section className="flex flex-col gap-4 border-b border-black/[0.06] pb-5 sm:flex-row sm:justify-between sm:gap-6">
-          <div id="qna" className="scroll-mt-33 flex flex-col items-start gap-2">
+          <div id="qna" className="flex flex-col items-start gap-2">
             <span className="inline-flex h-7 w-fit items-center justify-center">
               <svg
                 width="46"
@@ -487,7 +493,7 @@ export default function ProductDetail({
           <Button
             variant="primary"
             size="sm"
-            className="h-11 w-fit cursor-pointer self-start whitespace-nowrap rounded-[0.875rem] border-0 bg-[#fba613] px-[1.125rem] text-center text-[0.76875rem] font-bold leading-[1.09375rem] text-white shadow-[0_8px_32px_rgba(251,166,19,0.2)] sm:self-center"
+            className="h-11 w-fit self-start whitespace-nowrap rounded-[0.875rem] border-0 bg-[#fba613] px-[1.125rem] text-center text-[0.76875rem] font-bold leading-[1.09375rem] text-white shadow-[0_8px_32px_rgba(251,166,19,0.2)] sm:self-end"
             onClick={() => {
               const params = new URLSearchParams();
               params.set("productName", product.name);
@@ -642,7 +648,9 @@ export default function ProductDetail({
                         <div className="flex flex-1 flex-col gap-1">
                           {item.replies.map((reply) => (
                             <div key={reply._id} className="flex flex-col gap-2">
-                              <p className="whitespace-pre-wrap text-sm text-[black]">{reply.content}</p>
+                              <p className="whitespace-pre-wrap text-sm text-[black]">
+                                {reply.content}
+                              </p>
                               <p className="self-end text-xs text-[#808084]">
                                 {reply.createdAt.slice(0, 20)}
                               </p>
