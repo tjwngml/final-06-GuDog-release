@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Contentdetail from "@/app/(main)/mypage/_components/Contentdetail";
 import { useParams, useSearchParams } from "next/navigation";
 import { PrevIcon } from "@/app/(main)/mypage/_components/Icons";
@@ -93,9 +94,11 @@ export default function ProductQnaForm() {
           <div className="w-full max-w-[632px] mb-[35px] rounded-[21px] border border-black/[0.06] bg-white p-[20px] shadow-[0_2px_12px_0_rgba(0,0,0,0.03)]">
             <div className="flex items-center gap-[14px]">
               <div className="w-[60px] h-[60px] flex-shrink-0 overflow-hidden rounded-[12px]">
-                <img
+                <Image
                   src={productImage || "/images/product-404.jpg"}
                   alt={productName}
+                  width={60}
+                  height={60}
                   className="w-full h-full object-cover"
                 />
               </div>

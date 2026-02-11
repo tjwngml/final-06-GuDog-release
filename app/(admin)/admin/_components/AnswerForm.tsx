@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Post, Product } from "@/types";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { ArrowLeft, Trash2, User, Calendar, Save, MessageCircle } from "lucide-react";
@@ -286,9 +287,11 @@ export default function AnswerForm({ postId, questionData, productData }: Answer
             <div className="bg-white rounded-lg shadow p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">상품 정보</h2>
               <div className="space-y-4">
-                <img
+                <Image
                   src={productData.mainImages?.[0]?.path || "/images/no-image.png"}
                   alt={productData.name}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover rounded-lg border border-gray-200"
                 />
                 <div>

@@ -137,7 +137,7 @@ export default function ProfileClient({
                     ? preview.startsWith("http")
                       ? preview
                       : `${API_URL}${preview}`
-                    : "/images/userImage.jpg"
+                    : "/images/user-image.jpg"
                 }
                 alt="프로필 이미지"
               />

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Clock, AlertTriangle, Users, ShoppingCart, ArrowRight, DollarSign } from "lucide-react";
 import { getProducts, getPosts, getOrders, getUsers, getOrderStatistics, showWarning } from "@/lib";
@@ -324,9 +325,11 @@ export default function AdminDashboardPage() {
                 return (
                   <div key={product._id} className="p-4 hover:bg-gray-50 transition-colors">
                     <div className="flex items-center gap-3">
-                      <img
+                      <Image
                         src={product.mainImages?.[0]?.path || "/placeholder.png"}
                         alt={`${product.name} 썸네일`}
+                        width={48}
+                        height={48}
                         className="w-12 h-12 rounded-lg object-cover border border-gray-200"
                       />
                       <div className="flex-1 min-w-0">

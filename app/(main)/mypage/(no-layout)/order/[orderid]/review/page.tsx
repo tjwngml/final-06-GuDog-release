@@ -34,7 +34,7 @@ export default function Review() {
   // const product_id = searchParams.get("productid");
   const product_id = Number(searchParams.get("productid"));
 
-  const [preview, setPreview] = useState("/images/galary.png");
+  const [preview, setPreview] = useState("/images/gallery.png");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [reviewContent, setReviewContent] = useState("");
   const [title, setTitle] = useState("");
@@ -69,11 +69,11 @@ export default function Review() {
   };
 
   const handleRemoveImage = () => {
-    if (preview && preview !== "/images/galary.png") {
+    if (preview && preview !== "/images/gallery.png") {
       URL.revokeObjectURL(preview);
     }
     setSelectedFile(null);
-    setPreview("/images/galary.png");
+    setPreview("/images/gallery.png");
   };
 
   const handleSubmit = async () => {

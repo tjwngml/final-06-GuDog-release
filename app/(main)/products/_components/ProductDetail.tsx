@@ -295,14 +295,14 @@ export default function ProductDetail({
           ) : (
             <>
               <Image
-                src="/images/image 27.png"
+                src="/images/image-27.png"
                 width={1200}
                 height={800}
                 alt="상품 상세 이미지 1"
                 className="h-auto w-full"
               />
               <Image
-                src="/images/image 28.png"
+                src="/images/image-28.png"
                 width={1200}
                 height={800}
                 alt="상품 상세 이미지 2"

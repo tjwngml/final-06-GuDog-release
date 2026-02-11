@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Children, InputHTMLAttributes } from "react";
 import { useRouter } from "next/navigation";
 import Badge from "@/components/common/Badge";
@@ -38,7 +39,7 @@ export default function MyReviewList({
     >
       <div></div>
       <div className="mt-[30px] ml-[28px] mt-[35px] mb-[28px] mr-[30px] w-[82px] h-[82px] overflow-hidden rounded-[14px] ">
-        <img src={image} alt={name} />
+        <Image src={image} alt={name} width={82} height={82} className="w-full h-full object-cover" />
       </div>
 
       <div className="flex flex-col justify-start flex-1">

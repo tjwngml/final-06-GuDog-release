@@ -255,7 +255,7 @@ export default function SubscriptionCart() {
           {/* 정기 구독 혜택 */}
           <section className="flex flex-col bg-[#FFF9F2] px-5 py-5 rounded-[0.875rem] gap-3 border border-[#FFF5E6]">
             <div className="flex items-center gap-2.5">
-              <Image src="/images/cart/구독혜택.svg" alt="" width={28} height={28} />
+              <Image src="/images/cart/subscription-benefit.svg" alt="" width={28} height={28} />
               <h3 className="text-[0.75rem] text-[#1A1A1C] font-black">나만의 정기 구독 혜택</h3>
             </div>
             <ul className="flex flex-col gap-1.5 ml-4">

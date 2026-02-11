@@ -52,7 +52,7 @@ export default function QuantityControl({
         disabled={disabled || count <= minCount}
         className="flex px-0.5 sm:px-1 sm:py-1 justify-center items-center hover:bg-gray-200 transition-colors rounded-l-[0.875rem] disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        <Image src="/images/cart/-.svg" alt="감소" width={28} height={28} />
+        <Image src="/images/cart/minus.svg" alt="감소" width={28} height={28} />
       </button>
 
       {/* 개수 표시 */}
@@ -64,7 +64,7 @@ export default function QuantityControl({
         disabled={disabled || count >= maxCount}
         className="flex justify-center items-center px-0.5 sm:px-1 sm:py-1 hover:bg-gray-200 transition-colors rounded-r-[0.875rem] disabled:opacity-30 disabled:cursor-not-allowed"
       >
-        <Image src="/images/cart/+.svg" alt="증가" width={28} height={28} />
+        <Image src="/images/cart/plus.svg" alt="증가" width={28} height={28} />
       </button>
     </div>
   );

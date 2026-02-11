@@ -145,10 +145,11 @@ export default async function Home() {
               <div className="flex flex-col items-center lg:items-start gap-10 -mt-6">
                 <FeatureItem
                   icon={
-                    <img
+                    <Image
                       src="/icons/chart-box-orange.svg"
                       alt="차트 아이콘"
-                      className="w-14.5 h-14.5"
+                      width={58}
+                      height={58}
                     />
                   }
                   title="실시간 영양 최적화"
@@ -156,10 +157,11 @@ export default async function Home() {
                 />
                 <FeatureItem
                   icon={
-                    <img
+                    <Image
                       src="/icons/verify-box-orange.svg"
                       alt="검증 아이콘"
-                      className="w-14.5 h-14.5"
+                      width={58}
+                      height={58}
                     />
                   }
                   title="맞춤 영양 솔루션"
@@ -169,7 +171,7 @@ export default async function Home() {
 
                 <FeatureItem
                   icon={
-                    <img src="/icons/qr-box-orange.svg" alt="QR 아이콘" className="w-14.5 h-14.5" />
+                    <Image src="/icons/qr-box-orange.svg" alt="QR 아이콘" width={58} height={58} />
                   }
                   title="신선한 원재료"
                   description="정기 구독을 통해 편리하게 신선한 사료를 받아보시고, 우리 아이의 건강한
@@ -179,7 +181,7 @@ export default async function Home() {
             </div>
             <Image
               className="hidden lg:inline-block"
-              src="/images/logo-D.png"
+              src="/images/logo-d.png"
               alt="구독 브랜드 로고"
               width={394}
               height={459}

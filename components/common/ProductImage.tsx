@@ -26,7 +26,7 @@ export default function ProductImage({
         src={imgSrc}
         alt={alt}
         fill
-        unoptimized
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="object-contain"
         onError={() => setImgSrc(fallback)}
       />

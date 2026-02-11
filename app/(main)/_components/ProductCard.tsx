@@ -24,9 +24,11 @@ export default function ProductCard({
       {/* 이미지 영역 */}
       <div className="relative">
         <ProductImage src={image} alt={title} />
-        <Badge className="absolute top-8 right-8" variant="accent">
-          {tag}
-        </Badge>
+        {tag && (
+          <Badge className="absolute top-8 right-8" variant="accent">
+            {tag}
+          </Badge>
+        )}
       </div>
 
       {/* 콘텐츠 영역 */}

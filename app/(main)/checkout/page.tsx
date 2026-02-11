@@ -506,7 +506,7 @@ function CheckoutContent() {
                   </Button>
                 </div>
                 <p className="flex justify-center gap-2.5 text-[0.625rem] text-(--color-text-primary) font-black) mt-7">
-                  <Image src="/images/checkout/safe2.svg" alt="보안 결제" width={18} height={18} />
+                  <Image src="/images/checkout/safe-2.svg" alt="보안 결제" width={18} height={18} />
                   TSL 1.3 암호화 보안 결제 시스템
                 </p>
               </section>
