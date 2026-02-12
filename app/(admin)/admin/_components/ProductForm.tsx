@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, ChangeEvent, FormEvent } from "react";
+import { useImmer } from "use-immer";
 import { ArrowLeft, Upload, X, Save } from "lucide-react";
 import {
   OPTIONS,
@@ -153,10 +154,6 @@ function cx(...classes: Array<string | false | undefined | null>) {
   return classes.filter(Boolean).join(" ");
 }
 
-function toggleArray<T extends string>(arr: T[], value: T): T[] {
-  return arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value];
-}
-
 function getImageUrl(path: string): string {
   return path.startsWith("http") ? path : `${API_URL}${path}`;
 }
@@ -216,7 +213,7 @@ function RadioPill({
 export default function ProductForm({ formType, initialData }: ProductFormProps) {
   const router = useRouter();
 
-  const [form, setForm] = useState<ProductFormState>(() =>
+  const [form, setForm] = useImmer<ProductFormState>(() =>
     initialData ? productToFormState(initialData) : INITIAL_PRODUCT_FORM,
   );
   const [error, setError] = useState<string | null>(null);
@@ -251,10 +248,10 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
 
   // --- 타입 전환 ---
   const handleTypeChange = (type: ProductType) => {
-    setForm({
+    setForm(() => ({
       ...INITIAL_PRODUCT_FORM,
       extra: { ...INITIAL_PRODUCT_FORM.extra, type },
-    });
+    }));
     setThumbnail(null);
     setDetailImages([]);
     setError(null);
@@ -262,18 +259,25 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
 
   // --- 루트 필드 핸들러 ---
   const handleRootText = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const name = e.target.name as keyof Pick<ProductFormState, "name" | "content">;
+    setForm((draft) => {
+      draft[name] = e.target.value;
+    });
   };
 
   const handleRootNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value === "" ? "" : Number(value) }));
+    const name = e.target.name as keyof Pick<ProductFormState, "price" | "quantity">;
+    const { value } = e.target;
+    setForm((draft) => {
+      draft[name] = value === "" ? "" : Number(value);
+    });
   };
 
   // --- extra 필드 핸들러 ---
   const updateExtra = (patch: Partial<ProductFormExtra>) => {
-    setForm((prev) => ({ ...prev, extra: { ...prev.extra, ...patch } }));
+    setForm((draft) => {
+      Object.assign(draft.extra, patch);
+    });
   };
 
   const handleExtraText = (
@@ -288,13 +292,12 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
   };
 
   const handleExtraToggle = (key: keyof ProductFormExtra, value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      extra: {
-        ...prev.extra,
-        [key]: toggleArray(prev.extra[key] as string[], value),
-      },
-    }));
+    setForm((draft) => {
+      const arr = draft.extra[key] as string[];
+      const idx = arr.indexOf(value);
+      if (idx === -1) arr.push(value);
+      else arr.splice(idx, 1);
+    });
   };
 
   const handleNestedToggle = <T extends "ingredients" | "avoidIf">(
@@ -302,46 +305,28 @@ export default function ProductForm({ formType, initialData }: ProductFormProps)
     field: T extends "ingredients" ? keyof ProductIngredients : keyof ProductAvoidIf,
     value: string,
   ) => {
-    setForm((prev) => ({
-      ...prev,
-      extra: {
-        ...prev.extra,
-        [parent]: {
-          ...prev.extra[parent],
-          [field]: toggleArray(
-            prev.extra[parent][field as keyof (typeof prev.extra)[typeof parent]] as string[],
-            value,
-          ),
-        },
-      },
-    }));
+    setForm((draft) => {
+      const arr = draft.extra[parent][field as keyof (typeof draft.extra)[typeof parent]] as string[];
+      const idx = arr.indexOf(value);
+      if (idx === -1) arr.push(value);
+      else arr.splice(idx, 1);
+    });
   };
 
   const handleNutritionChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      extra: {
-        ...prev.extra,
-        nutrition: {
-          ...prev.extra.nutrition,
-          [name]: value === "" ? 0 : Number(value),
-        },
-      },
-    }));
+    setForm((draft) => {
+      draft.extra.nutrition[name as keyof ProductNutrition] = value === "" ? 0 : Number(value);
+    });
   };
 
   // --- 루트 & extra 일괄적용 핸들러 ---
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      content: value, // 루트 업데이트
-      extra: {
-        ...prev.extra,
-        content: value, // extra도 동기화
-      },
-    }));
+    setForm((draft) => {
+      draft.content = value;
+      draft.extra.content = value;
+    });
   };
 
   // --- 썸네일 핸들러 ---
