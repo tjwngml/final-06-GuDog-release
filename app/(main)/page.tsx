@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const bestProductsRes = await getProducts({ sort: { rating: -1 }, limit: 3 });
+  const bestProductsRes = await getProducts({ sort: { buyQuantity: -1 }, limit: 3 });
 
   if (!bestProductsRes.ok) {
     return (
