@@ -56,9 +56,12 @@ export default function ProductListContent() {
     ? {
         total: statsData.pagination.total,
         lowStock: statsData.item.filter(
-          (p: Product) => p.quantity - p.buyQuantity > 0 && p.quantity - p.buyQuantity <= 100,
+          (p: Product) =>
+            p.quantity - (p.buyQuantity ?? 0) > 0 && p.quantity - (p.buyQuantity ?? 0) <= 100,
         ).length,
-        outOfStock: statsData.item.filter((p: Product) => p.quantity - p.buyQuantity === 0).length,
+        outOfStock: statsData.item.filter(
+          (p: Product) => p.quantity - (p.buyQuantity ?? 0) === 0,
+        ).length,
       }
     : { total: 0, lowStock: 0, outOfStock: 0 };
 
@@ -234,10 +237,10 @@ export default function ProductListContent() {
                 </tr>
               ) : (
                 products.map((item) => {
-                  const stock = item.quantity - item.buyQuantity;
+                  const stock = item.quantity - (item.buyQuantity ?? 0);
                   const getStockStyle = () => {
                     if (stock === 0) return "bg-red-100 text-red-600";
-                    if (stock <= 10) return "bg-orange-100 text-orange-600";
+                    if (stock <= 100) return "bg-orange-100 text-orange-600";
                     return "bg-green-100 text-green-600";
                   };
 

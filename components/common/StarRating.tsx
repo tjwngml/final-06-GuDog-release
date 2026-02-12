@@ -72,9 +72,11 @@ const HalfStar = ({ size }: { size: number }) => (
 export default function StarRating({ rating, size = 24, className }: StarRatingProps) {
   const clampedRating = Math.max(0, Math.min(5, rating));
 
-  // 별 개수 계산
-  const fullStars = Math.floor(clampedRating);
-  const hasHalfStar = clampedRating - fullStars >= 0.5;
+  // 0.5 단위로 반올림
+  const roundedRating = Math.round(clampedRating * 2) / 2;
+
+  const fullStars = Math.floor(roundedRating);
+  const hasHalfStar = roundedRating - fullStars === 0.5;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (

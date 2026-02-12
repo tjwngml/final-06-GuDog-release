@@ -272,6 +272,7 @@ function CheckoutContent() {
         totalAmount: finalAmount, // 우리가 계산한 최종 금액 연결
         currency: "KRW",
         payMethod: "CARD",
+        redirectUrl: "http://localhost:3000/mypage/order",
       });
 
       // 결제 결과 확인

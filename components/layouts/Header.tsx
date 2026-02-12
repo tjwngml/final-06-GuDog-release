@@ -329,8 +329,8 @@ const Header: React.FC = () => {
         aria-modal="true"
         aria-label="모바일 메뉴"
         inert={!isMobileMenuOpen || undefined}
-        className={`fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-white z-[1100] transition-transform duration-500 ease-in-out lg:hidden shadow-[0_0_40px_rgba(0,0,0,0.3)] flex flex-col ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-white z-[1100] transition-[transform,box-shadow] duration-500 ease-in-out lg:hidden flex flex-col ${
+          isMobileMenuOpen ? "translate-x-0 shadow-[0_0_40px_rgba(0,0,0,0.3)]" : "translate-x-full shadow-none"
         }`}
         onKeyDown={(e) => {
           if (e.key === "Escape") {
